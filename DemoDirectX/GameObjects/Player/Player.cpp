@@ -24,6 +24,9 @@ Player::Player()
 
 	//Khởi tạo mảng Bullet
 	mListBullet = new PlayerBullet[5];
+
+	//khởi tạo khói
+	mListSmoke = new PlayerDashingSmoke[5];
 	
     this->mPlayerData = new PlayerData();
     this->mPlayerData->player = this;
@@ -69,10 +72,7 @@ void Player::Update(float dt)
 		}
 	}
 	
-	//Update animation Effect
-	if (mCurrentEffectAnimation != NULL) {
-		mCurrentEffectAnimation->Update(dt);
-	}
+	
 	
 	//Update animation Bullet
 	RECT rectCamera = mCamera->GetBound();
@@ -80,10 +80,21 @@ void Player::Update(float dt)
 		mListBullet[i].Update(dt,rectCamera);
 	}
 
+	//Update list smoke
+	for (int i = 0; i < sizeof(mListSmoke); i++) {
+		mListSmoke[i].Update(dt);
+	}
+
+	//Update player
 	this->width = mCurrentAnimation->GetWidth();
 	this->height = mCurrentAnimation->GetHeight();
 
 	mCurrentAnimation->Update(dt);
+
+	//Update animation Effect
+	if (mCurrentEffectAnimation != NULL) {
+		mCurrentEffectAnimation->Update(dt);
+	}
 
     if (this->mPlayerData->state)
     {
@@ -314,6 +325,11 @@ void Player::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DX
 			mListBullet[i].Draw(trans);
 		}
 
+		//Draw smoke
+		for (int i = 0; i < sizeof(mListSmoke); i++) {
+			mListSmoke[i].Draw(trans);
+		}
+
 		//Draw player
 		mCurrentAnimation->Draw(trans);
 
@@ -322,6 +338,9 @@ void Player::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DX
 			mCurrentEffectAnimation->SetPosition(this->GetPosition());
 			mCurrentEffectAnimation->Draw(trans);
 		}
+
+		
+		
 			
 	/*}
 	else

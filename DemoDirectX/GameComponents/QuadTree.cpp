@@ -35,7 +35,7 @@ void QuadTree::insertEntity(Entity *entity)
 {
     int index = getIndex(entity->GetBound());
 
-    //neu node ta ton tai thi insert vao node con
+    //neu node cha ton tai thi insert vao node con
     if (Nodes != NULL)
     {
         if (index != -1)

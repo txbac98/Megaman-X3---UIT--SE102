@@ -7,7 +7,9 @@ PlayerDashingState::PlayerDashingState(PlayerData * playerData)
 	if (this->mPlayerData->player->mCurrentReverse)	//Face on the left
 		this->mPlayerData->player->SetVx(-PlayerDefine::DASHING_SPEED);
 	else this->mPlayerData->player->SetVx(PlayerDefine::DASHING_SPEED);
-	time = 0;
+	dtTimeDashing = 0;
+	dtTimeSmoke = 0;
+	timeSmoke = 0.1;
 	timeDashting = PlayerDefine::DASHING_TIME;
 }
 
@@ -18,15 +20,24 @@ PlayerDashingState::~PlayerDashingState()
 void PlayerDashingState::Update(float dt)
 {
 	HandleKeyboard();
-	time += dt;
-	/*if (this->mPlayerData->player->EndCurrentAnimation())
-		this->mPlayerData->player->mCurrentAnimation->SetIndex(1);*/
-	if (time>=timeDashting)
+	dtTimeDashing += dt;
+	dtTimeSmoke += dt;
+	
+	if (dtTimeDashing>=timeDashting)
 	 {
 		this->mPlayerData->player->AddPositionY(-4.5);
 		this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData));
+		return;
 	}
-	
+	//Spawn smoke
+	if (dtTimeSmoke >= timeSmoke) {
+		for (int i = 0; i < sizeof(this->mPlayerData->player->mListSmoke); i++) {
+			if (this->mPlayerData->player->mListSmoke[i].wasBorn) continue;
+			this->mPlayerData->player->mListSmoke[i].Spawn(this->mPlayerData->player->posX, this->mPlayerData->player->posY + 4);
+			break;
+		}
+		dtTimeSmoke = 0;
+	}
 }
 
 void PlayerDashingState::HandleKeyboard()

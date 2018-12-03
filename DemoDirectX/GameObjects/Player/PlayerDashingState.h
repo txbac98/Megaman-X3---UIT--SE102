@@ -12,6 +12,6 @@ public:
 	void HandleKeyboard();
 	void OnCollision(Entity * other, Entity::SideCollisions side);
 	virtual StateName GetState();
-	float timeDashting, time;
+	float timeDashting, dtTimeDashing, timeSmoke, dtTimeSmoke;
 protected:
 }; 

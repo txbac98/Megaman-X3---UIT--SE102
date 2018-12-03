@@ -75,6 +75,7 @@ public:
 
 	PlayerBullet *mListBullet ;
 	//vector<PlayerBullet> mListBullet;
+	PlayerDashingSmoke *mListSmoke;
 	
 //protected:
 	Animation   *mAnimationSpawning,

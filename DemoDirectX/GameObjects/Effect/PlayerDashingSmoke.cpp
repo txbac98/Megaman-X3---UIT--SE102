@@ -3,13 +3,18 @@
 PlayerDashingSmoke::PlayerDashingSmoke()
 {
 	wasBorn = false;
-	mAnimation = new Animation("Resources/Megaman/Effect.png", "Resources/Megaman/DashingSmoke.txt", 0.05f, false);
-	this->SetVy(-2);	//Bay lên
+	mAnimation = new Animation("Resources/Effect/DashingSmoke.png", "Resources/Effect/DashingSmoke.txt", 0.01f, false);
 	mAnimation->Start();
 }
 
 PlayerDashingSmoke::~PlayerDashingSmoke()
 {
+}
+
+void PlayerDashingSmoke::Spawn(float posX, float posY)
+{
+	wasBorn = true;
+	this->SetPosition(posX, posY);
 }
 
 void PlayerDashingSmoke::Update(float dt)
@@ -26,5 +31,9 @@ void PlayerDashingSmoke::Update(float dt)
 void PlayerDashingSmoke::Draw(D3DXVECTOR2 transform)
 {
 	if (wasBorn)
+	{
+		mAnimation->SetPosition(this->GetPosition());
 		mAnimation->Draw(transform);
+	}
+		
 }
