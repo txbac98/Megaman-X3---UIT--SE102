@@ -14,7 +14,7 @@ void DemoScene::LoadContent()
     //set mau backcolor cho scene o day la mau xanh
     mBackColor = 0x54acd2;
 
-    mMap = new GameMap("Resources/map64.tmx");
+    mMap = new GameMap("Resources/Map/map.tmx");
 
 	//kích thước bằng màn hình
     mCamera = new Camera(GameGlobal::GetWidth(), GameGlobal::GetHeight());

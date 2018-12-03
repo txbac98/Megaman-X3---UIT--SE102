@@ -47,6 +47,12 @@
     <Filter Include="FrameWork\GameObjects\Player\Bullet">
       <UniqueIdentifier>{f77db48b-f8c5-4604-bd79-da282666551d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FrameWork\GameObjects\Enemies">
+      <UniqueIdentifier>{e95256e5-0a5d-4cb5-aac2-b2362bef7f92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FrameWork\GameObjects\Player\Effect">
+      <UniqueIdentifier>{8a4f34cd-9c16-4608-adcb-06f4f7df8e07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -225,6 +231,9 @@
     </ClCompile>
     <ClCompile Include="GameObjects\Player\Bullet\PlayerBullet.cpp">
       <Filter>FrameWork\GameObjects\Player\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Effect\PlayerDashingSmoke.cpp">
+      <Filter>FrameWork\GameObjects\Player\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -419,6 +428,9 @@
     </ClInclude>
     <ClInclude Include="GameObjects\Player\Bullet\PlayerBullet.h">
       <Filter>FrameWork\GameObjects\Player\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Effect\PlayerDashingSmoke.h">
+      <Filter>FrameWork\GameObjects\Player\Effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

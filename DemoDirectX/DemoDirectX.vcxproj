@@ -97,6 +97,7 @@
     <ClCompile Include="GameComponents\Scene.cpp" />
     <ClCompile Include="GameComponents\Sprite.cpp" />
     <ClCompile Include="GameControllers\SceneManager.cpp" />
+    <ClCompile Include="GameObjects\Effect\PlayerDashingSmoke.cpp" />
     <ClCompile Include="GameObjects\Entity.cpp" />
     <ClCompile Include="GameObjects\MapObjects\Brick.cpp" />
     <ClCompile Include="GameObjects\MapObjects\BrickGold.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="GameComponents\Sprite.h" />
     <ClInclude Include="GameControllers\SceneManager.h" />
     <ClInclude Include="GameDefines\GameDefine.h" />
+    <ClInclude Include="GameObjects\Effect\PlayerDashingSmoke.h" />
     <ClInclude Include="GameObjects\Entity.h" />
     <ClInclude Include="GameObjects\MapObjects\Brick.h" />
     <ClInclude Include="GameObjects\MapObjects\BrickGold.h" />

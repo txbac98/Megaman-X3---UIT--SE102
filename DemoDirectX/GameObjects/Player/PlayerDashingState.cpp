@@ -5,10 +5,10 @@ PlayerDashingState::PlayerDashingState(PlayerData * playerData)
 	this->mPlayerData = playerData;
 	this->mPlayerData->player->AddPositionY(4.5);
 	if (this->mPlayerData->player->mCurrentReverse)	//Face on the left
-		this->mPlayerData->player->SetVx(-150);
-	else this->mPlayerData->player->SetVx(150);
+		this->mPlayerData->player->SetVx(-PlayerDefine::DASHING_SPEED);
+	else this->mPlayerData->player->SetVx(PlayerDefine::DASHING_SPEED);
 	time = 0;
-	timeDashting = 0.5;
+	timeDashting = PlayerDefine::DASHING_TIME;
 }
 
 PlayerDashingState::~PlayerDashingState()

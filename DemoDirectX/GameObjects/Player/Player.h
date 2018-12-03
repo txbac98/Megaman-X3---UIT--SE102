@@ -19,6 +19,7 @@
 #include "PlayerJumpingAndShootState.h"
 #include "../../KeyGame.h"
 #include "Bullet/PlayerBullet.h"
+#include "../Effect/PlayerDashingSmoke.h"
 
 
 class Player : public Entity

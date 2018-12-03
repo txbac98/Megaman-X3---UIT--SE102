@@ -7,6 +7,8 @@ namespace PlayerDefine
 	const float JUMP_ACCELERATOR_Y = 15.0f;
     const float MAX_RUNNING_SPEED = 50.0f; //toc do chay nhanh nhat cua player
 	const float RUNNING_ACCELERATOR = 18.0f; //gia tốc chạy
+	const float DASHING_SPEED = 150;
+	const float DASHING_TIME = 0.5f;
     const float BOTTOM_RANGE_FALLING = 0.4f; // do dai va cham voi bottom neu nhu va cham bottom nho hon thi player se bi roi xuong
 
 	//Effect
@@ -18,6 +20,6 @@ namespace BulletDefine {
 	const float PLAYER_BULLET_SPEED = 200.0f;
 }
 namespace SceneDefine {
-	const int WIDTH = 150;
-	const int HEIGHT = 150;
+	const int WIDTH = 200;	//map64 :: 150
+	const int HEIGHT = 200;
 }

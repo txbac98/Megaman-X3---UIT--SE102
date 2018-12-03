@@ -129,7 +129,7 @@ void Player::CheckNoCollisionWithBottom() {
 }
 void Player::HandleKeyboard(float dt) {
 
-	//Effect, Attack
+	//Effect when keep keyAttack
 	if (KEY->keyAttack && !isDownKeyAttack) {
 		timeDownAttackKey = 0;
 		typeBullet = 0;
@@ -204,8 +204,14 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 		
 		objectBottom = other;
 	}
-	if (side==SideCollisions::Left || side==SideCollisions::Right || side==SideCollisions::BottomLeft || side==SideCollisions::BottomRight)
+	if (side == SideCollisions::Left || side == SideCollisions::Right )
+	{
 		this->mPlayerData->player->SetVx(0);
+	}
+	if (side == SideCollisions::BottomLeft || side == SideCollisions::BottomRight) {
+		if (!this->getState() == PlayerState::Dashing)
+			this->mPlayerData->player->SetVx(0);
+	}
 	if (side== SideCollisions::Left) this->mPlayerData->player->allowMoveLeft = false;
 	if (side == SideCollisions::Right) this->mPlayerData->player->allowMoveRight = false;
 	//Riêng từng state
