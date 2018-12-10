@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="24" height="24" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="5">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="24" height="24" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="16">
  <tileset firstgid="1" source="Map3.tsx"/>
  <layer id="1" name="Tile Layer 1" width="24" height="24">
   <data encoding="base64" compression="zlib">
@@ -7,9 +7,19 @@
   </data>
  </layer>
  <objectgroup id="2" name="Object Layer 1">
-  <object id="1" x="2.5" y="702" width="761.5" height="50"/>
-  <object id="2" x="180" y="188" width="300" height="14"/>
-  <object id="3" x="466" y="-4" width="38" height="206"/>
+  <object id="1" x="344.5" y="693" width="649.5" height="28.5"/>
+  <object id="2" x="181.5" y="182" width="298.5" height="23"/>
+  <object id="3" x="466" y="-4" width="38" height="374"/>
   <object id="4" name="Door" x="754" y="642" width="12" height="51"/>
+  <object id="5" x="0" y="33" width="32" height="665"/>
+  <object id="6" x="7" y="36" width="152" height="28"/>
+  <object id="7" x="0" y="180" width="96" height="43"/>
+  <object id="8" x="9" y="310" width="340.5" height="26"/>
+  <object id="9" x="0" y="692" width="97" height="59"/>
+  <object id="10" x="178" y="614" width="110" height="145"/>
+  <object id="11" x="283" y="646" width="69" height="54.5"/>
+  <object id="12" x="403" y="308" width="66" height="30"/>
+  <object id="14" x="181.5" y="439" width="297.5" height="23"/>
+  <object id="15" x="27" y="436" width="69" height="32"/>
  </objectgroup>
 </map>

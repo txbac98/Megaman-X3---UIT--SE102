@@ -28,7 +28,7 @@ void Elevator::Update(float dt)
 	//if (this->posY<=195) 
 	//	this->SetVy(0);
 	mAnimation->Update(dt);
-	if (this->posY > 195)  Entity::Update(dt);
+	if (this->posY > 193)  Entity::Update(dt);
 	if (mPlayer!=NULL)
 		CollisionManager::getInstance()->checkCollision(mPlayer, this, dt / 1000);
 }
