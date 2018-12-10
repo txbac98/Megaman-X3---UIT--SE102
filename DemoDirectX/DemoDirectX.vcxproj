@@ -100,9 +100,6 @@
     <ClCompile Include="GameControllers\SceneManager.cpp" />
     <ClCompile Include="GameObjects\Effect\PlayerDashingSmoke.cpp" />
     <ClCompile Include="GameObjects\Entity.cpp" />
-    <ClCompile Include="GameObjects\MapObjects\Brick.cpp" />
-    <ClCompile Include="GameObjects\MapObjects\BrickGold.cpp" />
-    <ClCompile Include="GameObjects\MapObjects\BrickNormal.cpp" />
     <ClCompile Include="GameObjects\MapObjects\Door.cpp" />
     <ClCompile Include="GameObjects\MapObjects\Elevator.cpp" />
     <ClCompile Include="GameObjects\MapObjects\GameObject.cpp" />
@@ -167,9 +164,6 @@
     <ClInclude Include="GameDefines\GameDefine.h" />
     <ClInclude Include="GameObjects\Effect\PlayerDashingSmoke.h" />
     <ClInclude Include="GameObjects\Entity.h" />
-    <ClInclude Include="GameObjects\MapObjects\Brick.h" />
-    <ClInclude Include="GameObjects\MapObjects\BrickGold.h" />
-    <ClInclude Include="GameObjects\MapObjects\BrickNormal.h" />
     <ClInclude Include="GameObjects\MapObjects\Door.h" />
     <ClInclude Include="GameObjects\MapObjects\Elevator.h" />
     <ClInclude Include="GameObjects\MapObjects\GameObject.h" />

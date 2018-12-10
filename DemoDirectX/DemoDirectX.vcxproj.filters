@@ -172,15 +172,6 @@
     <ClCompile Include="GameComponents\QuadTree.cpp">
       <Filter>FrameWork\GameComponents</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjects\MapObjects\Brick.cpp">
-      <Filter>FrameWork\GameObjects\MapObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjects\MapObjects\BrickGold.cpp">
-      <Filter>FrameWork\GameObjects\MapObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjects\MapObjects\BrickNormal.cpp">
-      <Filter>FrameWork\GameObjects\MapObjects</Filter>
-    </ClCompile>
     <ClCompile Include="GameObjects\MapObjects\GameObject.cpp">
       <Filter>FrameWork\GameObjects\MapObjects</Filter>
     </ClCompile>
@@ -371,15 +362,6 @@
     </ClInclude>
     <ClInclude Include="GameComponents\QuadTree.h">
       <Filter>FrameWork\GameComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjects\MapObjects\Brick.h">
-      <Filter>FrameWork\GameObjects\MapObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjects\MapObjects\BrickGold.h">
-      <Filter>FrameWork\GameObjects\MapObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjects\MapObjects\BrickNormal.h">
-      <Filter>FrameWork\GameObjects\MapObjects</Filter>
     </ClInclude>
     <ClInclude Include="GameObjects\MapObjects\GameObject.h">
       <Filter>FrameWork\GameObjects\MapObjects</Filter>

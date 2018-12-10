@@ -1,6 +1,4 @@
 ﻿#include "GameMap.h"
-#include "../GameObjects/MapObjects/BrickGold.h"
-#include "../GameObjects/MapObjects/BrickNormal.h"
 
 GameMap::GameMap(char* filePath, char *fileQuadTree, int posx, int posy)
 {
@@ -32,12 +30,6 @@ GameMap::~GameMap()
 {
     delete mMap;
 
-    for (size_t i = 0; i < mListBricks.size(); i++)
-    {
-        if (mListBricks[i])
-            delete mListBricks[i];
-    }
-    mListBricks.clear();
 
     for (size_t i = 0; i < mListTileset.size(); i++)
     {
@@ -348,10 +340,6 @@ std::map<int, Sprite*> GameMap::getListTileSet()
     return mListTileset;
 }
 
-std::vector<Brick*> GameMap::GetListBrick()
-{
-    return mListBricks;
-}
 
 QuadTree * GameMap::GetQuadTree()
 {

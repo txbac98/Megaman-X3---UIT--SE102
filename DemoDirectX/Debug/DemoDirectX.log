@@ -4,8 +4,9 @@ d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(95): warnin
 d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(113): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(114): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(121): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(124): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(124): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
 d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(127): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(132): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
 d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(135): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(142): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(144): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data

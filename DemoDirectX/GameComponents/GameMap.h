@@ -12,7 +12,6 @@
 #include "GameGlobal.h"
 #include "CollisionManager.h"
 #include "QuadTree.h"
-#include "../GameObjects/MapObjects/Brick.h"
 #include "../GameObjects/MapObjects/Elevator.h"
 #include "../GameObjects/MapObjects/Door.h"
 using namespace std;
@@ -41,7 +40,6 @@ public:
     bool IsBoundBottom(); // kiem tra xem co o vi tri bien ben phai worldmap khong
     ~GameMap();
 
-    std::vector<Brick*> GetListBrick();
 
     QuadTree* GetQuadTree();
 
@@ -53,7 +51,6 @@ private:
     LPD3DXSPRITE                    mSpriteHandler;
     Camera                          *mCamera;
     QuadTree                        *mQuadTree;
-    std::vector<Brick*>             mListBricks;
 	std::vector<Elevator*>			mListElevator;
 	std::vector<Entity*>			mListEntity;
 	std::vector<Door*>				mListDoor;
