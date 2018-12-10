@@ -27,7 +27,6 @@ class Player : public Entity
 public:
     Player();
     ~Player();
-
     enum MoveDirection
     {
         MoveToLeft, //chay tu phai sang trai

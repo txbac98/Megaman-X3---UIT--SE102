@@ -2,10 +2,24 @@
 #include "../GameObjects/MapObjects/BrickGold.h"
 #include "../GameObjects/MapObjects/BrickNormal.h"
 
-GameMap::GameMap(char* filePath)
+GameMap::GameMap(char* filePath, int posx, int posy)
 {
     mCamera = new Camera(GameGlobal::GetWidth(), GameGlobal::GetHeight());
+	PosX = posx;
+	PosY = posy;
     LoadMap(filePath);
+}
+
+GameMap::GameMap(char * filePath, Camera * camera, int posx, int posy)
+{
+	mCamera = camera;
+	PosX = posx;
+	PosY = posy;
+	LoadMap(filePath);
+}
+
+GameMap::GameMap()
+{
 }
 
 GameMap::~GameMap()
@@ -140,17 +154,21 @@ void GameMap::LoadMap(char* filePath)
 			
 			Entity *entity = new Entity();
 			entity->Tag = Entity::EntityTypes::Wall;
-			
+			float posX = PosX + object->GetX() + object->GetWidth() / 2;
+			float posY = PosY + object->GetY() + object->GetHeight() / 2;
 
 			if (object->GetName() == "Elevator") {
-				 Elevator *elevator= new Elevator(object->GetX() + object->GetWidth() / 2, 
-					 object->GetY() + object->GetHeight() / 2);
+				 Elevator *elevator= new Elevator(posX, posY);
 				 mListElevator.push_back(elevator);
 				 mQuadTree->insertEntity(elevator);
 			}
+			else if(object->GetName()=="Door"){
+				Door *door = new Door(posX, posY);
+				mListDoor.push_back(door);
+				mQuadTree->insertEntity(door);
+			}
 			else {
-				entity->SetPosition(object->GetX() + object->GetWidth() / 2,
-					object->GetY() + object->GetHeight() / 2);
+				entity->SetPosition(posX, posY);
 				entity->SetWidth(object->GetWidth());
 				entity->SetHeight(object->GetHeight());
 				mQuadTree->insertEntity(entity);
@@ -173,9 +191,10 @@ Tmx::Map* GameMap::GetMap()
 RECT GameMap::GetWorldMapBound()
 {
     RECT bound;
-    bound.left = bound.top = 0;
-    bound.right = mMap->GetWidth() * mMap->GetTileWidth();
-    bound.bottom = mMap->GetHeight() * mMap->GetTileHeight();
+	bound.left = PosX;
+	bound.top = PosY;
+    bound.right = PosX+ mMap->GetWidth() * mMap->GetTileWidth();
+    bound.bottom = PosY +mMap->GetHeight() * mMap->GetTileHeight();
 
     return bound;
 }
@@ -226,12 +245,16 @@ void GameMap::Update(float dt)
     {
         mListElevator[i]->Update(dt);
     }
+	for (size_t i = 0; i < mListDoor.size(); i++)
+	{
+		mListDoor[i]->Update(dt);
+	}
 }
 
 void GameMap::Draw()
 {
-    D3DXVECTOR2 trans = D3DXVECTOR2(GameGlobal::GetWidth() / 2 - mCamera->GetPosition().x,
-        GameGlobal::GetHeight() / 2 - mCamera->GetPosition().y);
+    D3DXVECTOR2 trans = D3DXVECTOR2(int(GameGlobal::GetWidth() / 2 - mCamera->GetPosition().x ),
+       int( GameGlobal::GetHeight() / 2 - mCamera->GetPosition().y ));
 
 
 #pragma region DRAW TILESET
@@ -276,7 +299,7 @@ void GameMap::Draw()
 
                         //tru tilewidth/2 va tileheight/2 vi Sprite ve o vi tri giua hinh anh cho nen doi hinh de cho
                         //dung toa do (0,0) cua the gioi thuc la (0,0) neu khong thi se la (-tilewidth/2, -tileheigth/2);
-                        D3DXVECTOR3 position(n * tileWidth + tileWidth / 2, m * tileHeight + tileHeight / 2, 0);
+                        D3DXVECTOR3 position(PosX +  n * tileWidth + tileWidth / 2,PosY + m * tileHeight + tileHeight / 2, 0);
 
                         if (mCamera != NULL)
                         {
@@ -287,6 +310,7 @@ void GameMap::Draw()
                             objRECT.bottom = objRECT.top + tileHeight;
 
 							if (!CollisionManager::getInstance()->AABBCheck(mCamera->GetBound(), objRECT))
+								//Không va chạm thì không vẽ
                                 continue;
                         }
 
@@ -307,7 +331,9 @@ void GameMap::Draw()
 	{
 		mListElevator[i]->Draw(trans);
 	}
-
+	for (size_t i = 0; i < mListDoor.size(); i++) {
+		mListDoor[i]->Draw(trans);
+	}
 #pragma endregion
 }
 

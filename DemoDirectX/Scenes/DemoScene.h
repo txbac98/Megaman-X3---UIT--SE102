@@ -12,7 +12,7 @@
 #include "../GameComponents/Camera.h"
 #include "../GameObjects/Player/Player.h"
 #include "../GameComponents/CollisionManager.h"
-#include "../GameObjects/MapObjects/Elevator.h"
+#include "../GameComponents/ViewPort.h"
 
 
 class DemoScene : public Scene
@@ -30,9 +30,9 @@ protected:
     void checkCollision(float dt);
     void CheckCameraAndWorldMap();
 
-    GameMap *mMap;
+    GameMap *mMap, *mMap0, *mMap1, *mMap2, *mMapBack, *mMapNext;
     Camera *mCamera;
     Player *mPlayer;
-
+	ViewPort *mViewPort;
 };
 

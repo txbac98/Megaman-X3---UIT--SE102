@@ -1,11 +1,10 @@
-﻿  Player.cpp
+﻿  ViewPort.cpp
   c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(89): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(90): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(120): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(223): warning C4806: '==': unsafe operation: no value of type 'bool' promoted to type 'PlayerState::StateName' can equal the given constant
-d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(275): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(276): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(367): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(369): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(96): warning C4018: '<': signed/unsigned mismatch
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(115): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(122): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(125): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(128): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(136): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(143): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   DemoDirectX.vcxproj -> D:\Game C++\manx\DirectXGame\Debug\DemoDirectX.exe

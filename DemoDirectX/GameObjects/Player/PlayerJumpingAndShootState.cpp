@@ -111,32 +111,6 @@ void PlayerJumpingAndShootState::OnCollision(Entity * object, Entity::SideCollis
 		this->mPlayerData->player->SetState(new PlayerStandingState(mPlayerData));
 		return;
 	}
-	switch (side)
-	{
-	case Entity::Left: case Entity::BottomLeft:
-		//Không cho nhảy xuyên tường
-		this->mPlayerData->player->SetVx(0);
-		this->mPlayerData->player->allowMoveLeft = false;
-		break;
-	case Entity::Right: case Entity::BottomRight:
-		//Không cho nhảy xuyên tường
-		this->mPlayerData->player->SetVx(0);
-		this->mPlayerData->player->allowMoveRight = false;
-		break;
-	case Entity::Top:
-		break;
-	case Entity::Bottom:
-		
-		break;
-	case Entity::TopLeft:
-		break;
-	case Entity::TopRight:
-		break;
-	case Entity::NotKnow:
-		break;
-	default:
-		break;
-	}
 }
 PlayerState::StateName PlayerJumpingAndShootState::GetState()
 {

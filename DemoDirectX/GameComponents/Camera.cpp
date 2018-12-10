@@ -20,6 +20,16 @@ void Camera::SetPosition(float x, float y)
     SetPosition(D3DXVECTOR2(x, y));
 }
 
+void Camera::SetPositionX(float x)
+{
+	mPosition.x = x;
+}
+
+void Camera::SetPositionY(float y)
+{
+	mPosition.y = y;
+}
+
 void Camera::SetPosition(D3DXVECTOR2 pos)
 {
     mPosition = pos;

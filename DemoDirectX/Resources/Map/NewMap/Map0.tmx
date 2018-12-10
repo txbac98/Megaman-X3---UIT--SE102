@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="24" height="8" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="2">
+ <tileset firstgid="1" source="Map0.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="24" height="8">
+  <data encoding="base64" compression="zlib">
+   eJwNwwdXDgAAAMCvISnJloySmZmGmbbsnb1nViojK6uyMhsiFFGyIytCfpq79y4oEAgEG2KovQyzt+H2McJI+xplP6Pt7wAHOsjBDnGow4xxuLGOcKSjHG2c8Y4xwbGOc7wTnOgkE53sFKc6zenOMMmZJptiqmnOcrZznOs855vuAjPMNMtsc8w1z4Xmu8jFLnGpy1zuCle6ytWuca3rLHC9G9zoJje7xa1uc7s73Okud7vHve5zvwcs9KCHPOwRj1rkMYstsdTjnvCkpyzztGc86znPW+4FL3rJy16xwkqrvOo1r3vDm1Z7y9ve8a73vG+NtdZZ7wMbfOgjG33sE5/aZLPPfG6LL3xpq22+st3XvvGt73zvBz/a4Sc/2+kXv/rN7/6wy5/+stvf/vGvPf7zPyhHSGE=
+  </data>
+ </layer>
+ <objectgroup id="2" name="Object Layer 1">
+  <object id="1" x="10" y="188" width="774" height="36"/>
+ </objectgroup>
+</map>

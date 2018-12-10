@@ -17,9 +17,9 @@ namespace PlayerDefine
 	
 }
 namespace BulletDefine {
-	const float PLAYER_BULLET_SPEED = 200.0f;
+	const float PLAYER_BULLET_SPEED = 300.0f;
 }
 namespace SceneDefine {
-	const int WIDTH = 200;	//map64 :: 150
-	const int HEIGHT = 200;
+	const int WIDTH = 256;	//map64 :: 150
+	const int HEIGHT = 256;
 }

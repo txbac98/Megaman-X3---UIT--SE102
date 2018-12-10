@@ -14,20 +14,25 @@
 #include "QuadTree.h"
 #include "../GameObjects/MapObjects/Brick.h"
 #include "../GameObjects/MapObjects/Elevator.h"
+#include "../GameObjects/MapObjects/Door.h"
 
 class GameMap
 {
 public:
-    GameMap(char* filePath);
+    GameMap(char* filePath, int posx=0, int posy=0);
+	GameMap(char* filePath, Camera *camera, int posx = 0, int posy = 0);
+	GameMap();
     void SetCamera(Camera* camera);
     void Update(float dt);
     void Draw();
+	
     Tmx::Map* GetMap();
     RECT GetWorldMapBound();
     int GetWidth();
     int GetHeight();
     int GetTileWidth();
     int GetTileHeight();
+	int PosX, PosY;
     std::map<int, Sprite*> getListTileSet();
 
     bool IsBoundLeft(); //kiem tra luc nay Camera o vi bien ben trai so voi WorldMap
@@ -51,6 +56,7 @@ private:
     std::vector<Brick*>             mListBricks;
 	std::vector<Elevator*>			mListElevator;
 	std::vector<Entity*>			mListEntity;
+	std::vector<Door*>				mListDoor;
 
     Sprite                          *mSpriteBricks, *mSpriteBrickGold;
 };

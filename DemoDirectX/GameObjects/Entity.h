@@ -33,7 +33,7 @@ public:
 
     enum EntityTypes
     {
-        Player, None, Wall, Elevator, Brick, Enemy, Mario, Static, BrickGoldNormal, BrickGoldEated
+        Player, None, Wall, Elevator, Door, Brick, Enemy, Mario, Static, BrickGoldNormal, BrickGoldEated
     };
 
     EntityTypes Tag; //Tag de nhan vien loai Entity

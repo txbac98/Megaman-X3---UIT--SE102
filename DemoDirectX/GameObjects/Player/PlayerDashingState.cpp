@@ -3,7 +3,7 @@
 PlayerDashingState::PlayerDashingState(PlayerData * playerData)
 {
 	this->mPlayerData = playerData;
-	this->mPlayerData->player->AddPositionY(4.5);
+	//this->mPlayerData->player->AddPositionY(4.5);
 	if (this->mPlayerData->player->mCurrentReverse)	//Face on the left
 		this->mPlayerData->player->SetVx(-PlayerDefine::DASHING_SPEED);
 	else this->mPlayerData->player->SetVx(PlayerDefine::DASHING_SPEED);
@@ -25,7 +25,7 @@ void PlayerDashingState::Update(float dt)
 	
 	if (dtTimeDashing>=timeDashting)
 	 {
-		this->mPlayerData->player->AddPositionY(-4.5);
+		//this->mPlayerData->player->AddPositionY(-4.5);
 		this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData));
 		return;
 	}
@@ -50,14 +50,14 @@ void PlayerDashingState::OnCollision(Entity * other, Entity::SideCollisions side
 	{
 	case Entity::Left:
 		if (this->mPlayerData->player->mCurrentReverse) {
-			this->mPlayerData->player->AddPositionY(-4.5);
+			//this->mPlayerData->player->AddPositionY(-4.5);
 			this->mPlayerData->player->AddPositionX(-3);
 			this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData));
 		}	
 		break;
 	case Entity::Right:
 		if (!this->mPlayerData->player->mCurrentReverse) {
-			this->mPlayerData->player->AddPositionY(-4.5);
+			//this->mPlayerData->player->AddPositionY(-4.5);
 			this->mPlayerData->player->AddPositionX(3);
 			this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData));
 		}

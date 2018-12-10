@@ -76,7 +76,7 @@ void Sprite::InitWithSprite(const char* filePath, RECT sourceRect, int width, in
         D3DPOOL_DEFAULT,
         D3DX_DEFAULT,
         D3DX_DEFAULT,
-        colorKey,
+		colorKey,
         &mImageInfo,
         NULL,
         &mTexture);
@@ -181,19 +181,6 @@ void Sprite::SetScale(float scale) {
 	mHeight *= mScale.y;
 }
 
-void Sprite::DrawSprite()
-{
-	D3DXVECTOR3 inPosition = mPosition;
-	RECT inSourceRect = mSourceRect;
-	D3DXVECTOR3 center = D3DXVECTOR3(mWidth / 2, mHeight / 2, 0);
-
-	mSpriteHandler->Draw(mTexture,
-		&inSourceRect,
-		&center,
-		&inPosition,
-		D3DCOLOR_XRGB(255, 255, 255));
-}
-
 void Sprite::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DXVECTOR2 transform, float angle, D3DXVECTOR2 rotationCenter, D3DXCOLOR colorKey)
 {
     D3DXVECTOR3 inPosition = mPosition;
@@ -231,7 +218,7 @@ void Sprite::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DX
 	finalMatrix = oldMatrix * mMatrix;
 
 	//set matrix transformed
-	mSpriteHandler->SetTransform(&finalMatrix);
+	mSpriteHandler->SetTransform(&mMatrix);
 
 	// BEGIN
 	//mSpriteHandler->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_DONOTSAVESTATE);
@@ -240,7 +227,7 @@ void Sprite::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DX
 		&inSourceRect,
 		&center,
 		&inPosition,
-		D3DCOLOR_XRGB(255, 255, 255));
+		colorKey);
 		
 	mSpriteHandler->SetTransform(&oldMatrix); // set lai matrix cu~ de Sprite chi ap dung transfrom voi class nay
 
@@ -261,12 +248,14 @@ LPDIRECT3DTEXTURE9 Sprite::GetTexture()
 
 void Sprite::SetPosition(D3DXVECTOR3 pos)
 {
-    mPosition = pos;
+    mPosition.x = int(pos.x);
+	mPosition.y = int(pos.y);
+	mPosition.z = int(pos.z);
 }
 
 void Sprite::SetPosition(float x, float y)
 {
-    mPosition = D3DXVECTOR3(x, y, 0);
+    mPosition = D3DXVECTOR3(int(x), int(y), 0);
 }
 
 void Sprite::SetPosition(D3DXVECTOR2 pos)

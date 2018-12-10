@@ -1,4 +1,4 @@
-#ifndef __SPRITE__
+﻿#ifndef __SPRITE__
 #define __SPRITE__
 #include <d3d9.h>
 #include <d3dx9.h>
@@ -9,7 +9,7 @@
 class Sprite
 {
 public:
-    Sprite(const char* filePath, RECT sourceRect = RECT(), int width = NULL, int height = NULL, D3DCOLOR colorKey = NULL);
+    Sprite(const char* filePath, RECT sourceRect = RECT(), int width = NULL, int height = NULL, D3DCOLOR colorKey= NULL); // D3DCOLOR_XRGB(50,96,166) //mau xanh
 	Sprite(const char* filePath, float scale, RECT sourceRect = RECT(), int width = NULL, int height = NULL, D3DCOLOR colorKey = NULL);
     Sprite();
 
@@ -17,8 +17,7 @@ public:
 
     LPDIRECT3DTEXTURE9 GetTexture();
 
-    void DrawSprite();
-    void Draw(D3DXVECTOR3 position = D3DXVECTOR3(),RECT sourceRect = RECT(), D3DXVECTOR2 scale = D3DXVECTOR2(), D3DXVECTOR2 transform = D3DXVECTOR2(), float angle = 0, D3DXVECTOR2 rotationCenter = D3DXVECTOR2(), D3DXCOLOR colorKey = D3DCOLOR_XRGB(255, 255, 255));
+    void Draw(D3DXVECTOR3 position = D3DXVECTOR3(),RECT sourceRect = RECT(), D3DXVECTOR2 scale = D3DXVECTOR2(), D3DXVECTOR2 transform = D3DXVECTOR2(), float angle = 0, D3DXVECTOR2 rotationCenter = D3DXVECTOR2(), D3DXCOLOR colorKey = D3DCOLOR_XRGB(255, 255,255));
 
     void SetWidth(int width);
     int GetWidth();
@@ -29,6 +28,8 @@ public:
     D3DXIMAGE_INFO GetImageInfo(); // lay thong tin thuc cua hinh anh duoc lay
 
     D3DXVECTOR3 GetPosition();
+
+	//Position kiểu int sẽ không bị nhòe ảnh
     void SetPosition(D3DXVECTOR3 pos);
     void SetPosition(float x, float y);
     void SetPosition(D3DXVECTOR2 pos);

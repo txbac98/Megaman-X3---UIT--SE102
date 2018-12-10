@@ -96,12 +96,14 @@
     <ClCompile Include="GameComponents\QuadTree.cpp" />
     <ClCompile Include="GameComponents\Scene.cpp" />
     <ClCompile Include="GameComponents\Sprite.cpp" />
+    <ClCompile Include="GameComponents\ViewPort.cpp" />
     <ClCompile Include="GameControllers\SceneManager.cpp" />
     <ClCompile Include="GameObjects\Effect\PlayerDashingSmoke.cpp" />
     <ClCompile Include="GameObjects\Entity.cpp" />
     <ClCompile Include="GameObjects\MapObjects\Brick.cpp" />
     <ClCompile Include="GameObjects\MapObjects\BrickGold.cpp" />
     <ClCompile Include="GameObjects\MapObjects\BrickNormal.cpp" />
+    <ClCompile Include="GameObjects\MapObjects\Door.cpp" />
     <ClCompile Include="GameObjects\MapObjects\Elevator.cpp" />
     <ClCompile Include="GameObjects\MapObjects\GameObject.cpp" />
     <ClCompile Include="GameObjects\Player\Bullet\PlayerBullet.cpp" />
@@ -160,6 +162,7 @@
     <ClInclude Include="GameComponents\QuadTree.h" />
     <ClInclude Include="GameComponents\Scene.h" />
     <ClInclude Include="GameComponents\Sprite.h" />
+    <ClInclude Include="GameComponents\ViewPort.h" />
     <ClInclude Include="GameControllers\SceneManager.h" />
     <ClInclude Include="GameDefines\GameDefine.h" />
     <ClInclude Include="GameObjects\Effect\PlayerDashingSmoke.h" />
@@ -167,6 +170,7 @@
     <ClInclude Include="GameObjects\MapObjects\Brick.h" />
     <ClInclude Include="GameObjects\MapObjects\BrickGold.h" />
     <ClInclude Include="GameObjects\MapObjects\BrickNormal.h" />
+    <ClInclude Include="GameObjects\MapObjects\Door.h" />
     <ClInclude Include="GameObjects\MapObjects\Elevator.h" />
     <ClInclude Include="GameObjects\MapObjects\GameObject.h" />
     <ClInclude Include="GameObjects\Player\Bullet\PlayerBullet.h" />
@@ -214,9 +218,6 @@
     <ClInclude Include="Transformable.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-    <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
     <None Include="MapReader\Tmx.h.in" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -109,10 +109,6 @@ void Animation::Update(float dt)
     
 }
 
-void Animation::DrawSprite()
-{
-	Sprite::DrawSprite();
-}
 
 void Animation::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale,
     D3DXVECTOR2 transform, float angle, D3DXVECTOR2 rotationCenter, D3DXCOLOR colorKey)

@@ -235,6 +235,12 @@
     <ClCompile Include="GameObjects\Effect\PlayerDashingSmoke.cpp">
       <Filter>FrameWork\GameObjects\Player\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="GameComponents\ViewPort.cpp">
+      <Filter>FrameWork\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\MapObjects\Door.cpp">
+      <Filter>FrameWork\GameObjects\MapObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameComponents\Game.h">
@@ -432,13 +438,16 @@
     <ClInclude Include="GameObjects\Effect\PlayerDashingSmoke.h">
       <Filter>FrameWork\GameObjects\Player\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="GameComponents\ViewPort.h">
+      <Filter>FrameWork\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\MapObjects\Door.h">
+      <Filter>FrameWork\GameObjects\MapObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
     <None Include="MapReader\Tmx.h.in">
       <Filter>FrameWork\MapReader</Filter>
     </None>
-    <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
 </Project>
