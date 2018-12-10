@@ -6,7 +6,6 @@ Elevator::Elevator(float posX, float posY)
 {
 	//// "Resources/MapObject/Elevator.png", "Resources/MapObject/Elevator.txt"
 	mAnimation = new Animation("Resources/MapObject/Elevator.bmp", "Resources/MapObject/Elevator.txt", 0.1f, true);
-	mAnimation->Stop();
 	this->SetPosition(posX, posY);
 	this->SetWidth(mAnimation->GetWidth());
 	this->SetHeight(mAnimation->GetHeight() - 20);
@@ -25,10 +24,9 @@ void Elevator::OnSetPosition(D3DXVECTOR3 pos)
 
 void Elevator::Update(float dt)
 {
-	//if (this->posY<=195) 
-	//	this->SetVy(0);
-	mAnimation->Update(dt);
-	if (this->posY > 193)  Entity::Update(dt);
+	if (this->vy != 0) 
+		mAnimation->Update(dt);
+	if (this->posY > 195)  Entity::Update(dt);
 	if (mPlayer!=NULL)
 		CollisionManager::getInstance()->checkCollision(mPlayer, this, dt / 1000);
 }
@@ -37,9 +35,7 @@ void Elevator::OnCollision(Entity * other, SideCollisions side)
 {
 	if (other->Tag == Entity::EntityTypes::Player && side == SideCollisions::Bottom)	//side đối với player
 	{
-		//if (mPlayer != NULL)
 		mPlayer = other;
-		mAnimation->Start();
 		this->SetVy(-50);
 	}
 	

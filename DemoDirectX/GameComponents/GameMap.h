@@ -15,12 +15,12 @@
 #include "../GameObjects/MapObjects/Brick.h"
 #include "../GameObjects/MapObjects/Elevator.h"
 #include "../GameObjects/MapObjects/Door.h"
-
+using namespace std;
 class GameMap
 {
 public:
-    GameMap(char* filePath, int posx=0, int posy=0);
-	GameMap(char* filePath, Camera *camera, int posx = 0, int posy = 0);
+    GameMap(char* filePath, char *fileQuadTree, int posx=0, int posy=0);
+	GameMap(char* filePath, char *fileQuadTree, Camera *camera, int posx = 0, int posy = 0);
 	GameMap();
     void SetCamera(Camera* camera);
     void Update(float dt);
@@ -46,7 +46,7 @@ public:
     QuadTree* GetQuadTree();
 
 private:
-    void LoadMap(char* filePath);
+    void LoadMap(char* filePath, char *fileQuadTree);
 
     Tmx::Map                        *mMap;
     std::map<int, Sprite*>          mListTileset;

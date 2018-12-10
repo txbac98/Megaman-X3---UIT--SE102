@@ -190,6 +190,10 @@ void Player::HandleKeyboard(float dt) {
 		case PlayerState::Cling:
 			this->SetState(new PlayerClingAndShootState(mPlayerData));
 			break;
+		case PlayerState::Dashing:	//Dashing không cho bắn
+			return;
+			//this->SetState(new PlayerStandingAndShootState(mPlayerData));
+			//break;
 		default:
 			break;
 		}
@@ -206,15 +210,11 @@ void Player::HandleKeyboard(float dt) {
 	//Jump
   	if (KEY->keyJumpPress)
 	{
-		//if (allowJump)
-		{
 			if (mCurrentState == PlayerState::Running || mCurrentState == PlayerState::Standing)
 			{
 				this->SetState(new PlayerJumpingState(this->mPlayerData));
+				return;
 			}
-
-			allowJump = false;
-		}
 	}
 }
 
@@ -227,15 +227,16 @@ void Player::OnAABBCheck(Entity* other) {
 void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 	//Chung
 	if (other->Tag != EntityTypes::None) {
+		if (side == SideCollisions::Top) {
+			this->SetVy(PlayerDefine::JUMP_ACCELERATOR_Y);
+			this->SetState(new PlayerFallingState(mPlayerData));
+			return;
+		}
 		if (side == SideCollisions::Bottom || side == SideCollisions::BottomLeft || side == SideCollisions::BottomRight) {
 
 			objectBottom = other;
 			//if (other->Tag == EntityTypes::Elevator) this->SetVy(other->GetVy());
 		}
-		/*if (side == SideCollisions::BottomLeft || side == SideCollisions::BottomRight) {
-			if (!this->getState() == PlayerState::Dashing)
-				this->mPlayerData->player->SetVx(0);
-		}*/
 		if (side == SideCollisions::Left || side == SideCollisions::BottomLeft) {
 			if (this->isFaceLeft) {
 				this->mPlayerData->player->allowMoveLeft = false;
@@ -248,6 +249,7 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 				this->mPlayerData->player->allowMoveRight = false;
 			}	
 		}
+		
 		//Riêng từng state
 		this->mPlayerData->state->OnCollision(other, side);
 	}
@@ -288,6 +290,9 @@ void Player::changeAnimation(PlayerState::StateName state)
 		break;
 	case PlayerState::JumpingAndShoot:
 		mCurrentAnimation = mAnimationJumpingAndShoot;
+		break;
+	case PlayerState::ClingAndShoot:
+		mCurrentAnimation = mAnimationClingAndShoot;
 		break;
 	case PlayerState::Die:
 		mCurrentAnimation = mAnimationDie;

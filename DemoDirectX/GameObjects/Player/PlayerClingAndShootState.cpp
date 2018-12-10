@@ -13,7 +13,6 @@ PlayerClingAndShootState::~PlayerClingAndShootState()
 
 void PlayerClingAndShootState::Update(float dt)
 {
-	//Lặp lại animation khi bấm phím bắn
 	if (this->mPlayerData->player->EndCurrentAnimation()) {
 		this->mPlayerData->player->SetState(new PlayerClingState(this->mPlayerData));
 		return;

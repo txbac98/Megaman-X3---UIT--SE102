@@ -2,20 +2,26 @@
 #include "../GameObjects/MapObjects/BrickGold.h"
 #include "../GameObjects/MapObjects/BrickNormal.h"
 
-GameMap::GameMap(char* filePath, int posx, int posy)
+GameMap::GameMap(char* filePath, char *fileQuadTree, int posx, int posy)
 {
     mCamera = new Camera(GameGlobal::GetWidth(), GameGlobal::GetHeight());
 	PosX = posx;
 	PosY = posy;
-    LoadMap(filePath);
+
+	//Xoa du lieu fie quadtree
+	ofstream fQuadTree;
+	fQuadTree.open(fileQuadTree, ios::out | ios::trunc);
+	fQuadTree.close();
+
+    LoadMap(filePath,fileQuadTree);
 }
 
-GameMap::GameMap(char * filePath, Camera * camera, int posx, int posy)
+GameMap::GameMap(char * filePath, char *fileQuadTree, Camera * camera, int posx, int posy)
 {
 	mCamera = camera;
 	PosX = posx;
 	PosY = posy;
-	LoadMap(filePath);
+	LoadMap(filePath, fileQuadTree);
 }
 
 GameMap::GameMap()
@@ -43,18 +49,18 @@ GameMap::~GameMap()
     delete mQuadTree;
 }
 
-void GameMap::LoadMap(char* filePath)
+void GameMap::LoadMap(char* filePath, char* fileQuadTree)
 {
     mMap = new Tmx::Map();
     mMap->ParseFile(filePath);
 
     RECT r;
-    r.left = 0;
-    r.top = 0;
-    r.right = this->GetWidth();
-    r.bottom = this->GetHeight();
+    r.left = PosX;
+    r.top = PosY;
+    r.right = PosX+ this->GetWidth();
+    r.bottom = PosY + this->GetHeight();
 
-    mQuadTree = new QuadTree(1, r);
+    mQuadTree = new QuadTree(0, 0, r, fileQuadTree);
 
 	//nạp từng viên gạch vào listTileset
     for (size_t i = 0; i < mMap->GetNumTilesets(); i++)
@@ -65,6 +71,80 @@ void GameMap::LoadMap(char* filePath)
         mListTileset.insert(pair<int, Sprite*>(i, sprite));
     }
 
+    //khoi tao cac khoi Brick (vien gach)
+#pragma region -BRICK AND COIN LAYER-
+    //for (size_t i = 0; i < GetMap()->GetNumTileLayers(); i++)
+    //{
+    //    const Tmx::TileLayer *layer = mMap->GetTileLayer(i);
+
+    //    if (layer->IsVisible())
+    //        continue;
+
+    //    //xac dinh layer Brick bi an di de tu do tao ra cac vien gach trong game, nhung vien gach khong phai la 1 physic static nos co the bi pha huy duoc
+
+    //    if (layer->GetName() == "brick" || layer->GetName() == "coin")
+    //    {
+    //        for (size_t j = 0; j < mMap->GetNumTilesets(); j++)
+    //        {
+    //            const Tmx::Tileset *tileSet = mMap->GetTileset(j);
+
+    //            int tileWidth = mMap->GetTileWidth();
+    //            int tileHeight = mMap->GetTileHeight();
+
+    //            int tileSetWidth = tileSet->GetImage()->GetWidth() / tileWidth;
+    //            int tileSetHeight = tileSet->GetImage()->GetHeight() / tileHeight;
+
+    //            for (size_t m = 0; m < layer->GetHeight(); m++)
+    //            {
+    //                for (size_t n = 0; n < layer->GetWidth(); n++)
+    //                {
+    //                    if (layer->GetTileTilesetIndex(n, m) != -1)
+    //                    {
+    //                        int tileID = layer->GetTileId(n, m);
+
+    //                        int y = tileID / tileSetWidth;
+    //                        int x = tileID - y * tileSetWidth;
+
+    //                        RECT sourceRECT;
+    //                        sourceRECT.top = y * tileHeight;
+    //                        sourceRECT.bottom = sourceRECT.top + tileHeight;
+    //                        sourceRECT.left = x * tileWidth;
+    //                        sourceRECT.right = sourceRECT.left + tileWidth;
+
+    //                        RECT bound;
+    //                        bound.left = n * tileWidth;
+    //                        bound.top = m * tileHeight;
+    //                        bound.right = bound.left + tileWidth;
+    //                        bound.bottom = bound.top + tileHeight;
+
+    //                        D3DXVECTOR3 position(n * tileWidth + tileWidth / 2, m * tileHeight + tileHeight / 2, 0);
+
+    //                        Brick *brick = nullptr;
+
+    //                        if (layer->GetName() == "coin")
+    //                        {
+    //                            brick = new BrickGold(position);
+    //                            brick->Tag = Entity::EntityTypes::BrickGoldNormal;
+    //                            mListBricks.push_back(brick);
+    //                        }
+    //                        else
+    //                        {
+    //                            brick = new BrickNormal(position);
+    //                            brick->Tag = Entity::EntityTypes::Brick;
+    //                            mListBricks.push_back(brick);
+    //                        }
+
+
+    //                        if (brick)
+    //                            mQuadTree->insertEntity(brick);
+    //                    }
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
+
+#pragma endregion
 
 #pragma region -OBJECTGROUP, STATIC OBJECT-
 

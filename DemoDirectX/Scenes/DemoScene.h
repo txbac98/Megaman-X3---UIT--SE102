@@ -28,7 +28,6 @@ public:
 
 protected:
     void checkCollision(float dt);
-    void CheckCameraAndWorldMap();
 
     GameMap *mMap, *mMap0, *mMap1, *mMap2, *mMapBack, *mMapNext;
     Camera *mCamera;
