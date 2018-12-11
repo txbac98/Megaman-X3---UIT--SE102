@@ -188,7 +188,7 @@ int QuadTree::getIndex(RECT body)
         if (body.left > Bound.left && body.right < middleVerticle)
         {
             //nam phia ben trai
-			if (this->mLevel!=0)		// sữa lỗi thừa số 1 lúc đầu	
+			//if (this->mLevel!=0)		// sữa lỗi thừa số 1 lúc đầu	
             return 1;
         }
         else if (body.left > middleVerticle && body.right < Bound.right)

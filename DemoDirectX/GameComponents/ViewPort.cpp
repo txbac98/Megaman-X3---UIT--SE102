@@ -2,9 +2,9 @@
 
 ViewPort::ViewPort()
 {
-	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map0.tmx","Resources/Map/NewMap/Map0_QuadTree.txt" ,0, 512));	//0	ngang, không chuyển map, khóa: trái
-	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map1.tmx","Resources/Map/NewMap/Map1_QuadTree.txt", 768, 0));	//1	doc, không chuyển map, khóa trái, phải ở phía trên <600
-	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map2.tmx","Resources/Map/NewMap/Map2_QuadTree.txt", 1024, 0));	//2	ngang, chuyển map phái dướt, khóa: phải
+	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map0.tmx", "Resources/Map/NewMap/Map0_QuadTree.txt" ,0, 512));	//0	ngang, không chuyển map, khóa: trái
+	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map1.tmx", "Resources/Map/NewMap/Map1_QuadTree.txt", 768, 0));	//1	doc, không chuyển map, khóa trái, phải ở phía trên <600
+	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map2.tmx", "Resources/Map/NewMap/Map2_QuadTree.txt", 1024, 0));	//2	ngang, chuyển map phái dướt, khóa: phải
 	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map3.tmx", "Resources/Map/NewMap/Map3_QuadTree.txt", 1536, 255));	//3	doc, chuyển map phía trên, khóa trái, phải phía trên
 	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map4.tmx", "Resources/Map/NewMap/Map4_QuadTree.txt", 2304, 768));	//4	Boss 1
 	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map5.tmx", "Resources/Map/NewMap/Map5_QuadTree.txt", 2559, 580));	//5	ngang, 
@@ -39,7 +39,7 @@ void ViewPort::UpdateCamera(float dt)
 			return;
 		}
 		if (mCamera->GetPosition().y != posCameraY)
-			if (mCamera->GetPosition().y < posCameraY) 
+			if (mCamera->GetPosition().y < posCameraY)
 			{
 				if (mCamera->GetPosition().y + 100*dt > posCameraY)
 					mCamera->SetPositionY(posCameraY);

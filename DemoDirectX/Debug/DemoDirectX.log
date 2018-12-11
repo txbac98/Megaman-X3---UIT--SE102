@@ -1,2 +1,17 @@
-﻿  QuadTree.cpp
-  DemoDirectX.vcxproj -> D:\Game C++\manx\DirectXGame\Debug\DemoDirectX.exe
+﻿  GameMap.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(56): warning C4018: '<': signed/unsigned mismatch
+e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(141): warning C4018: '<': signed/unsigned mismatch
+e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(145): warning C4018: '<': signed/unsigned mismatch
+e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(153): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(154): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(262): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(261): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(266): warning C4018: '<': signed/unsigned mismatch
+e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(275): warning C4018: '<': signed/unsigned mismatch
+e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(287): warning C4018: '<': signed/unsigned mismatch
+e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(289): warning C4018: '<': signed/unsigned mismatch
+e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(307): warning C4244: 'argument': conversion from 'size_t' to 'FLOAT', possible loss of data
+e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(312): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(313): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+  DemoDirectX.vcxproj -> E:\SE102\Megaman\Debug\DemoDirectX.exe

@@ -14,6 +14,7 @@
 #include "QuadTree.h"
 #include "../GameObjects/MapObjects/Elevator.h"
 #include "../GameObjects/MapObjects/Door.h"
+#include "../GameObjects/Enemies/Notorbanger.h"
 using namespace std;
 class GameMap
 {
@@ -54,7 +55,7 @@ private:
 	std::vector<Elevator*>			mListElevator;
 	std::vector<Entity*>			mListEntity;
 	std::vector<Door*>				mListDoor;
-
+	std::vector<Notorbanger*>		mListNotor;
     Sprite                          *mSpriteBricks, *mSpriteBrickGold;
 };
 

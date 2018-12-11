@@ -99,6 +99,7 @@
     <ClCompile Include="GameComponents\ViewPort.cpp" />
     <ClCompile Include="GameControllers\SceneManager.cpp" />
     <ClCompile Include="GameObjects\Effect\PlayerDashingSmoke.cpp" />
+    <ClCompile Include="GameObjects\Enemies\Notorbanger.cpp" />
     <ClCompile Include="GameObjects\Entity.cpp" />
     <ClCompile Include="GameObjects\MapObjects\Door.cpp" />
     <ClCompile Include="GameObjects\MapObjects\Elevator.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="GameControllers\SceneManager.h" />
     <ClInclude Include="GameDefines\GameDefine.h" />
     <ClInclude Include="GameObjects\Effect\PlayerDashingSmoke.h" />
+    <ClInclude Include="GameObjects\Enemies\Notorbanger.h" />
     <ClInclude Include="GameObjects\Entity.h" />
     <ClInclude Include="GameObjects\MapObjects\Door.h" />
     <ClInclude Include="GameObjects\MapObjects\Elevator.h" />

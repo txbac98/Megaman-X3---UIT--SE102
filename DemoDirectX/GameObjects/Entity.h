@@ -42,7 +42,7 @@ public:
 	virtual RectF GetBoundF();
 	virtual D3DXVECTOR2 GetPosition();
 
-	//virtual void Draw(D3DXVECTOR2 transform);
+	virtual void Draw(D3DXVECTOR2 transform);
 
     virtual void SetPosition(float x, float y);
 

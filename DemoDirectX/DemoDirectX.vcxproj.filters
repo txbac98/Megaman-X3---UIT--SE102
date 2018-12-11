@@ -232,6 +232,9 @@
     <ClCompile Include="GameObjects\MapObjects\Door.cpp">
       <Filter>FrameWork\GameObjects\MapObjects</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjects\Enemies\Notorbanger.cpp">
+      <Filter>FrameWork\GameObjects\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameComponents\Game.h">
@@ -425,6 +428,9 @@
     </ClInclude>
     <ClInclude Include="GameObjects\MapObjects\Door.h">
       <Filter>FrameWork\GameObjects\MapObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Enemies\Notorbanger.h">
+      <Filter>FrameWork\GameObjects\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

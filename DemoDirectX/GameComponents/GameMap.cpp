@@ -163,6 +163,11 @@ void GameMap::LoadMap(char* filePath, char* fileQuadTree)
 				mListDoor.push_back(door);
 				mQuadTree->insertEntity(door, object->GetId());
 			}
+			else if (object->GetName() == "Notorbanger") {
+				Notorbanger *notor = new Notorbanger(posX, posY);
+				mListEntity.push_back(notor);
+				mQuadTree->insertEntity(notor, object->GetId());
+			}
 			else {
 				entity->SetPosition(posX, posY);
 				entity->SetWidth(object->GetWidth());
@@ -244,6 +249,10 @@ void GameMap::Update(float dt)
 	for (size_t i = 0; i < mListDoor.size(); i++)
 	{
 		mListDoor[i]->Update(dt);
+	}
+	for (size_t i = 0; i < mListEntity.size(); i++)
+	{
+		mListEntity[i]->Update(dt);
 	}
 }
 
@@ -329,6 +338,9 @@ void GameMap::Draw()
 	}
 	for (size_t i = 0; i < mListDoor.size(); i++) {
 		mListDoor[i]->Draw(trans);
+	}
+	for (size_t i = 0; i < mListEntity.size(); i++) {
+		mListEntity[i]->Draw(trans);
 	}
 #pragma endregion
 }
