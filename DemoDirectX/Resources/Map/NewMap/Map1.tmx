@@ -10,10 +10,10 @@
   <object id="1" x="2.53" y="690.409" width="77.258" height="33.8333"/>
   <object id="2" x="178.121" y="689.697" width="74.7879" height="36.6061"/>
   <object id="3" name="Elevator" x="81.5758" y="688.606" width="97.3939" height="32.7273"/>
-  <object id="4" x="5" y="180.667" width="75" height="33.6667"/>
+  <object id="4" x="6" y="179.667" width="75" height="33.6667"/>
   <object id="5" x="177.606" y="433.697" width="74.7879" height="34.6061"/>
-  <object id="6" x="4.60605" y="433.197" width="75.7879" height="37.1061"/>
-  <object id="8" x="225.5" y="208.5" width="26" height="230"/>
+  <object id="6" x="3.60605" y="434.197" width="75.7879" height="37.1061"/>
+  <object id="8" x="223.5" y="209.5" width="26" height="230"/>
   <object id="9" x="225" y="461.5" width="26" height="236.5"/>
   <object id="10" x="3.5" y="205" width="26" height="239"/>
   <object id="11" x="3" y="1" width="26" height="184.5"/>

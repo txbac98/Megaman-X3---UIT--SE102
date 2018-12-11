@@ -24,7 +24,7 @@ public:
     void SetCamera(Camera* camera);
     void Update(float dt);
     void Draw();
-	
+	Entity GetEntityWithIdObject(int ID);
     Tmx::Map* GetMap();
     RECT GetWorldMapBound();
     int GetWidth();

@@ -7,9 +7,9 @@
   </data>
  </layer>
  <objectgroup id="2" name="Object Layer 1">
-  <object id="1" x="-2" y="180" width="852" height="36"/>
+  <object id="1" x="-2" y="180" width="776" height="36"/>
   <object id="3" x="512" y="85" width="127" height="111"/>
   <object id="4" x="352.5" y="131" width="166" height="66"/>
-  <object id="5" x="504" y="0.5" width="152.5" height="14.5"/>
+  <object id="5" x="504" y="2.16667" width="152.5" height="12.8333"/>
  </objectgroup>
 </map>

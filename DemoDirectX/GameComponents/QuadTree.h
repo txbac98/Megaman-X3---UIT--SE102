@@ -14,8 +14,8 @@ public:
     QuadTree(int level, int node, RECT bound, char *fileQuadTree);
     ~QuadTree();
     void Clear();
-    void insertEntity(Entity *entity);
-	void Save(int node, RECT bound);
+    void insertEntity(Entity *entity, int id);
+	void Save(int node, int id);
     
     /*lay danh sach nhung Entity co kha nang xay ra va cham
     tra ve danh sach cac phan tu nam trong vung va cham */
@@ -30,7 +30,7 @@ public:
 protected:
 	ofstream fileQuadTree;
 	char *nameFileQuadTree;
-    QuadTree **Nodes;
+    QuadTree *Nodes;
     std::vector<Entity*> mListEntity; //danh sach cac phan tu co trong vung va cham (Bound)
 
     /*lay vi tri cua Entity 
@@ -41,7 +41,7 @@ protected:
     0: bi dinh > 2 node con*/
     int getIndex(RECT body);
 
-    void split(); //thuc hien chia ra cac node
+    void split(int index); //thuc hien chia ra cac node
 
     bool isContain(Entity *entity);
     int mLevel; //tuong ung voi so node

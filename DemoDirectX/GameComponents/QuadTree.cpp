@@ -21,21 +21,21 @@ void QuadTree::Clear()
     {
         for (size_t i = 1; i < 5; i++)
         {
-            if (Nodes[i])
+            /*if (Nodes[i])
             {
                 Nodes[i]->Clear();
                 delete Nodes[i];
                 Nodes[i] = nullptr;
-            }
+            }*/
         }
 
         delete[] Nodes;
     }
 }
 
-void QuadTree::insertEntity(Entity *entity)
+void QuadTree::insertEntity(Entity *entity, int id)
 {
-	if (this->mLevel < 10) {
+	if (this->mLevel < 5) {
 		int index = getIndex(entity->GetBound());
 
 		//neu node cha ton tai thi insert vao node con
@@ -43,7 +43,7 @@ void QuadTree::insertEntity(Entity *entity)
 		{
 			if (index != 0)
 			{
-				Nodes[index]->insertEntity(entity);
+				Nodes->insertEntity(entity,id);
 				return;
 			}
 		}
@@ -51,46 +51,42 @@ void QuadTree::insertEntity(Entity *entity)
 		//luc nay entity nam giua 2 Bound nen se add vao node nay luon
 		if (index == 0 /*|| this->mLevel==10*/)		//Add node cha và dừng đệ quy
 		{
-			Save(mNode, entity->GetBound());
+			Save(mNode, id );
 			this->mListEntity.push_back(entity);
+			return;
 		}
 		else
 		{
 			//node chua dc tao nen se tao va split roi moi insert
 			if (Nodes == NULL)
 			{
-				split();
+				split(index);
 			}
-			//Save((this->mLevel-1) * 10 + index, entity->GetBound());
-			//mIndex = index;
-			Nodes[index]->insertEntity(entity);
+			Nodes->insertEntity(entity,id);
 		}
 	}
-	else this->mListEntity.push_back(entity);
+	else {
+		//Save(mNode,id);
+		this->mListEntity.push_back(entity);
+	}
+		
 }
 
-void QuadTree::Save(int node,RECT bound)
+void QuadTree::Save(int node, int id)
 {
 	fileQuadTree.open(nameFileQuadTree, ios::out | ios::app);	//app :ghi thêm vào
 	fileQuadTree << node;
 	fileQuadTree << "\t";
-	/*fileQuadTree << this->Bound.left;
+	fileQuadTree << this->Bound.left;
 	fileQuadTree << "\t";
 	fileQuadTree << this->Bound.top;
 	fileQuadTree << "\t";
 	fileQuadTree << this->Bound.right;
 	fileQuadTree << "\t";
 	fileQuadTree << this->Bound.bottom;
-	fileQuadTree << "\t";*/
-	fileQuadTree << bound.left;
 	fileQuadTree << "\t";
-	fileQuadTree << bound.top;
-	fileQuadTree << "\t";
-	fileQuadTree << bound.right;
-	fileQuadTree << "\t";
-	fileQuadTree << bound.bottom;
+	fileQuadTree << id;
 	fileQuadTree << "\n";
-	node = 0;
 	fileQuadTree.close();
 }
 
@@ -106,43 +102,57 @@ bool QuadTree::isContain(Entity *entity)
     return false;
 }
 
-void QuadTree::split()
+void QuadTree::split(int index)
 {
     //cat phan region (ranh gioi) ra thanh 4 phan bang nhau
-    Nodes = new QuadTree * [5];
+    //Nodes = new QuadTree * [5];
 
     RECT bound;
 
     int width = (Bound.right - Bound.left) / 2;
     int height = (Bound.bottom - Bound.top) / 2;
 
-    //phan goc trai tren
-    bound.left = Bound.left;
-    bound.right = Bound.left + width;
-    bound.top = Bound.top;
-    bound.bottom = Bound.top + height;
-    Nodes[1] = new QuadTree(mLevel + 1,mNode, bound, nameFileQuadTree);
-
-    //phan goc phai tren
-    bound.left = Bound.left + width;
-    bound.right = Bound.right;
-    bound.top = Bound.top;
-    bound.bottom = Bound.top + height;
-    Nodes[2] = new QuadTree(mLevel + 1, mNode, bound, nameFileQuadTree);
-
-    //phan goc trai duoi
-    bound.left = Bound.left;
-    bound.right = Bound.left + width;
-    bound.top = Bound.top + height;
-    bound.bottom = Bound.bottom;
-    Nodes[3] = new QuadTree(mLevel + 1, mNode, bound, nameFileQuadTree);
-
-    //phan goc phai duoi
-    bound.left = Bound.left + width;
-    bound.right = Bound.right;
-    bound.top = Bound.top + height;
-    bound.bottom = Bound.bottom;
-    Nodes[4] = new QuadTree(mLevel + 1, mNode, bound, nameFileQuadTree);
+	switch (index)
+	{
+	case 1:
+		//phan goc trai tren
+		bound.left = Bound.left;
+		bound.right = Bound.left + width;
+		bound.top = Bound.top;
+		bound.bottom = Bound.top + height;
+		mNode = mNode * 10 + 1;
+		Nodes = new QuadTree(mLevel + 1, mNode, bound, nameFileQuadTree);
+		break;
+	case 2:
+		//phan goc phai tren
+		bound.left = Bound.left + width;
+		bound.right = Bound.right;
+		bound.top = Bound.top;
+		bound.bottom = Bound.top + height;
+		mNode = mNode * 10 + 2;
+		Nodes = new QuadTree(mLevel + 1, mNode, bound, nameFileQuadTree);
+		break;
+	case 3: 
+		//phan goc trai duoi
+		bound.left = Bound.left;
+		bound.right = Bound.left + width;
+		bound.top = Bound.top + height;
+		bound.bottom = Bound.bottom;
+		mNode = mNode * 10 + 3;
+		Nodes = new QuadTree(mLevel + 1, mNode, bound, nameFileQuadTree);
+		break;
+	case 4:
+		//phan goc phai duoi
+		bound.left = Bound.left + width;
+		bound.right = Bound.right;
+		bound.top = Bound.top + height;
+		bound.bottom = Bound.bottom;
+		mNode = mNode * 10 + 4;
+		Nodes = new QuadTree(mLevel + 1, mNode, bound, nameFileQuadTree);
+		break;
+	default:
+		break;
+	}
 }
 
 int QuadTree::getTotalEntities()
@@ -151,10 +161,10 @@ int QuadTree::getTotalEntities()
 
     if (Nodes)
     {
-        for (size_t i = 1; i < 5; i++)
+        /*for (size_t i = 1; i < 5; i++)
         {
             total += Nodes[i]->getTotalEntities();
-        }
+        }*/
     }
 
     return total;
@@ -172,36 +182,32 @@ int QuadTree::getIndex(RECT body)
     float middleVerticle = Bound.left + (Bound.right - Bound.left) / 2.0f;
     float middleHorizontal = Bound.top + (Bound.bottom - Bound.top) / 2.0f;
 
-    if (/*body.top > Bound.top && */ body.bottom < middleHorizontal)
+    if (body.top > Bound.top &&  body.bottom < middleHorizontal)
     {
         //nam phia ben tren
-        if (/*body.left > Bound.left &&*/ body.right < middleVerticle)
+        if (body.left > Bound.left && body.right < middleVerticle)
         {
             //nam phia ben trai
-			if (this->mLevel!=0)		// sữa lỗi thừa số 1 lúc đầu
-			mNode = mNode * 10 + 1;
+			if (this->mLevel!=0)		// sữa lỗi thừa số 1 lúc đầu	
             return 1;
         }
-        else if (body.left > middleVerticle /*&& body.right < Bound.right*/)
+        else if (body.left > middleVerticle && body.right < Bound.right)
         {
             //nam phia ben phai
-			mNode = mNode * 10 + 2;
             return 2;
         }
     }
-    if(body.top > middleHorizontal /*&& body.bottom < Bound.bottom*/)
+    if(body.top > middleHorizontal && body.bottom < Bound.bottom)
     {
         //nam phia ben duoi
-        if (/*body.left > Bound.left && */body.right < middleVerticle)
+        if (body.left > Bound.left && body.right < middleVerticle)
         {
             //nam phia ben trai
-			mNode = mNode * 10 + 3;
             return 3;
         }
-        else if (body.left > middleVerticle /*&& body.right < Bound.right*/)
+        else if (body.left > middleVerticle && body.right < Bound.right)
         {
             //nam phia ben phai
-			mNode = mNode * 10 + 4;
             return 4;
         }
     }
@@ -220,7 +226,7 @@ void QuadTree::getAllEntities(std::vector<Entity*> &entitiesOut)
     {
         for (size_t i = 1; i < 5; i++)
         {
-            Nodes[i]->getAllEntities(entitiesOut);
+            Nodes->getAllEntities(entitiesOut);
         }
     }
 }
@@ -241,7 +247,7 @@ void QuadTree::getEntitiesCollideAble(std::vector<Entity*> &entitiesOut, Entity 
         if (Nodes != NULL)
         {
             //kiem tra va lay cac node trong node con
-            Nodes[index]->getEntitiesCollideAble(entitiesOut, entity);
+            Nodes->getEntitiesCollideAble(entitiesOut, entity);
         }
     }
     else

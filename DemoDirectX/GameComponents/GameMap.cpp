@@ -29,8 +29,6 @@ GameMap::GameMap()
 GameMap::~GameMap()
 {
     delete mMap;
-
-
     for (size_t i = 0; i < mListTileset.size(); i++)
     {
         if (mListTileset[i])
@@ -158,18 +156,18 @@ void GameMap::LoadMap(char* filePath, char* fileQuadTree)
 			if (object->GetName() == "Elevator") {
 				 Elevator *elevator= new Elevator(posX, posY);
 				 mListElevator.push_back(elevator);
-				 mQuadTree->insertEntity(elevator);
+				 mQuadTree->insertEntity(elevator, object->GetId());
 			}
 			else if(object->GetName()=="Door"){
 				Door *door = new Door(posX, posY);
 				mListDoor.push_back(door);
-				mQuadTree->insertEntity(door);
+				mQuadTree->insertEntity(door, object->GetId());
 			}
 			else {
 				entity->SetPosition(posX, posY);
 				entity->SetWidth(object->GetWidth());
 				entity->SetHeight(object->GetHeight());
-				mQuadTree->insertEntity(entity);
+				mQuadTree->insertEntity(entity, object->GetId());
 			}
         }
     }

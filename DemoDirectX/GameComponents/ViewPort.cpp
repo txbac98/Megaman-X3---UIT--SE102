@@ -121,7 +121,8 @@ void ViewPort::CheckCameraWithWouldMap()
 					this->SetCameraPositionX(mCurrentMap->PosX + mCamera->GetWidth() / 2);
 				}
 				else {
-					posCameraY = mCurrentMap->GetWorldMapBound().bottom - mCamera->GetHeight() / 2;
+					posCameraY = mPlayer->posY - 20;
+					//this->SetCameraPositionY(mPlayer->posY - 20);
 					posCameraX = mPlayer->posX + 30;
 					if (posCameraX - mCamera->GetWidth() / 2 < mCurrentMap->PosX) {	//phía bên trái
 						this->SetCameraPositionX(mCurrentMap->PosX + mCamera->GetWidth() / 2);
