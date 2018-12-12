@@ -47,6 +47,7 @@ public:
 private:
     void LoadMap(char* filePath, char *fileQuadTree);
 
+	Player							*mPlayer;
     Tmx::Map                        *mMap;
     std::map<int, Sprite*>          mListTileset;
     LPD3DXSPRITE                    mSpriteHandler;
@@ -56,6 +57,7 @@ private:
 	std::vector<Entity*>			mListEntity;
 	std::vector<Door*>				mListDoor;
 	std::vector<Notorbanger*>		mListNotor;
+	//std::vector<Entity*>			mListObjectMap;
     Sprite                          *mSpriteBricks, *mSpriteBrickGold;
 };
 

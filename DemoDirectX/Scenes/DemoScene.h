@@ -32,6 +32,6 @@ protected:
     GameMap *mMap, *mMap0, *mMap1, *mMap2, *mMapBack, *mMapNext;
     Camera *mCamera;
     Player *mPlayer;
-	ViewPort *mViewPort;
+	//ViewPort *mViewPort;
 };
 

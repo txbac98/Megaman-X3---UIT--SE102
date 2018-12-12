@@ -33,7 +33,7 @@ public:
 
     enum EntityTypes
     {
-        Player, None, Wall, Elevator, Door, Brick, Enemy, Mario, Static, BrickGoldNormal, BrickGoldEated
+        Megaman, MegaBullet, None, Wall, Elevator, Door, Brick, Enemy, EnemyBullet, Static
     };
 
     EntityTypes Tag; //Tag de nhan vien loai Entity
@@ -103,6 +103,7 @@ public:
     float posX, posY;
 
 	bool isCollision;
+	bool isAlive;
 	bool isCollisionCross;
 	bool isFaceLeft;
 

@@ -1,17 +1,120 @@
-﻿  GameMap.cpp
+﻿  Animation.cpp
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\animation.cpp(138): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\animation.cpp(139): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\animation.cpp(140): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\animation.cpp(141): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+  Game.cpp
   c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(56): warning C4018: '<': signed/unsigned mismatch
-e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(141): warning C4018: '<': signed/unsigned mismatch
-e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(145): warning C4018: '<': signed/unsigned mismatch
-e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(153): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(154): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(262): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(261): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(266): warning C4018: '<': signed/unsigned mismatch
-e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(275): warning C4018: '<': signed/unsigned mismatch
-e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(287): warning C4018: '<': signed/unsigned mismatch
-e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(289): warning C4018: '<': signed/unsigned mismatch
-e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(307): warning C4244: 'argument': conversion from 'size_t' to 'FLOAT', possible loss of data
-e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(312): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-e:\se102\megaman\demodirectx\gamecomponents\gamemap.cpp(313): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-  DemoDirectX.vcxproj -> E:\SE102\Megaman\Debug\DemoDirectX.exe
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\game.cpp(8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\game.cpp(80): warning C4244: 'argument': conversion from 'float' to 'DWORD', possible loss of data
+  GameGlobal.cpp
+  GameMap.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\gamemap.cpp(56): warning C4018: '<': signed/unsigned mismatch
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\gamemap.cpp(141): warning C4018: '<': signed/unsigned mismatch
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\gamemap.cpp(145): warning C4018: '<': signed/unsigned mismatch
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\gamemap.cpp(153): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\gamemap.cpp(154): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\gamemap.cpp(270): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\gamemap.cpp(269): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\gamemap.cpp(274): warning C4018: '<': signed/unsigned mismatch
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\gamemap.cpp(283): warning C4018: '<': signed/unsigned mismatch
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\gamemap.cpp(295): warning C4018: '<': signed/unsigned mismatch
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\gamemap.cpp(297): warning C4018: '<': signed/unsigned mismatch
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\gamemap.cpp(315): warning C4244: 'argument': conversion from 'size_t' to 'FLOAT', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\gamemap.cpp(320): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\gamemap.cpp(321): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+  QuadTree.cpp
+  Scene.cpp
+  Sprite.cpp
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\sprite.cpp(25): warning C4101: 'result': unreferenced local variable
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\sprite.cpp(87): warning C4101: 'result': unreferenced local variable
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\sprite.cpp(159): warning C4244: 'return': conversion from 'FLOAT' to 'int', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\sprite.cpp(160): warning C4244: 'return': conversion from 'FLOAT' to 'int', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\sprite.cpp(165): warning C4244: 'return': conversion from 'FLOAT' to 'int', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\sprite.cpp(166): warning C4244: 'return': conversion from 'FLOAT' to 'int', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\sprite.cpp(173): warning C4244: '*=': conversion from 'FLOAT' to 'int', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\sprite.cpp(174): warning C4244: '*=': conversion from 'FLOAT' to 'int', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\sprite.cpp(180): warning C4244: '*=': conversion from 'FLOAT' to 'int', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\sprite.cpp(181): warning C4244: '*=': conversion from 'FLOAT' to 'int', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\sprite.cpp(211): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\sprite.cpp(251): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\sprite.cpp(252): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\sprite.cpp(253): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\sprite.cpp(258): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+  ViewPort.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(141): warning C4018: '<': signed/unsigned mismatch
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(159): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(160): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(167): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(174): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(179): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(182): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(189): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(191): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(198): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(202): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(207): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(211): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(212): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(218): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(221): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(228): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(234): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(237): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(242): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(244): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(248): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(249): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  SceneManager.cpp
+  PlayerDashingSmoke.cpp
+  NotorBullet.cpp
+  Notorbanger.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  RedExplosion.cpp
+  Door.cpp
+  Elevator.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  PlayerBullet.cpp
+  Player.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(93): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(94): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(126): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(312): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(313): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(358): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(357): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(403): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(405): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+  PlayerClingAndShootState.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  PlayerClingState.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  PlayerDashingState.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\game c++\manx\directxgame\demodirectx\gameobjects\player\playerdashingstate.cpp(12): warning C4305: '=': truncation from 'double' to 'float'
+  Generating Code...
+  Compiling...
+  PlayerFallingState.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  PlayerJumpingAndShootState.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  PlayerJumpingState.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  PlayerRunningAndShootState.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  PlayerRunningState.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  PlayerStandingAndShootState.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  PlayerStandingState.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  DemoScene.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\game c++\manx\directxgame\demodirectx\scenes\demoscene.cpp(30): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  main.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  Generating Code...
+  DemoDirectX.vcxproj -> D:\Game C++\manx\DirectXGame\Debug\DemoDirectX.exe

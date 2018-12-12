@@ -235,6 +235,12 @@
     <ClCompile Include="GameObjects\Enemies\Notorbanger.cpp">
       <Filter>FrameWork\GameObjects\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjects\Enemies\RedExplosion.cpp">
+      <Filter>FrameWork\GameObjects\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Enemies\NotorBullet.cpp">
+      <Filter>FrameWork\GameObjects\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameComponents\Game.h">
@@ -430,6 +436,15 @@
       <Filter>FrameWork\GameObjects\MapObjects</Filter>
     </ClInclude>
     <ClInclude Include="GameObjects\Enemies\Notorbanger.h">
+      <Filter>FrameWork\GameObjects\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Enemies\RedExplosion.h">
+      <Filter>FrameWork\GameObjects\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Enemies\EnemyBullet.h">
+      <Filter>FrameWork\GameObjects\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Enemies\NotorBullet.h">
       <Filter>FrameWork\GameObjects\Enemies</Filter>
     </ClInclude>
   </ItemGroup>

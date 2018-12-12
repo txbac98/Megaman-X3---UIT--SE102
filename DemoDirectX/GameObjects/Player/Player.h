@@ -73,7 +73,7 @@ public:
 	Animation	*mCurrentEffectAnimation;
 
 	PlayerBullet *mListBullet ;
-	//vector<PlayerBullet> mListBullet;
+	//vector<PlayerBullet*> mListBullet;
 	PlayerDashingSmoke *mListSmoke;
 	
 //protected:

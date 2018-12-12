@@ -7,6 +7,7 @@ PlayerBullet::PlayerBullet()
 	mAnimationBullet2 = new Animation("Resources/Effect/Bullet/MegaBullet.png", "Resources/Effect/Bullet/MegaBullet2.txt", 0.001f, false);	
 	mAnimationBullet0 = new Animation("Resources/Effect/Bullet/MegaBullet.png", "Resources/Effect/Bullet/MegaBullet0.txt", 1.0f, false);		//1 frame
 	mCurrentAnimation = mAnimationBullet0;
+	this->Tag = Entity::EntityTypes::MegaBullet;
 	//mAnimationBullet1->Start();
 	//mAnimationBullet2->Start();
 }
@@ -17,6 +18,7 @@ PlayerBullet::~PlayerBullet()
 
 void PlayerBullet::Spawn(bool goLeft, int typeBullet)
 {
+	this->Tag = EntityTypes::MegaBullet;
 	if (typeBullet == 0) {
 		mCurrentAnimation = mAnimationBullet0;
 	}
@@ -51,6 +53,9 @@ void PlayerBullet::Update(float dt, RECT rectCamera)
 
 void PlayerBullet::OnCollision(Entity * other, SideCollisions side)
 {
+	if (other->Tag == EntityTypes::Enemy) {
+		wasBorn = false;
+	}
 }
 
 void PlayerBullet::Draw(D3DXVECTOR2 transform)

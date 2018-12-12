@@ -6,10 +6,15 @@
 #include "CollisionManager.h"
 
 class ViewPort {
-
+	static ViewPort* instance;
 	public:	
-		ViewPort();
-		~ViewPort();
+		//ViewPort();
+		//ViewPort(Player *player);
+		//~ViewPort();
+		
+
+	static ViewPort* getInstance();
+	void Init(Player *player);
 		void Update(float dt);
 		void UpdateCamera(float dt);
 		void CheckCameraWithWouldMap();
@@ -22,11 +27,11 @@ class ViewPort {
 		int GetHeightMap();
 		int GetWidthMap();
 		void GetMapObject(std::vector<Entity*> &entitiesOut, Entity *entity);
-	private:
-		GameMap  *mCurrentMap, *mNextMap, *mBackMap;
-		std::vector<GameMap*> mListMap;
 		Camera *mCamera;
 		Player *mPlayer;
+private:
+		GameMap  *mCurrentMap, *mNextMap, *mBackMap;
+		std::vector<GameMap*> mListMap;
 		int iCurrentMap;
 		float posCameraX, posCameraY;
 		bool canUpdateCamera;

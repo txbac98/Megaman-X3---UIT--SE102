@@ -14,34 +14,35 @@ void DemoScene::LoadContent()
     //set mau backcolor cho scene o day la mau den
     mBackColor = 0x000000;
 	
-	mViewPort = new ViewPort();
+	
 
 	//kích thước bằng màn hình
     mCamera = new Camera(GameGlobal::GetWidth(), GameGlobal::GetHeight());
+
+	mPlayer = new Player();
+
+	mPlayer->SetPosition(100, 637);
+
+	ViewPort::getInstance()->Init(mPlayer);
+	//mViewPort = new ViewPort(mPlayer);
+
 	//vị trí giữa màn hình
-    mCamera->SetPosition(GameGlobal::GetWidth() / 2, mViewPort->GetHeightMap() - mCamera->GetHeight());
+    mCamera->SetPosition(GameGlobal::GetWidth() / 2, ViewPort::getInstance()->GetHeightMap() - mCamera->GetHeight());
 
     //mMap->SetCamera(mCamera);
 
-	
-	mPlayer = new Player();
-
-    mPlayer->SetPosition(100, 637);
-
     mPlayer->SetCamera(mCamera);
 
-	mCamera->SetPosition(mPlayer->GetPosition());
+	ViewPort::getInstance()->SetCamera(mCamera);
 
-	mViewPort->SetCamera(mCamera);
-
-	mViewPort->SetPlayer(mPlayer);
+	//ViewPort::getInstance()->SetPlayer(mPlayer);
 }
 
 void DemoScene::Update(float dt)
 {
 	checkCollision(dt);
 
-	mViewPort->Update(dt);
+	ViewPort::getInstance()->Update(dt);
 
     mPlayer->Update(dt);
 
@@ -49,7 +50,7 @@ void DemoScene::Update(float dt)
 
 void DemoScene::Draw()
 {
-	mViewPort->Draw();
+	ViewPort::getInstance()->Draw();
 	
    mPlayer->Draw();
 }
@@ -65,7 +66,7 @@ void DemoScene::checkCollision(float dt)
 
     vector<Entity*> listMapObject;
 
-	mViewPort->GetMapObject(listMapObject, mPlayer);
+	ViewPort::getInstance()->GetMapObject(listMapObject, mPlayer);
 	RECT rect = mPlayer->GetBound();
 
 	for (size_t i = 0; i < listMapObject.size(); i++)

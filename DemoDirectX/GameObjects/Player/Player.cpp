@@ -24,6 +24,9 @@ Player::Player()
 
 	//Khởi tạo mảng Bullet
 	mListBullet = new PlayerBullet[5];
+	/*for (int i = 0; i < 5; i++) {
+		mListBullet.push_back(new PlayerBullet());
+	}*/
 
 	//khởi tạo khói
 	mListSmoke = new PlayerDashingSmoke[5];
@@ -42,7 +45,7 @@ Player::Player()
 	this->isCollisionBottom = false;
 	this->isDownKeyAttack = false;
 	this->isFaceLeft = false;
-	this->Tag = Entity::EntityTypes::Player;
+	this->Tag = Entity::EntityTypes::Megaman;
 
 	timeDownAttackKey = 0;
 }
@@ -226,33 +229,39 @@ void Player::OnAABBCheck(Entity* other) {
 }
 void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 	//Chung
-	if (other->Tag != EntityTypes::None) {
-		if (side == SideCollisions::Top) {
-			this->SetVy(PlayerDefine::JUMP_ACCELERATOR_Y);
-			this->SetState(new PlayerFallingState(mPlayerData));
-			return;
-		}
-		if (side == SideCollisions::Bottom || side == SideCollisions::BottomLeft || side == SideCollisions::BottomRight) {
-
-			objectBottom = other;
-			//if (other->Tag == EntityTypes::Elevator) this->SetVy(other->GetVy());
-		}
-		if (side == SideCollisions::Left || side == SideCollisions::BottomLeft) {
-			if (this->isFaceLeft) {
-				this->mPlayerData->player->allowMoveLeft = false;
-				this->mPlayerData->player->SetVx(0);
-			}
-		}
-		if (side == SideCollisions::Right || side == SideCollisions::BottomRight) {
-			if (!this->isFaceLeft) {
-				this->mPlayerData->player->SetVx(0);
-				this->mPlayerData->player->allowMoveRight = false;
-			}	
-		}
-		
-		//Riêng từng state
-		this->mPlayerData->state->OnCollision(other, side);
+	if (other->Tag == EntityTypes::None) return;
+	
+	if (other->Tag == EntityTypes::Enemy && other->isAlive) {
+		mCurrentAnimation = mAnimationBeingAttacked;
+		return;
 	}
+
+	if (side == SideCollisions::Top) {
+		this->SetVy(PlayerDefine::JUMP_ACCELERATOR_Y);
+		this->SetState(new PlayerFallingState(mPlayerData));
+		return;
+	}
+	if (side == SideCollisions::Bottom || side == SideCollisions::BottomLeft || side == SideCollisions::BottomRight) {
+
+		objectBottom = other;
+		//if (other->Tag == EntityTypes::Elevator) this->SetVy(other->GetVy());
+	}
+	if (side == SideCollisions::Left || side == SideCollisions::BottomLeft) {
+		if (this->isFaceLeft) {
+			this->mPlayerData->player->allowMoveLeft = false;
+			this->mPlayerData->player->SetVx(0);
+		}
+	}
+	if (side == SideCollisions::Right || side == SideCollisions::BottomRight) {
+		if (!this->isFaceLeft) {
+			this->mPlayerData->player->SetVx(0);
+			this->mPlayerData->player->allowMoveRight = false;
+		}	
+	}
+		
+	//Riêng từng state
+	this->mPlayerData->state->OnCollision(other, side);
+	
 }
 
 

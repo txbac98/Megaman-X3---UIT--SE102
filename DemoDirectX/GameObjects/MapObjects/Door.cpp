@@ -25,7 +25,7 @@ void Door::Update(float dt)
 
 void Door::OnCollision(Entity * other, SideCollisions side)
 {
-	if (other->Tag == EntityTypes::Player) {
+	if (other->Tag == EntityTypes::Megaman) {
 		if (!isOpening) {
 			mAnimation = mAnimationDoorOpen;
 			isOpening = true;

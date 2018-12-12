@@ -33,7 +33,7 @@ void Elevator::Update(float dt)
 
 void Elevator::OnCollision(Entity * other, SideCollisions side)
 {
-	if (other->Tag == Entity::EntityTypes::Player && side == SideCollisions::Bottom)	//side đối với player
+	if (other->Tag == Entity::EntityTypes::Megaman && side == SideCollisions::Bottom)	//side đối với player
 	{
 		mPlayer = other;
 		this->SetVy(-50);
