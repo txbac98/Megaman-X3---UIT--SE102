@@ -21,7 +21,8 @@
 #include "../../KeyGame.h"
 #include "Bullet/PlayerBullet.h"
 #include "../Effect/PlayerDashingSmoke.h"
-
+#include "HP/PlayerHP.h"
+#include "PlayerDeathEffect.h"
 
 class Player : public Entity
 {
@@ -80,6 +81,10 @@ public:
 	PlayerBullet *mListBullet ;
 	//vector<PlayerBullet*> mListBullet;
 	PlayerDashingSmoke *mListSmoke;
+
+	PlayerDeathEffect *mDeathEffect;
+
+	PlayerHP *mHP;
 	
 //protected:
 	Animation   *mAnimationSpawning,
@@ -98,7 +103,6 @@ public:
 		*mAnimationRunningAndShoot,
 		*mAnimationJumpingAndShoot;
 
-	Sprite *mSpriteFrameHP, *mSpriteLine;
 
     Camera      *mCamera;
 

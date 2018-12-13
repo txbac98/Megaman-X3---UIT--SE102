@@ -45,7 +45,7 @@ void NotorBullet::Draw(D3DXVECTOR2 transform)
 		mAnimation->SetPosition(posX, posY);
 		mAnimation->Draw(transform);
 	}
-	/*if (mExplosion) {
+	if (mExplosion) {
 		mExplosion->Draw(transform);
-	}*/
+	}
 }

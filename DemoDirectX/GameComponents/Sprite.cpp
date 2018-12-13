@@ -170,15 +170,15 @@ void Sprite::SetScale(float x, float y) {
 	scale.x = x;
 	scale.y = y;
 	mScale = scale;
-	mWidth *= mScale.x;
-	mHeight *= mScale.y;
+	/*mWidth *= mScale.x;
+	mHeight *= mScale.y;*/
 }
 
 void Sprite::SetScale(float scale) {
 	mScale.x = scale;
 	mScale.y = scale;
-	mWidth *= mScale.x;
-	mHeight *= mScale.y;
+	/*mWidth *= mScale.x;
+	mHeight *= mScale.y;*/
 }
 
 void Sprite::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DXVECTOR2 transform, float angle, D3DXVECTOR2 rotationCenter, D3DXCOLOR colorKey)

@@ -107,6 +107,9 @@
     <ClCompile Include="GameObjects\MapObjects\Elevator.cpp" />
     <ClCompile Include="GameObjects\MapObjects\GameObject.cpp" />
     <ClCompile Include="GameObjects\Player\Bullet\PlayerBullet.cpp" />
+    <ClCompile Include="GameObjects\Player\Deathorbs.cpp" />
+    <ClCompile Include="GameObjects\Player\PlayerDeathEffect.cpp" />
+    <ClCompile Include="GameObjects\Player\HP\PlayerHP.cpp" />
     <ClCompile Include="GameObjects\Player\Player.cpp" />
     <ClCompile Include="GameObjects\Player\PlayerBeingAttackedState.cpp" />
     <ClCompile Include="GameObjects\Player\PlayerClingAndShootState.cpp" />
@@ -176,6 +179,9 @@
     <ClInclude Include="GameObjects\MapObjects\Elevator.h" />
     <ClInclude Include="GameObjects\MapObjects\GameObject.h" />
     <ClInclude Include="GameObjects\Player\Bullet\PlayerBullet.h" />
+    <ClInclude Include="GameObjects\Player\Deathorbs.h" />
+    <ClInclude Include="GameObjects\Player\PlayerDeathEffect.h" />
+    <ClInclude Include="GameObjects\Player\HP\PlayerHP.h" />
     <ClInclude Include="GameObjects\Player\Player.h" />
     <ClInclude Include="GameObjects\Player\PlayerBeingAttackedState.h" />
     <ClInclude Include="GameObjects\Player\PlayerClingAndShootState.h" />

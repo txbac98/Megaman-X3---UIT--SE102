@@ -3,9 +3,7 @@
 
 Player::Player()
 {
-	mSpriteFrameHP = new Sprite("Resources/Megaman/MegaHP/FrameHP.png");
-	mSpriteFrameHP->SetPosition(20, 50);
-	mSpriteLine = new Sprite("Resources/Megaman/MegaHP/LineHP.png");
+	mHP = new PlayerHP(20,50);
 	mAnimationSpawning = new Animation("Resources/Megaman/Megaman.png", "Resources/Megaman/Spawning.txt", 0.07f, false);
     mAnimationJumping = new Animation("Resources/Megaman/Megaman.png", "Resources/Megaman/Jumping.txt",0.2f,false);
 	mAnimationFalling = new Animation("Resources/Megaman/Megaman.png", "Resources/Megaman/Falling.txt", 0.2f, false);
@@ -20,8 +18,8 @@ Player::Player()
 	mAnimationClingAndShoot = new Animation("Resources/Megaman/Megaman.png", "Resources/Megaman/ClingAndShoot.txt", 0.05f, false);
 
 	//Effect
-	mAnimationEffect1 = new Animation("Resources/Megaman/Effect.png", "Resources/Megaman/Effect1.txt", 0.005f, true);
-	mAnimationEffect2 = new Animation("Resources/Megaman/Effect.png", "Resources/Megaman/Effect2.txt", 0.005f, true);
+	mAnimationEffect1 = new Animation("Resources/Megaman/MegaEffect/Effect.png", "Resources/Megaman/MegaEffect/Effect1.txt", 0.005f, true);
+	mAnimationEffect2 = new Animation("Resources/Megaman/MegaEffect/Effect.png", "Resources/Megaman/MegaEffect/Effect2.txt", 0.005f, true);
 	mAnimationEffect1->Start();
 	mAnimationEffect2->Start();
 
@@ -51,6 +49,7 @@ Player::Player()
 	this->beingAttacked = false;
 	this->isImmortal = false;
 	this->turnDraw = false;
+	this->isAlive = true;
 	dtImmortal = 0;
 	this->Tag = Entity::EntityTypes::Megaman;
 
@@ -64,63 +63,68 @@ Player::~Player()
 
 void Player::Update(float dt)
 {    
-	//Miễn kháng
-	if (isImmortal) {
-		dtImmortal += dt;
-		if (dtImmortal > PlayerDefine::TIME_IMMORTAL) {
-			dtImmortal = 0;
-			isImmortal = false;
+		//Miễn kháng
+		if (isImmortal) {
+			dtImmortal += dt;
+			if (dtImmortal > PlayerDefine::TIME_IMMORTAL) {
+				dtImmortal = 0;
+				isImmortal = false;
+			}
 		}
-	}
 
-	HandleKeyboard(dt);
-
-	//End animation spawn
-	if (mAnimationSpawning->mEndAnimate) {
-		this->SetState(new PlayerFallingState(this->mPlayerData));
-		mAnimationSpawning->mEndAnimate = false;
-	}
-	else {
-		if (this->getState() == PlayerState::Cling || this->getState() == PlayerState::ClingAndShoot)
-			isFaceLeft = !mCurrentReverse;
-		else
-		{
-			isFaceLeft = mCurrentReverse;
+		//Death
+		if (mDeathEffect) {
+			mDeathEffect->Update(dt);
 		}
-	}
+
+		//End animation spawn
+		if (mAnimationSpawning->mEndAnimate) {
+			this->SetState(new PlayerFallingState(this->mPlayerData));
+			mAnimationSpawning->mEndAnimate = false;
+		}
+		else {
+			if (this->getState() == PlayerState::Cling || this->getState() == PlayerState::ClingAndShoot)
+				isFaceLeft = !mCurrentReverse;
+			else
+			{
+				isFaceLeft = mCurrentReverse;
+			}
+		}
 	
-	//Update animation Bullet
-	RECT rectCamera = mCamera->GetBound();
-	for (int i=0; i < sizeof(mListBullet); i++) {
-		mListBullet[i].Update(dt,rectCamera);
-	}
+		//Update animation Bullet
+		RECT rectCamera = mCamera->GetBound();
+		for (int i = 0; i < sizeof(mListBullet); i++) {
+			mListBullet[i].Update(dt, rectCamera);
+		}
 
-	//Update list smoke
-	for (int i = 0; i < sizeof(mListSmoke); i++) {
-		mListSmoke[i].Update(dt);
-	}
+		//Update list smoke
+		for (int i = 0; i < sizeof(mListSmoke); i++) {
+			mListSmoke[i].Update(dt);
+		}
 
-	//Update player
-	this->width = mCurrentAnimation->GetWidth();
-	this->height = mCurrentAnimation->GetHeight();
+		if (isAlive) {
+			//Update player
+			this->width = mCurrentAnimation->GetWidth();
+			this->height = mCurrentAnimation->GetHeight();
 
-	mCurrentAnimation->Update(dt);
+			mCurrentAnimation->Update(dt);
 
-	//Update animation Effect
-	if (mCurrentEffectAnimation != NULL) {
-		mCurrentEffectAnimation->Update(dt);
-	}
+			//Update animation Effect
+			if (mCurrentEffectAnimation != NULL) {
+				mCurrentEffectAnimation->Update(dt);
+			}
 
-    if (this->mPlayerData->state)
-    {
-        this->mPlayerData->state->Update(dt);
-    }
+			if (this->mPlayerData->state)
+			{
+				this->mPlayerData->state->Update(dt);
+			}
 
-	CheckNoCollisionWithBottom();
+			HandleKeyboard(dt);
 
-    Entity::Update(dt);	
+			CheckNoCollisionWithBottom();
 
-	
+			Entity::Update(dt);
+		}
 }
 void Player::CheckNoCollisionWithBottom() {
 	
@@ -251,15 +255,25 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 	
 	if (other->Tag == EntityTypes::Enemy ) {
 		if (other->isAlive)
-		if (!beingAttacked && !isImmortal) {
-			this->SetState(new PlayerBeingAttackedState(mPlayerData));
-			return;
-		}
 		if (isImmortal) {
 			return;
 		}
+		else {		
+			if (!beingAttacked) {
+				mHP->AddDame(1);
+				if (mHP->HP <= 0) {			
+					if (this->isAlive) {
+						mDeathEffect = new PlayerDeathEffect(posX, posY);
+						this->isAlive = false;
+					}
+					
+				}
+				else this->SetState(new PlayerBeingAttackedState(mPlayerData));
+				return;
+			}
+		}
 	}
-	if (other->Tag == EntityTypes::Wall) {
+	if (other->Tag == EntityTypes::Wall || other->Tag== EntityTypes::Elevator) {
 		if (side == SideCollisions::Top) {
 			this->SetVy(PlayerDefine::JUMP_ACCELERATOR_Y);
 			this->SetState(new PlayerFallingState(mPlayerData));
@@ -268,6 +282,7 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 		if (side == SideCollisions::Bottom || side == SideCollisions::BottomLeft || side == SideCollisions::BottomRight) {
 
 			objectBottom = other;
+			//vy = 0;
 			//if (other->Tag == EntityTypes::Elevator) this->SetVy(other->GetVy());
 		}
 		if (side == SideCollisions::Left || side == SideCollisions::BottomLeft) {
@@ -373,52 +388,61 @@ void Player::SetCamera(Camera *camera)
 
 void Player::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DXVECTOR2 transform, float angle, D3DXVECTOR2 rotationCenter, D3DXCOLOR colorKey)
 {
+		mCurrentAnimation->FlipVertical(mCurrentReverse);
+		mCurrentAnimation->SetPosition(this->GetPosition());
 
-	mCurrentAnimation->FlipVertical(mCurrentReverse);
-	mCurrentAnimation->SetPosition(this->GetPosition());
-	
-	if (mCamera)
-	{
-		//vị trí nhân vật với camera, int để không bị giật ảnh
-		D3DXVECTOR2 trans= D3DXVECTOR2(int(GameGlobal::GetWidth() / 2 - mCamera->GetPosition().x) ,
-			int(GameGlobal::GetHeight() / 2 - mCamera->GetPosition().y) ); // mCamera->GetPosition().y
+		if (mCamera)
+		{
+			//vị trí nhân vật với camera, int để không bị giật ảnh
+			D3DXVECTOR2 trans = D3DXVECTOR2(int(GameGlobal::GetWidth() / 2 - mCamera->GetPosition().x),
+				int(GameGlobal::GetHeight() / 2 - mCamera->GetPosition().y)); // mCamera->GetPosition().y
 
-		//mCurrentAnimation->SetPosition(posX+trans.x, posY+trans.y);
+			//mCurrentAnimation->SetPosition(posX+trans.x, posY+trans.y);
 
-		//Draw bullet
-		for (int i = 0; i < sizeof(mListBullet); i++) {
-			mListBullet[i].Draw(trans);
-		}
-
-		//Draw smoke
-		for (int i = 0; i < sizeof(mListSmoke); i++) {
-			mListSmoke[i].Draw(trans);
-		}
-
-		//Draw player
-		if (isImmortal) {
-			if (turnDraw) {
-				mCurrentAnimation->Draw(trans);
-				turnDraw = false;
+			
+			//Draw bullet
+			for (int i = 0; i < sizeof(mListBullet); i++) {
+				mListBullet[i].Draw(trans);
 			}
-			else turnDraw = true;
+
+			//Draw smoke
+			for (int i = 0; i < sizeof(mListSmoke); i++) {
+				mListSmoke[i].Draw(trans);
+			}
+
+			if (isAlive) {
+				//Draw player
+				if (isImmortal) {
+					if (turnDraw) {
+						mCurrentAnimation->Draw(trans);
+						turnDraw = false;
+					}
+					else turnDraw = true;
+				}
+				else mCurrentAnimation->Draw(trans);
+				//Effect
+				if (mCurrentEffectAnimation) {
+					mCurrentEffectAnimation->SetPosition(this->GetPosition());
+					mCurrentEffectAnimation->Draw(trans);
+				}
+			}
+			
+			
+
+			//vẽ thanh máu
+			if (mHP) {
+				mHP->Draw();
+			}
+
+			//vẽ chêt
+			if (mDeathEffect) {
+				mDeathEffect->Draw(trans);
+			}
 		}
-		else mCurrentAnimation->Draw(trans);
-		//mCurrentAnimation->Draw();
-
-		//Effect
-		if (mCurrentEffectAnimation) {
-			mCurrentEffectAnimation->SetPosition(this->GetPosition());
-			mCurrentEffectAnimation->Draw(trans);
-		}		
-
-		//vẽ thanh máu
-		mSpriteFrameHP->Draw();
-	}
-	else
-	{
-		mCurrentAnimation->Draw();
-	}
+		else
+		{
+			mCurrentAnimation->Draw();
+		}
 }
 
 
