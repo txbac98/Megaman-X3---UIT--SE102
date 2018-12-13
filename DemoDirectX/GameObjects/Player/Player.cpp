@@ -3,6 +3,9 @@
 
 Player::Player()
 {
+	mSpriteFrameHP = new Sprite("Resources/Megaman/MegaHP/FrameHP.png");
+	mSpriteFrameHP->SetPosition(20, 50);
+	mSpriteLine = new Sprite("Resources/Megaman/MegaHP/LineHP.png");
 	mAnimationSpawning = new Animation("Resources/Megaman/Megaman.png", "Resources/Megaman/Spawning.txt", 0.07f, false);
     mAnimationJumping = new Animation("Resources/Megaman/Megaman.png", "Resources/Megaman/Jumping.txt",0.2f,false);
 	mAnimationFalling = new Animation("Resources/Megaman/Megaman.png", "Resources/Megaman/Falling.txt", 0.2f, false);
@@ -45,6 +48,10 @@ Player::Player()
 	this->isCollisionBottom = false;
 	this->isDownKeyAttack = false;
 	this->isFaceLeft = false;
+	this->beingAttacked = false;
+	this->isImmortal = false;
+	this->turnDraw = false;
+	dtImmortal = 0;
 	this->Tag = Entity::EntityTypes::Megaman;
 
 	timeDownAttackKey = 0;
@@ -57,10 +64,16 @@ Player::~Player()
 
 void Player::Update(float dt)
 {    
-	
-	HandleKeyboard(dt);
+	//Miễn kháng
+	if (isImmortal) {
+		dtImmortal += dt;
+		if (dtImmortal > PlayerDefine::TIME_IMMORTAL) {
+			dtImmortal = 0;
+			isImmortal = false;
+		}
+	}
 
-	
+	HandleKeyboard(dt);
 
 	//End animation spawn
 	if (mAnimationSpawning->mEndAnimate) {
@@ -75,8 +88,6 @@ void Player::Update(float dt)
 			isFaceLeft = mCurrentReverse;
 		}
 	}
-	
-	
 	
 	//Update animation Bullet
 	RECT rectCamera = mCamera->GetBound();
@@ -158,6 +169,9 @@ void Player::CheckNoCollisionWithBottom() {
 }
 void Player::HandleKeyboard(float dt) {
 
+	if (beingAttacked) {
+		return;
+	}
 	//Effect when keep keyAttack
 	if (KEY->keyAttack && !isDownKeyAttack) {
 		timeDownAttackKey = 0;
@@ -195,8 +209,6 @@ void Player::HandleKeyboard(float dt) {
 			break;
 		case PlayerState::Dashing:	//Dashing không cho bắn
 			return;
-			//this->SetState(new PlayerStandingAndShootState(mPlayerData));
-			//break;
 		default:
 			break;
 		}
@@ -219,6 +231,12 @@ void Player::HandleKeyboard(float dt) {
 				return;
 			}
 	}
+	//Gọi handlekey từng state
+	if (this->mPlayerData->state)
+	{
+		this->mPlayerData->state->HandleKeyboard();
+	}
+	
 }
 
 
@@ -231,37 +249,42 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 	//Chung
 	if (other->Tag == EntityTypes::None) return;
 	
-	if (other->Tag == EntityTypes::Enemy && other->isAlive) {
-		mCurrentAnimation = mAnimationBeingAttacked;
-		return;
-	}
-
-	if (side == SideCollisions::Top) {
-		this->SetVy(PlayerDefine::JUMP_ACCELERATOR_Y);
-		this->SetState(new PlayerFallingState(mPlayerData));
-		return;
-	}
-	if (side == SideCollisions::Bottom || side == SideCollisions::BottomLeft || side == SideCollisions::BottomRight) {
-
-		objectBottom = other;
-		//if (other->Tag == EntityTypes::Elevator) this->SetVy(other->GetVy());
-	}
-	if (side == SideCollisions::Left || side == SideCollisions::BottomLeft) {
-		if (this->isFaceLeft) {
-			this->mPlayerData->player->allowMoveLeft = false;
-			this->mPlayerData->player->SetVx(0);
+	if (other->Tag == EntityTypes::Enemy ) {
+		if (other->isAlive)
+		if (!beingAttacked && !isImmortal) {
+			this->SetState(new PlayerBeingAttackedState(mPlayerData));
+			return;
+		}
+		if (isImmortal) {
+			return;
 		}
 	}
-	if (side == SideCollisions::Right || side == SideCollisions::BottomRight) {
-		if (!this->isFaceLeft) {
-			this->mPlayerData->player->SetVx(0);
-			this->mPlayerData->player->allowMoveRight = false;
-		}	
-	}
-		
-	//Riêng từng state
-	this->mPlayerData->state->OnCollision(other, side);
-	
+	if (other->Tag == EntityTypes::Wall) {
+		if (side == SideCollisions::Top) {
+			this->SetVy(PlayerDefine::JUMP_ACCELERATOR_Y);
+			this->SetState(new PlayerFallingState(mPlayerData));
+			return;
+		}
+		if (side == SideCollisions::Bottom || side == SideCollisions::BottomLeft || side == SideCollisions::BottomRight) {
+
+			objectBottom = other;
+			//if (other->Tag == EntityTypes::Elevator) this->SetVy(other->GetVy());
+		}
+		if (side == SideCollisions::Left || side == SideCollisions::BottomLeft) {
+			if (this->isFaceLeft) {
+				this->mPlayerData->player->allowMoveLeft = false;
+				this->mPlayerData->player->SetVx(0);
+			}
+		}
+		if (side == SideCollisions::Right || side == SideCollisions::BottomRight) {
+			if (!this->isFaceLeft) {
+				this->mPlayerData->player->SetVx(0);
+				this->mPlayerData->player->allowMoveRight = false;
+			}
+		}
+		//Riêng từng state
+		this->mPlayerData->state->OnCollision(other, side);
+	}	
 }
 
 
@@ -302,6 +325,9 @@ void Player::changeAnimation(PlayerState::StateName state)
 		break;
 	case PlayerState::ClingAndShoot:
 		mCurrentAnimation = mAnimationClingAndShoot;
+		break;
+	case PlayerState::BeingAttacked:
+		mCurrentAnimation = mAnimationBeingAttacked;
 		break;
 	case PlayerState::Die:
 		mCurrentAnimation = mAnimationDie;
@@ -370,14 +396,24 @@ void Player::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DX
 		}
 
 		//Draw player
-		mCurrentAnimation->Draw(trans);
+		if (isImmortal) {
+			if (turnDraw) {
+				mCurrentAnimation->Draw(trans);
+				turnDraw = false;
+			}
+			else turnDraw = true;
+		}
+		else mCurrentAnimation->Draw(trans);
 		//mCurrentAnimation->Draw();
 
 		//Effect
 		if (mCurrentEffectAnimation) {
 			mCurrentEffectAnimation->SetPosition(this->GetPosition());
 			mCurrentEffectAnimation->Draw(trans);
-		}			
+		}		
+
+		//vẽ thanh máu
+		mSpriteFrameHP->Draw();
 	}
 	else
 	{

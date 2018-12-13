@@ -17,7 +17,7 @@ void PlayerClingAndShootState::Update(float dt)
 		this->mPlayerData->player->SetState(new PlayerClingState(this->mPlayerData));
 		return;
 	}
-	HandleKeyboard();
+	//HandleKeyboard();
 }
 
 void PlayerClingAndShootState::HandleKeyboard()

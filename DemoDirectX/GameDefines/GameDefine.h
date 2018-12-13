@@ -10,7 +10,7 @@ namespace PlayerDefine
 	const float DASHING_SPEED = 150;
 	const float DASHING_TIME = 0.5f;
     const float BOTTOM_RANGE_FALLING = 0.4f; // do dai va cham voi bottom neu nhu va cham bottom nho hon thi player se bi roi xuong
-
+	const float TIME_IMMORTAL = 1.0f;	//Thời gian miễn kháng sau khi bị tấn công
 	//Effect
 	const float TIME_EFFECT2 = 1.0f;
 	const float TIME_EFFECT1 = 0.3f;

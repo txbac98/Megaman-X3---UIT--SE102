@@ -19,7 +19,7 @@ PlayerDashingState::~PlayerDashingState()
 
 void PlayerDashingState::Update(float dt)
 {
-	HandleKeyboard();
+	//HandleKeyboard();
 	dtTimeDashing += dt;
 	dtTimeSmoke += dt;
 	

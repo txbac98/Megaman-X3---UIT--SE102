@@ -17,6 +17,7 @@
 #include "PlayerStandingAndShootState.h"
 #include "PlayerRunningAndShootState.h"
 #include "PlayerJumpingAndShootState.h"
+#include "PlayerBeingAttackedState.h"
 #include "../../KeyGame.h"
 #include "Bullet/PlayerBullet.h"
 #include "../Effect/PlayerDashingSmoke.h"
@@ -68,6 +69,10 @@ public:
     bool allowMoveLeft,isCollisionBottom;
     bool allowMoveRight;
 	bool isDownKeyAttack;
+	bool beingAttacked; //đang bị tấn công
+	bool isImmortal;	//vừa mới tấn công xong
+	float dtImmortal;	//đếm time immortal
+	bool turnDraw;		//Chớp khi miễn kháng
 	int typeBullet;
 	Animation   *mCurrentAnimation;
 	Animation	*mCurrentEffectAnimation;
@@ -92,6 +97,8 @@ public:
 		*mAnimationStandingAndShoot,
 		*mAnimationRunningAndShoot,
 		*mAnimationJumpingAndShoot;
+
+	Sprite *mSpriteFrameHP, *mSpriteLine;
 
     Camera      *mCamera;
 

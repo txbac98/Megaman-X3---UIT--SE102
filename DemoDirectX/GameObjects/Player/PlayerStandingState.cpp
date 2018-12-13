@@ -28,7 +28,7 @@ PlayerStandingState::~PlayerStandingState()
 
 void PlayerStandingState::Update(float dt)
 {
-	HandleKeyboard();
+	//HandleKeyboard();
 }
 void PlayerStandingState::HandleKeyboard() {
 	if (KEY->keyLeft  && this->mPlayerData->player->allowMoveLeft)

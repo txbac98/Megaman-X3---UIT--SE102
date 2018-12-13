@@ -17,7 +17,7 @@ void PlayerStandingAndShootState::Update(float dt)
 		this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData));
 		return;
 	}
-	HandleKeyboard();
+	//HandleKeyboard();
 }
 void PlayerStandingAndShootState::HandleKeyboard()
 {

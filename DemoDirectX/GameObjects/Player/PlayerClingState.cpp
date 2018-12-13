@@ -14,7 +14,7 @@ PlayerClingState::~PlayerClingState()
 void PlayerClingState::Update(float dt)
 {
 	
-	HandleKeyboard();
+	//HandleKeyboard();
 }
 
 void PlayerClingState::HandleKeyboard()

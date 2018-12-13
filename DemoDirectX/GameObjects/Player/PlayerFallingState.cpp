@@ -37,7 +37,7 @@ void PlayerFallingState::Update(float dt)
     {
         mPlayerData->player->SetVy(PlayerDefine::MAX_JUMP_VELOCITY);
     }
-	HandleKeyboard();
+	//HandleKeyboard();
 }
 
 void PlayerFallingState::HandleKeyboard()

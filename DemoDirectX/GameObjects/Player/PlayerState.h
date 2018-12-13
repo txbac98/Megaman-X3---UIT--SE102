@@ -28,11 +28,12 @@ public:
 
     virtual void Update(float dt);
 
+	virtual void HandleKeyboard();
 
     //side va cham voi player
     
 
-	virtual void OnCollision(Entity *object, Entity::SideCollisions side);
+	virtual void OnCollision(Entity *other, Entity::SideCollisions side);
 
 	//virtual void SetPositionWhenCollision(Entity* other, Entity::SideCollisions side);
 

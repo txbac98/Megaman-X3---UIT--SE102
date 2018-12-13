@@ -21,7 +21,7 @@ void PlayerRunningAndShootState::Update(float dt)
 			this->mPlayerData->player->SetState(new PlayerRunningState(this->mPlayerData));
 		//else this->mPlayerData->player->StartCurrentAnimation();
 	}	
-	else HandleKeyboard();
+	//else HandleKeyboard();
 }
 
 void PlayerRunningAndShootState::HandleKeyboard()

@@ -241,6 +241,9 @@
     <ClCompile Include="GameObjects\Enemies\NotorBullet.cpp">
       <Filter>FrameWork\GameObjects\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjects\Player\PlayerBeingAttackedState.cpp">
+      <Filter>FrameWork\GameObjects\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameComponents\Game.h">
@@ -446,6 +449,9 @@
     </ClInclude>
     <ClInclude Include="GameObjects\Enemies\NotorBullet.h">
       <Filter>FrameWork\GameObjects\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Player\PlayerBeingAttackedState.h">
+      <Filter>FrameWork\GameObjects\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

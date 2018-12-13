@@ -20,8 +20,12 @@ void PlayerState::Update(float dt)
 
 }
 
+void PlayerState::HandleKeyboard()
+{
+}
 
-void PlayerState::OnCollision(Entity *object, Entity::SideCollisions side) {
+
+void PlayerState::OnCollision(Entity *other, Entity::SideCollisions side) {
 	
 }
 //void PlayerState::SetPositionWhenCollision(Entity *other, Entity::SideCollisions side) {

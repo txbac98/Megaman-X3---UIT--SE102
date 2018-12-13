@@ -16,7 +16,7 @@ PlayerRunningState::~PlayerRunningState()
 
 void PlayerRunningState::Update(float dt)
 {
-	HandleKeyboard();
+	//HandleKeyboard();
 }
 void PlayerRunningState::HandleKeyboard() {
 	
@@ -66,7 +66,6 @@ void PlayerRunningState::HandleKeyboard() {
 	}
 }
 void PlayerRunningState::OnCollision(Entity *object, Entity::SideCollisions side) {
-	
 	switch (side)
 	{
 	case Entity::SideCollisions::Left: //case Entity::SideCollisions::BottomLeft:

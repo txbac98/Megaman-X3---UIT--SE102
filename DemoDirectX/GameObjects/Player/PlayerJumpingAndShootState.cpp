@@ -60,7 +60,7 @@ void PlayerJumpingAndShootState::Update(float dt)
 			}
 		}
 		
-		HandleKeyboard();
+		//HandleKeyboard();
 }
 
 void PlayerJumpingAndShootState::HandleKeyboard()
