@@ -1,5 +1,6 @@
-﻿#include "../Entity.h"
-#include"../../GameComponents/Animation.h"
+﻿//#include "../Entity.h"
+//#include"../../GameComponents/Animation.h"
+#pragma once
 #include "RedExplosion.h"
 
 
@@ -13,7 +14,7 @@ public:
 	void OnCollision(Entity * other, SideCollisions side);
 	void Draw(D3DXVECTOR2 transform = D3DXVECTOR2());
 	Sprite *mSprite1;
-	Animation *mAnimation2;
+	Animation *mAnimation2, *mHelitBullet;
 	RedExplosion *mExplosion=NULL;
 	bool wasBorn = false;		//Đã được sinh ra hay chưa
 	int typeBullet = 0;

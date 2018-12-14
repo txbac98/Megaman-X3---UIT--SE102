@@ -7,6 +7,7 @@ EnemyBullet::EnemyBullet()
 	this->Tag = EntityTypes::None;
 	wasBorn = false;
 	typeBullet = 0;
+	mHelitBullet = new Animation("Resources/Enemies/Helit.png", "Resources/Enemies/HelitBullet.txt", 0.01f, false);
 }
 
 EnemyBullet::~EnemyBullet()
@@ -30,7 +31,9 @@ void EnemyBullet::Spawn(int type,float posx, float posy, float vx, float vy)
 		this->SetHeight(mAnimation2->GetHeight());
 	}
 	else if (type == 3) {
-		ay = 0;
+		//ay = 0;
+		this->SetWidth(mHelitBullet->GetWidth());
+		this->SetHeight(mHelitBullet->GetHeight());
 	}
 	wasBorn = true;
 	this->Tag = EntityTypes::EnemiesBullet;
@@ -68,6 +71,10 @@ void EnemyBullet::Draw(D3DXVECTOR2 transform)
 		else if (typeBullet == 2) {
 			mAnimation2->SetPosition(posX, posY);
 			mAnimation2->Draw(D3DXVECTOR3(), RECT(), D3DXVECTOR2(), transform);
+		}
+		else if (typeBullet == 3) {
+			mHelitBullet->SetPosition(posX, posY);
+			mHelitBullet->Draw(D3DXVECTOR3(), RECT(), D3DXVECTOR2(), transform);
 		}
 	}
 	if (mExplosion) {

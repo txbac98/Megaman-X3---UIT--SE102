@@ -149,8 +149,6 @@ void Notorbanger::Update(float dt)
 				if (mListEntity[j]!=this)
 					CollisionManager::getInstance()->checkCollision(mListEntity[j], &mListBullet[i], dt/1000);
 		}
-
-		
 	}
 	
 	mAnimation->Update(dt);

@@ -26,6 +26,10 @@ namespace NotorDefine {
 	const float JUMP_SPEED_Y = 200;
 	const float JUMP_SPEED_X = 50;
 }
+namespace HelitDefine {
+	const float ACCELERATOR_Y = 10.0f;
+	const float BULLET_SPEED_X = 100.0f;
+}
 
 namespace HeadDefine {
 	const float BULLET_SPEED_X = 70.0f;

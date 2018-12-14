@@ -164,9 +164,14 @@ void GameMap::LoadMap(char* filePath, char* fileQuadTree)
 				mQuadTree->insertEntity(door, object->GetId());
 			}
 			else if (object->GetName() == "Notorbanger") {
-				Notorbanger *notor = new Notorbanger( posX, posY);
+				Notorbanger *notor = new Notorbanger(posX, posY);
 				mListNotor.push_back(notor);
 				mQuadTree->insertEntity(notor, object->GetId());
+			}
+			else if (object->GetName() == "Helit") {
+				Helit *helit = new Helit(posX, posY);
+				mListHelit.push_back(helit);
+				mQuadTree->insertEntity(helit, object->GetId());
 			}
 			else {
 				entity->SetPosition(posX, posY);
@@ -259,6 +264,15 @@ void GameMap::Update(float dt)
 			CollisionManager::getInstance()->checkCollision(mListNotor[i], mListObjectMap[j] ,dt);
 		}
 	}
+	for (size_t i = 0; i < mListHelit.size(); i++)
+	{
+		mListHelit[i]->Update(dt);
+		std::vector<Entity*> mListObjectMap;
+		this->GetQuadTree()->getEntitiesCollideAble(mListObjectMap, mListHelit[i]);
+		for (size_t j = 0; j < mListObjectMap.size(); j++) {
+			CollisionManager::getInstance()->checkCollision(mListHelit[i], mListObjectMap[j], dt);
+		}
+	}
 
 	//check collision
 	
@@ -349,6 +363,9 @@ void GameMap::Draw()
 	}
 	for (size_t i = 0; i < mListNotor.size(); i++) {
 		mListNotor[i]->Draw(trans);
+	}
+	for (size_t i = 0; i < mListHelit.size(); i++) {
+		mListHelit[i]->Draw(trans);
 	}
 #pragma endregion
 }
