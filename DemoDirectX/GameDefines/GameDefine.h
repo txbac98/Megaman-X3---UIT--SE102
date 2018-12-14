@@ -19,13 +19,20 @@ namespace PlayerDefine
 namespace NotorDefine {
 	const float BULLET_SPEED_X_1 = 70.0f;
 	const float BULLET_SPEED_Y_1 = 100.0f;
-	const float BULLET_SPEED_X_2 = 0.0f;
+	const float BULLET_SPEED_X_2 = 10.0f;
 	const float BULLET_SPEED_Y_2 = 150.0f;
 	const float BULLET_ACCELERATOR_Y = 3.0f;
 	const float ACCELERATOR_Y = 10.0f;
 	const float JUMP_SPEED_Y = 200;
 	const float JUMP_SPEED_X = 50;
 }
+
+namespace HeadDefine {
+	const float BULLET_SPEED_X = 70.0f;
+	const float BULLET_SPEED_Y = 100.0f;
+	const float BULLET_ACCELERATOR_Y = 50.0f;
+}
+
 namespace BulletDefine {
 	const float PLAYER_BULLET_SPEED = 300.0f;
 }

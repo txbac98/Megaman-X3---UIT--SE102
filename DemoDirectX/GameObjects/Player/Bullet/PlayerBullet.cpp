@@ -3,9 +3,9 @@
 PlayerBullet::PlayerBullet()
 {
 	wasBorn = false;
-	mAnimationBullet1= new Animation("Resources/Effect/Bullet/MegaBullet.png", "Resources/Effect/Bullet/MegaBullet1.txt", 0.001f, false);
-	mAnimationBullet2 = new Animation("Resources/Effect/Bullet/MegaBullet.png", "Resources/Effect/Bullet/MegaBullet2.txt", 0.001f, false);	
-	mAnimationBullet0 = new Animation("Resources/Effect/Bullet/MegaBullet.png", "Resources/Effect/Bullet/MegaBullet0.txt", 1.0f, false);		//1 frame
+	mAnimationBullet1= new Animation("Resources/Megaman/MegaBullet/MegaBullet.png", "Resources/Megaman/MegaBullet/MegaBullet1.txt", 0.001f, false);
+	mAnimationBullet2 = new Animation("Resources/Megaman/MegaBullet/MegaBullet.png", "Resources/Megaman/MegaBullet/MegaBullet2.txt", 0.001f, false);	
+	mAnimationBullet0 = new Animation("Resources/Megaman/MegaBullet/MegaBullet.png", "Resources/Megaman/MegaBullet/MegaBullet0.txt", 1.0f, false);		//1 frame
 	mCurrentAnimation = mAnimationBullet0;
 	this->Tag = Entity::EntityTypes::MegaBullet;
 	//mAnimationBullet1->Start();

@@ -33,7 +33,7 @@ Notorbanger::Notorbanger(float posX, float posY)
 	direction = -1;
 	iBullet = 0;
 	//Bullet
-	mListBullet = new NotorBullet[4];
+	mListBullet = new EnemyBullet[4];
 }
 
 void Notorbanger::Update(float dt)
@@ -114,9 +114,9 @@ void Notorbanger::Update(float dt)
 				}
 				else {
 					if (type==1)
-						mListBullet[iBullet].Spawn(this->posX, this->posY, direction*NotorDefine::BULLET_SPEED_X_1,-NotorDefine::BULLET_SPEED_Y_1);
+						mListBullet[iBullet].Spawn(1,this->posX, this->posY, direction*NotorDefine::BULLET_SPEED_X_1,-NotorDefine::BULLET_SPEED_Y_1);
 					else if (type==2)
-						mListBullet[iBullet].Spawn(this->posX, this->posY, direction*NotorDefine::BULLET_SPEED_X_2, -NotorDefine::BULLET_SPEED_Y_2);
+						mListBullet[iBullet].Spawn(1,this->posX, this->posY-10, direction*NotorDefine::BULLET_SPEED_X_2, -NotorDefine::BULLET_SPEED_Y_2);
 					mAnimationShoot->Start();
 					mAnimation = mAnimationShoot;
 					iBullet++;

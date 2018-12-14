@@ -100,7 +100,7 @@
     <ClCompile Include="GameControllers\SceneManager.cpp" />
     <ClCompile Include="GameObjects\Effect\PlayerDashingSmoke.cpp" />
     <ClCompile Include="GameObjects\Enemies\Notorbanger.cpp" />
-    <ClCompile Include="GameObjects\Enemies\NotorBullet.cpp" />
+    <ClCompile Include="GameObjects\Enemies\EnemyBullet.cpp" />
     <ClCompile Include="GameObjects\Enemies\RedExplosion.cpp" />
     <ClCompile Include="GameObjects\Entity.cpp" />
     <ClCompile Include="GameObjects\MapObjects\Door.cpp" />
@@ -170,9 +170,8 @@
     <ClInclude Include="GameControllers\SceneManager.h" />
     <ClInclude Include="GameDefines\GameDefine.h" />
     <ClInclude Include="GameObjects\Effect\PlayerDashingSmoke.h" />
-    <ClInclude Include="GameObjects\Enemies\EnemyBullet.h" />
     <ClInclude Include="GameObjects\Enemies\Notorbanger.h" />
-    <ClInclude Include="GameObjects\Enemies\NotorBullet.h" />
+    <ClInclude Include="GameObjects\Enemies\EnemyBullet.h" />
     <ClInclude Include="GameObjects\Enemies\RedExplosion.h" />
     <ClInclude Include="GameObjects\Entity.h" />
     <ClInclude Include="GameObjects\MapObjects\Door.h" />

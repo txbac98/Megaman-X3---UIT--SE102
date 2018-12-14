@@ -33,7 +33,7 @@ public:
 
     enum EntityTypes
     {
-        Megaman, MegaBullet, None, Wall, Elevator, Door, Brick, Enemy, EnemyBullet, Static
+        Megaman, MegaBullet, None, Wall, Elevator, Door, Brick, Enemy, EnemiesBullet, Static
     };
 
     EntityTypes Tag; //Tag de nhan vien loai Entity

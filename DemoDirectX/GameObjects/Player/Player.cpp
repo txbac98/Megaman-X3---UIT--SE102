@@ -253,7 +253,7 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 	//Chung
 	if (other->Tag == EntityTypes::None) return;
 	
-	if (other->Tag == EntityTypes::Enemy || other->Tag==EntityTypes::EnemyBullet) {
+	if (other->Tag == EntityTypes::Enemy || other->Tag==EntityTypes::EnemiesBullet) {
 		if (other->isAlive)
 		if (isImmortal) {
 			return;

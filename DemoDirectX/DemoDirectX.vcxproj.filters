@@ -238,9 +238,6 @@
     <ClCompile Include="GameObjects\Enemies\RedExplosion.cpp">
       <Filter>FrameWork\GameObjects\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjects\Enemies\NotorBullet.cpp">
-      <Filter>FrameWork\GameObjects\Enemies</Filter>
-    </ClCompile>
     <ClCompile Include="GameObjects\Player\PlayerBeingAttackedState.cpp">
       <Filter>FrameWork\GameObjects\Player</Filter>
     </ClCompile>
@@ -252,6 +249,9 @@
     </ClCompile>
     <ClCompile Include="GameObjects\Player\Deathorbs.cpp">
       <Filter>FrameWork\GameObjects\Player\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Enemies\EnemyBullet.cpp">
+      <Filter>FrameWork\GameObjects\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -453,12 +453,6 @@
     <ClInclude Include="GameObjects\Enemies\RedExplosion.h">
       <Filter>FrameWork\GameObjects\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjects\Enemies\EnemyBullet.h">
-      <Filter>FrameWork\GameObjects\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjects\Enemies\NotorBullet.h">
-      <Filter>FrameWork\GameObjects\Enemies</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjects\Player\PlayerBeingAttackedState.h">
       <Filter>FrameWork\GameObjects\Player</Filter>
     </ClInclude>
@@ -470,6 +464,9 @@
     </ClInclude>
     <ClInclude Include="GameObjects\Player\Deathorbs.h">
       <Filter>FrameWork\GameObjects\Player\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Enemies\EnemyBullet.h">
+      <Filter>FrameWork\GameObjects\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

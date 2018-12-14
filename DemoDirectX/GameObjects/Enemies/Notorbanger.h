@@ -6,7 +6,7 @@
 #include "../MapObjects/GameObject.h"
 //#include "RedExplosion.h"
 //#include "../../GameComponents/GameMap.h"
-#include "NotorBullet.h"
+#include "EnemyBullet.h"
 //Để viewport đây sẽ bị lỗi, class tĩnh phải khai báo trong .cpp
 
 //Súng đơn
@@ -32,6 +32,6 @@ protected:
 	int type;	//Loại nòng quay: 1 xiên, 2 thẳng để gọi khi bắn viên đạn
 	bool isFaceLeft;
 	bool allowMoveLeft, allowMoveRight;
-	//std::vector<NotorBullet*> mListBullet;
-	NotorBullet* mListBullet;
+	//std::vector<EnemyBullet*> mListBullet;
+	EnemyBullet* mListBullet;
 };
