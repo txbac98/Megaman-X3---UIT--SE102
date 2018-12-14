@@ -4,7 +4,6 @@
 PlayerBeingAttackedState::PlayerBeingAttackedState(PlayerData * playerData)
 {
 	this->mPlayerData = playerData;
-	this->mPlayerData->player->beingAttacked = true;
 	this->mPlayerData->player->vx = 0;
 	if (this->mPlayerData->player->vy<0)
 		this->mPlayerData->player->vy = 50;
@@ -18,7 +17,6 @@ PlayerBeingAttackedState::~PlayerBeingAttackedState()
 void PlayerBeingAttackedState::Update(float dt)
 {
 	if (this->mPlayerData->player->mAnimationBeingAttacked->mEndAnimate) {
-		this->mPlayerData->player->beingAttacked = false;
 		this->mPlayerData->player->isImmortal = true;
 		this->mPlayerData->player->SetState(new PlayerStandingState(mPlayerData));
 		return;

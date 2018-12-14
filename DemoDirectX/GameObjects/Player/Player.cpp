@@ -46,7 +46,6 @@ Player::Player()
 	this->isCollisionBottom = false;
 	this->isDownKeyAttack = false;
 	this->isFaceLeft = false;
-	this->beingAttacked = false;
 	this->isImmortal = false;
 	this->turnDraw = false;
 	this->isAlive = true;
@@ -173,7 +172,7 @@ void Player::CheckNoCollisionWithBottom() {
 }
 void Player::HandleKeyboard(float dt) {
 
-	if (beingAttacked) {
+	if (this->getState()==PlayerState::BeingAttacked) {
 		return;
 	}
 	//Effect when keep keyAttack
@@ -253,25 +252,26 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 	//Chung
 	if (other->Tag == EntityTypes::None) return;
 	
-	if (other->Tag == EntityTypes::Enemy || other->Tag==EntityTypes::EnemiesBullet) {
-		if (other->isAlive)
+	if (other->Tag == EntityTypes::Notorbanger || other->Tag==EntityTypes::EnemiesBullet
+		|| other->Tag== EntityTypes::Headgunner) {
 		if (isImmortal) {
 			return;
 		}
-		else {		
-			if (!beingAttacked) {
-				mHP->AddDame(1);
-				if (mHP->HP <= 0) {			
-					if (this->isAlive) {
-						mDeathEffect = new PlayerDeathEffect(posX, posY);
-						this->isAlive = false;
-					}
-					
+		//if (other->isAlive)
+		if (this->getState()!=PlayerState::BeingAttacked) {
+			mHP->AddDame(1);
+			if (mHP->HP <= 0) {
+				if (this->isAlive) {
+					mDeathEffect = new PlayerDeathEffect(posX, posY);
+					this->isAlive = false;
 				}
-				else this->SetState(new PlayerBeingAttackedState(mPlayerData));
-				return;
 			}
+			else this->SetState(new PlayerBeingAttackedState(mPlayerData));
+			return;
 		}
+			
+		
+		
 	}
 	if (other->Tag == EntityTypes::Wall || other->Tag== EntityTypes::Elevator) {
 		if (side == SideCollisions::Top) {

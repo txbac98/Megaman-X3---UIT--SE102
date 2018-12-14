@@ -253,6 +253,9 @@
     <ClCompile Include="GameObjects\Enemies\EnemyBullet.cpp">
       <Filter>FrameWork\GameObjects\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjects\Enemies\HeadGunner.cpp">
+      <Filter>FrameWork\GameObjects\Enemies</Filter>
+    </ClCompile>
     <ClCompile Include="GameObjects\Enemies\Helit.cpp">
       <Filter>FrameWork\GameObjects\Enemies</Filter>
     </ClCompile>
@@ -469,6 +472,9 @@
       <Filter>FrameWork\GameObjects\Player\Effect</Filter>
     </ClInclude>
     <ClInclude Include="GameObjects\Enemies\EnemyBullet.h">
+      <Filter>FrameWork\GameObjects\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Enemies\HeadGunner.h">
       <Filter>FrameWork\GameObjects\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="GameObjects\Enemies\Helit.h">

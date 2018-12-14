@@ -40,11 +40,11 @@ void DemoScene::LoadContent()
 
 void DemoScene::Update(float dt)
 {
-	checkCollision(dt);
-
 	ViewPort::getInstance()->Update(dt);
 
     mPlayer->Update(dt);
+
+	checkCollision(dt);
 
 }
 
@@ -60,9 +60,6 @@ void DemoScene::Draw()
 
 void DemoScene::checkCollision(float dt)
 {
-    /*su dung de kiem tra xem khi nao mario khong dung tren 1 object hoac
-    dung qua sat mep trai hoac phai cua object do thi se chuyen state la falling*/ 
-    int widthBottom = 0;
 
     vector<Entity*> listMapObject;
 
@@ -72,6 +69,7 @@ void DemoScene::checkCollision(float dt)
 	for (size_t i = 0; i < listMapObject.size(); i++)
 	{
 		//Entity::SideCollisions direction;
+		if (listMapObject[i]->Tag==Entity::EntityTypes::Wall || listMapObject[i]->Tag == Entity::EntityTypes::Elevator)	//va chạm quái được kiểm tra trong từng con quái
 		CollisionManager::getInstance()->checkCollision(mPlayer, listMapObject.at(i), dt / 1000);	
 	}
 

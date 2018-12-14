@@ -4,18 +4,22 @@
 EnemyBullet::EnemyBullet()
 {
 	mSprite1 = new Sprite("Resources/Enemies/EnemyBullet.png");
-	this->Tag = EntityTypes::None;
+	mAnimation2 = new Animation("Resources/Enemies/HeadgunnerBullet.png", "Resources/Enemies/HeadBullet.txt", 0.2f, false);
+	mAnimation3= new Animation("Resources/Enemies/HelitBullet.png", "Resources/Enemies/HelitBullet.txt", 0.2f, false);
 	wasBorn = false;
+	
+	
 	typeBullet = 0;
-	mHelitBullet = new Animation("Resources/Enemies/Helit.png", "Resources/Enemies/HelitBullet.txt", 0.01f, false);
 }
 
 EnemyBullet::~EnemyBullet()
 {
 }
 
-void EnemyBullet::Spawn(int type,float posx, float posy, float vx, float vy)
+void EnemyBullet::Spawn(int type,bool faceRight, float posx, float posy, float vx, float vy)
 {
+	isAlive = true;
+	isFaceRight = faceRight;
 	this->SetPosition(posx, posy);
 	this->vx = vx;
 	this->vy = vy;
@@ -31,9 +35,9 @@ void EnemyBullet::Spawn(int type,float posx, float posy, float vx, float vy)
 		this->SetHeight(mAnimation2->GetHeight());
 	}
 	else if (type == 3) {
-		//ay = 0;
-		this->SetWidth(mHelitBullet->GetWidth());
-		this->SetHeight(mHelitBullet->GetHeight());
+		ay = 0;
+		this->SetWidth(mAnimation3->GetWidth());
+		this->SetHeight(mAnimation3->GetHeight());
 	}
 	wasBorn = true;
 	this->Tag = EntityTypes::EnemiesBullet;
@@ -46,6 +50,12 @@ void EnemyBullet::Update(float dt)
 		//gia tốc rơi
 		vy += ay;
 		Entity::Update(dt);
+		if (typeBullet == 2) {
+			mAnimation2->Update(dt);
+		}
+		else if (typeBullet == 3) {
+			mAnimation3->Update(dt);
+		}
 	}
 	if (mExplosion!=NULL) {
 		mExplosion->Update(dt);
@@ -54,11 +64,15 @@ void EnemyBullet::Update(float dt)
 
 void EnemyBullet::OnCollision(Entity * other, SideCollisions side)
 {
-	if (this->Tag != EntityTypes::None) {
-		mExplosion = new RedExplosion(posX, posY);
-		wasBorn = false;
-		this->Tag = EntityTypes::None;
+	if (isAlive) {
+		if (other->Tag != EntityTypes::Notorbanger) {
+			mExplosion = new RedExplosion(posX, posY);
+			wasBorn = false;
+			this->isAlive = false;
+			this->Tag = EntityTypes::None;
+		}
 	}
+	
 }
 
 void EnemyBullet::Draw(D3DXVECTOR2 transform)
@@ -70,11 +84,13 @@ void EnemyBullet::Draw(D3DXVECTOR2 transform)
 		}
 		else if (typeBullet == 2) {
 			mAnimation2->SetPosition(posX, posY);
-			mAnimation2->Draw(D3DXVECTOR3(), RECT(), D3DXVECTOR2(), transform);
+			mAnimation2->FlipVertical(isFaceRight);
+			mAnimation2->Draw( transform);
 		}
 		else if (typeBullet == 3) {
-			mHelitBullet->SetPosition(posX, posY);
-			mHelitBullet->Draw(D3DXVECTOR3(), RECT(), D3DXVECTOR2(), transform);
+			mAnimation3->SetPosition(posX, posY);
+			mAnimation3->FlipVertical(isFaceRight);
+			mAnimation3->Draw(transform);
 		}
 	}
 	if (mExplosion) {

@@ -156,14 +156,12 @@ bool Sprite::isRect(RECT rect)
 
 int Sprite::GetWidth()
 {
-	if (mScale.x<0) return -mWidth * mScale.x;
-    return mWidth*mScale.x;
+    return mWidth;
 }
 
 int Sprite::GetHeight()
 {
-	if (mScale.y < 0) return -mHeight * mScale.y;
-    return mHeight*mScale.y;
+    return mHeight;
 }
 void Sprite::SetScale(float x, float y) {
 	D3DXVECTOR2 scale;

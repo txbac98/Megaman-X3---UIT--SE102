@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="24" height="8" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="11">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="24" height="8" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="13">
  <tileset firstgid="1" source="Map0.tsx"/>
  <layer id="1" name="Tile Layer 1" width="24" height="8">
   <data encoding="base64" compression="zlib">
@@ -12,6 +12,7 @@
   <object id="4" x="352.5" y="131" width="166" height="66"/>
   <object id="5" x="504" y="2.16667" width="152.5" height="12.8333"/>
   <object id="9" name="Notorbanger" x="293" y="142" width="38" height="31"/>
-  <object id="10" name="Helit" x="730" y="22" width="36" height="33"/>
+  <object id="10" name="Headgunner Right" x="16" y="140" width="44" height="32"/>
+  <object id="12" name="Helit" x="682" y="0" width="20" height="32"/>
  </objectgroup>
 </map>

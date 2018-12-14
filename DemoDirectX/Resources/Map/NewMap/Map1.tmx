@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="8" height="24" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="13">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="8" height="24" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="16">
  <tileset firstgid="1" source="Map1.tsx"/>
  <layer id="1" name="Tile Layer 1" width="8" height="24">
   <data encoding="base64" compression="zlib">
@@ -18,5 +18,7 @@
   <object id="10" x="3.5" y="205" width="26" height="239"/>
   <object id="11" x="3" y="1" width="26" height="184.5"/>
   <object id="12" x="176.5" y="179.167" width="77" height="33.6667"/>
+  <object id="13" name="Headgunner Left" x="182" y="376" width="36" height="52"/>
+  <object id="15" name="Headgunner Right" x="36" y="380" width="36" height="52"/>
  </objectgroup>
 </map>

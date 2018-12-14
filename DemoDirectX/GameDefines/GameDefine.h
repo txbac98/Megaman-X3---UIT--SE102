@@ -26,15 +26,18 @@ namespace NotorDefine {
 	const float JUMP_SPEED_Y = 200;
 	const float JUMP_SPEED_X = 50;
 }
-namespace HelitDefine {
-	const float ACCELERATOR_Y = 10.0f;
-	const float BULLET_SPEED_X = 100.0f;
-}
 
 namespace HeadDefine {
-	const float BULLET_SPEED_X = 70.0f;
+	const float BULLET_SPEED_X = 100.0f;
 	const float BULLET_SPEED_Y = 100.0f;
-	const float BULLET_ACCELERATOR_Y = 50.0f;
+	const float BULLET_ACCELERATOR_Y = 3.0f;
+}
+
+namespace HelitDefine {
+	const float SPEED_Y = 50.0f;
+	const float BULLET_SPEED_X = 100.0f;
+	const float BULLET_SPEED_Y = 100.0f;
+	const float BULLET_ACCELERATOR_Y = 3.0f;
 }
 
 namespace BulletDefine {

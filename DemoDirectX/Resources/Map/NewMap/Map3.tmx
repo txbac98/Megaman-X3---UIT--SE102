@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="24" height="24" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="16">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="24" height="24" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="24">
  <tileset firstgid="1" source="Map3.tsx"/>
  <layer id="1" name="Tile Layer 1" width="24" height="24">
   <data encoding="base64" compression="zlib">
@@ -21,5 +21,12 @@
   <object id="12" x="403" y="308" width="66" height="30"/>
   <object id="14" x="181.5" y="439" width="297.5" height="23"/>
   <object id="15" x="27" y="436" width="69" height="32"/>
+  <object id="16" name="Notorbanger" x="40" y="120" width="50" height="52"/>
+  <object id="17" name="Notorbanger" x="339" y="124" width="50" height="52"/>
+  <object id="18" name="Notorbanger" x="41" y="258.333" width="46.3333" height="48.6667"/>
+  <object id="19" name="Notorbanger" x="407" y="257" width="46" height="47"/>
+  <object id="20" name="Notorbanger" x="404.667" y="385" width="46.3333" height="48"/>
+  <object id="21" name="Notorbanger" x="39" y="382.333" width="46.6667" height="50"/>
+  <object id="23" name="Notorbanger" x="302" y="592.333" width="47" height="47.3333"/>
  </objectgroup>
 </map>

@@ -14,7 +14,7 @@ class Notorbanger : public Entity
 {
 public:
 	~Notorbanger();
-	Notorbanger( float posX, float posY);
+	Notorbanger(float posx, float posy);
 	void Update(float dt);
 	void Jumping(float dt);
 	void OnCollision(Entity * other, SideCollisions side);
@@ -27,11 +27,12 @@ protected:
 	Camera *mCamera;
 	RedExplosion *explosion;
 	Animation *mAnimation,*mAnimationShoot,*mAnimationShoot1, *mAnimationShoot2, *mAnimationJump, 
-		*mAnimationUp1,*mAnimationUp2,*mAnimationDie,*mAnimationStand;
-	int hp, direction, iBullet;
+		*mAnimationUp1,*mAnimationUp2,*mAnimationStand;
+	int  direction, iBullet;
 	int type;	//Loại nòng quay: 1 xiên, 2 thẳng để gọi khi bắn viên đạn
 	bool isFaceLeft;
 	bool allowMoveLeft, allowMoveRight;
+	//bool isAlive;
 	//std::vector<EnemyBullet*> mListBullet;
 	EnemyBullet* mListBullet;
 };

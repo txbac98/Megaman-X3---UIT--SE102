@@ -33,7 +33,8 @@ public:
 
     enum EntityTypes
     {
-        Megaman, MegaBullet, None, Wall, Elevator, Door, Brick, Enemy, EnemiesBullet, Static
+        Megaman, MegaBullet, None, Wall, Elevator, Door, Brick, Enemy, EnemiesBullet, Static, Notorbanger,
+		PosNotorbanger, Headgunner
     };
 
     EntityTypes Tag; //Tag de nhan vien loai Entity
@@ -103,10 +104,13 @@ public:
     float posX, posY;
 
 	bool isCollision;
-	bool isAlive;
+	bool isAlive=false;
+	bool isSpawn = false;
 	bool isCollisionCross;
 	bool isFaceLeft;
-
+	int dame;
+	int hp;
+	bool isFaceRight;
     //phan toc vx, vy
     float vx=0, vy=0;
 

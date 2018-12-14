@@ -1,11 +1,11 @@
-﻿#include "GameMap.h"
+﻿#pragma once
+#include "GameMap.h"
 
 GameMap::GameMap(char* filePath, char *fileQuadTree, int posx, int posy)
 {
     mCamera = new Camera(GameGlobal::GetWidth(), GameGlobal::GetHeight());
 	PosX = posx;
 	PosY = posy;
-
 	//Xoa du lieu fie quadtree
 	ofstream fQuadTree;
 	fQuadTree.open(fileQuadTree, ios::out | ios::trunc);
@@ -155,22 +155,36 @@ void GameMap::LoadMap(char* filePath, char* fileQuadTree)
 
 			if (object->GetName() == "Elevator") {
 				 Elevator *elevator= new Elevator(posX, posY);
-				 mListElevator.push_back(elevator);
+				 mListEntity.push_back(elevator);
 				 mQuadTree->insertEntity(elevator, object->GetId());
 			}
 			else if(object->GetName()=="Door"){
 				Door *door = new Door(posX, posY);
-				mListDoor.push_back(door);
+				mListEntity.push_back(door);
 				mQuadTree->insertEntity(door, object->GetId());
 			}
 			else if (object->GetName() == "Notorbanger") {
-				Notorbanger *notor = new Notorbanger(posX, posY);
-				mListNotor.push_back(notor);
-				mQuadTree->insertEntity(notor, object->GetId());
+				//Notorbanger *notor = new Notorbanger( posX, posY);
+				entity->Tag = Entity::EntityTypes::Notorbanger;
+				entity->SetPosition(posX, posY);
+				entity->SetWidth(object->GetWidth());
+				entity->SetHeight(object->GetHeight());
+				mListEntity.push_back(entity);
+				mQuadTree->insertEntity(entity, object->GetId());
+			}
+			else if (object->GetName() == "Headgunner Right") {
+				HeadGunner *head = new HeadGunner(posX, posY, true);
+				mListEntity.push_back(head);
+				mQuadTree->insertEntity(head, object->GetId());
+			}
+			else if (object->GetName() == "Headgunner Left") {
+				HeadGunner *head = new HeadGunner(posX, posY, false);
+				mListEntity.push_back(head);
+				mQuadTree->insertEntity(head, object->GetId());
 			}
 			else if (object->GetName() == "Helit") {
 				Helit *helit = new Helit(posX, posY);
-				mListHelit.push_back(helit);
+				mListEntity.push_back(helit);
 				mQuadTree->insertEntity(helit, object->GetId());
 			}
 			else {
@@ -247,32 +261,42 @@ bool GameMap::IsBoundBottom()
 
 void GameMap::Update(float dt)
 {
-    for (size_t i = 0; i < mListElevator.size(); i++)
-    {
-        mListElevator[i]->Update(dt);
-    }
+	for (size_t i = 0; i < mListEntity.size(); i++) {
+		mListEntity[i]->Update(dt);
+			if (mListEntity[i]->Tag == Entity::EntityTypes::Notorbanger) {
+				RECT rectCamera = mCamera->GetBound();
+				RECT rectEntity = mListEntity[i]->GetBound();
+				//va chạm với rìa camera
+				if (rectCamera.left==rectEntity.right || rectCamera.right==rectEntity.left ||
+					rectCamera.top==rectEntity.bottom || rectCamera.bottom==rectEntity.top) 
+				{
+					if (!mListEntity[i]->isAlive)	//Chưa sinh ra hoặc đã chết
+						mListEntity[i] = new Notorbanger(mListEntity[i]->posX, mListEntity[i]->posY);
+				}
+				
+				//if (!mListEntity[i]->isSpawn)	
+				
+			}
+			
+			//va chạm map
+			std::vector<Entity*> mListObjectMap;
+			this->GetQuadTree()->getEntitiesCollideAble(mListObjectMap, mListEntity[i]);
+			for (size_t j = 0; j < mListObjectMap.size(); j++) {
+				CollisionManager::getInstance()->checkCollision(mListEntity[i], mListObjectMap[j], dt);
+			
+		}
+		
+	}
+	for (size_t i = 0; i < mListElevator.size(); i++)
+	{
+		mListElevator[i]->Update(dt);
+	}
 	for (size_t i = 0; i < mListDoor.size(); i++)
 	{
 		mListDoor[i]->Update(dt);
 	}
-	for (size_t i = 0; i < mListNotor.size(); i++)
-	{
-		mListNotor[i]->Update(dt);
-		std::vector<Entity*> mListObjectMap;
-		this->GetQuadTree()->getEntitiesCollideAble(mListObjectMap,mListNotor[i] );
-		for (size_t j = 0; j < mListObjectMap.size(); j++) {
-			CollisionManager::getInstance()->checkCollision(mListNotor[i], mListObjectMap[j] ,dt);
-		}
-	}
-	for (size_t i = 0; i < mListHelit.size(); i++)
-	{
-		mListHelit[i]->Update(dt);
-		std::vector<Entity*> mListObjectMap;
-		this->GetQuadTree()->getEntitiesCollideAble(mListObjectMap, mListHelit[i]);
-		for (size_t j = 0; j < mListObjectMap.size(); j++) {
-			CollisionManager::getInstance()->checkCollision(mListHelit[i], mListObjectMap[j], dt);
-		}
-	}
+
+	
 
 	//check collision
 	
@@ -354,18 +378,15 @@ void GameMap::Draw()
 
 #pragma region DRAW Entity
 
-	for (size_t i = 0; i < mListElevator.size(); i++)
+	for (size_t i = 0; i < mListEntity.size(); i++)
 	{
-		mListElevator[i]->Draw(trans);
+		mListEntity[i]->Draw(trans);
 	}
 	for (size_t i = 0; i < mListDoor.size(); i++) {
 		mListDoor[i]->Draw(trans);
 	}
 	for (size_t i = 0; i < mListNotor.size(); i++) {
 		mListNotor[i]->Draw(trans);
-	}
-	for (size_t i = 0; i < mListHelit.size(); i++) {
-		mListHelit[i]->Draw(trans);
 	}
 #pragma endregion
 }

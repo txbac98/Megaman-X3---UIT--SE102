@@ -99,6 +99,7 @@
     <ClCompile Include="GameComponents\ViewPort.cpp" />
     <ClCompile Include="GameControllers\SceneManager.cpp" />
     <ClCompile Include="GameObjects\Effect\PlayerDashingSmoke.cpp" />
+    <ClCompile Include="GameObjects\Enemies\HeadGunner.cpp" />
     <ClCompile Include="GameObjects\Enemies\Helit.cpp" />
     <ClCompile Include="GameObjects\Enemies\Notorbanger.cpp" />
     <ClCompile Include="GameObjects\Enemies\EnemyBullet.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="GameControllers\SceneManager.h" />
     <ClInclude Include="GameDefines\GameDefine.h" />
     <ClInclude Include="GameObjects\Effect\PlayerDashingSmoke.h" />
+    <ClInclude Include="GameObjects\Enemies\HeadGunner.h" />
     <ClInclude Include="GameObjects\Enemies\Helit.h" />
     <ClInclude Include="GameObjects\Enemies\Notorbanger.h" />
     <ClInclude Include="GameObjects\Enemies\EnemyBullet.h" />

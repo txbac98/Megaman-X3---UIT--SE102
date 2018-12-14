@@ -1,7 +1,7 @@
-#pragma once
 #include "./../../GameComponents/Animation.h"
 #include "../Entity.h"
 #include "../MapObjects/GameObject.h"
+
 
 class RedExplosion : public Entity
 {

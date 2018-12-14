@@ -70,7 +70,6 @@ public:
     bool allowMoveLeft,isCollisionBottom;
     bool allowMoveRight;
 	bool isDownKeyAttack;
-	bool beingAttacked; //đang bị tấn công
 	bool isImmortal;	//vừa mới tấn công xong
 	float dtImmortal;	//đếm time immortal
 	bool turnDraw;		//Chớp khi miễn kháng

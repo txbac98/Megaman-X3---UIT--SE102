@@ -20,12 +20,15 @@ void PlayerBullet::Spawn(bool goLeft, int typeBullet)
 {
 	this->Tag = EntityTypes::MegaBullet;
 	if (typeBullet == 0) {
+		dame = 1;
 		mCurrentAnimation = mAnimationBullet0;
 	}
 	if (typeBullet == 1) {
+		dame = 2;
 		mCurrentAnimation = mAnimationBullet1;
 	}
 	if (typeBullet == 2) {
+		dame = 3;
 		mCurrentAnimation = mAnimationBullet2;
 	}
 	mCurrentAnimation->Start();
@@ -53,9 +56,8 @@ void PlayerBullet::Update(float dt, RECT rectCamera)
 
 void PlayerBullet::OnCollision(Entity * other, SideCollisions side)
 {
-	if (other->Tag == EntityTypes::Enemy) {
 		wasBorn = false;
-	}
+
 }
 
 void PlayerBullet::Draw(D3DXVECTOR2 transform)

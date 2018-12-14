@@ -15,6 +15,7 @@
 #include "../GameObjects/MapObjects/Elevator.h"
 #include "../GameObjects/MapObjects/Door.h"
 #include "../GameObjects/Enemies/Notorbanger.h"
+#include "../GameObjects/Enemies/HeadGunner.h"
 #include "../GameObjects/Enemies/Helit.h"
 using namespace std;
 class GameMap
@@ -58,7 +59,8 @@ private:
 	std::vector<Entity*>			mListEntity;
 	std::vector<Door*>				mListDoor;
 	std::vector<Notorbanger*>		mListNotor;
-	std::vector<Helit*>				mListHelit;
+	std::vector<Entity*> mListObjectMap;
+	Notorbanger* notor;
 	//std::vector<Entity*>			mListObjectMap;
     Sprite                          *mSpriteBricks, *mSpriteBrickGold;
 };

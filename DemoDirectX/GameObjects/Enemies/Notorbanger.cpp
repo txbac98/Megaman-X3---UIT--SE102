@@ -5,10 +5,9 @@ Notorbanger::~Notorbanger()
 {
 }
 
-Notorbanger::Notorbanger(float posX, float posY)
+Notorbanger::Notorbanger(float posx, float posy)
 {
 	mAnimationJump = new Animation("Resources/Enemies/Notorbanger.png", "Resources/Enemies/NotorJump.txt", 0.01f, false);
-	mAnimationDie= new Animation("Resources/Effect/Explosions.bmp", "Resources/Effect/RedExplosion.txt", 0.1f, false);
 	mAnimationStand = new Animation("Resources/Enemies/Notorbanger.png", "Resources/Enemies/NotorStand.txt", 0.2f, false);
 	mAnimationShoot1= new Animation("Resources/Enemies/Notorbanger.png", "Resources/Enemies/NotorShoot1.txt", 0.3f, false);
 	mAnimationShoot2 = new Animation("Resources/Enemies/Notorbanger.png", "Resources/Enemies/NotorShoot2.txt", 0.3f, false);
@@ -17,10 +16,11 @@ Notorbanger::Notorbanger(float posX, float posY)
 	//mAnimationStand->Start();
 	mAnimation = mAnimationStand;
 
-	this->SetPosition(posX, posY);
+	this->Tag = EntityTypes::Notorbanger;
+
+	this->SetPosition(posx, posy);
 	this->SetWidth(mAnimation->GetWidth());
 	this->SetHeight(mAnimation->GetHeight());
-	this->Tag = Entity::EntityTypes::Enemy;
 	isFaceLeft = true;
 	mPlayer = ViewPort::getInstance()->mPlayer;
 	mCamera = ViewPort::getInstance()->mCamera;
@@ -28,12 +28,13 @@ Notorbanger::Notorbanger(float posX, float posY)
 	hp = 3;
 	this->SetVy(10);
 	isAlive = true;
+	isSpawn = true;
 	allowMoveLeft = true;
 	allowMoveRight = true;
 	direction = -1;
 	iBullet = 0;
 	//Bullet
-	mListBullet = new EnemyBullet[4];
+	mListBullet = new EnemyBullet[3];
 }
 
 void Notorbanger::Update(float dt)
@@ -44,18 +45,24 @@ void Notorbanger::Update(float dt)
 
 		//kiểm tra va chạm viên đạn player
 		for (int i = 0; i < sizeof(mPlayer->mListBullet); i++) {
-			CollisionManager::getInstance()->checkCollision(&mPlayer->mListBullet[i], this, dt / 1000);
+			CollisionManager::getInstance()->checkCollision(&mPlayer->mListBullet[i], this, dt);
 		}
+		//Kiểm tra va chạm với nhân vật
+		if (mPlayer) {
+			CollisionManager::getInstance()->checkCollision(mPlayer, this, dt);
+		}
+
+		//CollisionManager::getInstance
 
 		if (hp <= 0) {
 			Die();
 			return;
 		}
-		if (abs(posX - mPlayer->posX )< 120 && mAnimation != mAnimationJump)	// khoảng cách dưới 100
+		if (abs(posX - mPlayer->posX )< 200 && mAnimation != mAnimationJump)	// khoảng cách dưới 100
 		{
 			if (type == 0) {
 				type = 1;	//xiên
-				if (abs(posX - mPlayer->posX) < 40) type = 2;	//thẳng đứng
+				if (abs(posX - mPlayer->posX) < 70) type = 2;	//thẳng đứng
 				if (mPlayer->posX < posX)	//bên trái
 				{
 					isFaceLeft = true;
@@ -69,7 +76,7 @@ void Notorbanger::Update(float dt)
 			}	
 		}
 		
-		//Hết Stand ->Quay súng -> Shoot (3 vien) ->Trả súng -> Jump
+		//Hết Stand ->Quay súng -> Shoot (3 vien)-> Jump
 		if (mAnimation->mEndAnimate) {
 			if (mAnimation == mAnimationStand) {
 				//Kiểm tra type để quay súng
@@ -114,23 +121,25 @@ void Notorbanger::Update(float dt)
 				}
 				else {
 					if (type==1)
-						mListBullet[iBullet].Spawn(1,this->posX, this->posY, direction*NotorDefine::BULLET_SPEED_X_1,-NotorDefine::BULLET_SPEED_Y_1);
+						mListBullet[iBullet].Spawn(1,false,this->posX, this->posY, direction*NotorDefine::BULLET_SPEED_X_1,-NotorDefine::BULLET_SPEED_Y_1);
 					else if (type==2)
-						mListBullet[iBullet].Spawn(1,this->posX, this->posY-10, direction*NotorDefine::BULLET_SPEED_X_2, -NotorDefine::BULLET_SPEED_Y_2);
+						mListBullet[iBullet].Spawn(1,false,this->posX, this->posY-10, direction*NotorDefine::BULLET_SPEED_X_2, -NotorDefine::BULLET_SPEED_Y_2);
 					mAnimationShoot->Start();
 					mAnimation = mAnimationShoot;
 					iBullet++;
 				}
 			}
 		}
-		
+		if (mAnimation == mAnimationJump) {
+			Jumping(dt);
+		}
+		mAnimation->Update(dt);
+		Entity::Update(dt);
 	}	
 
 	if (explosion) explosion->Update(dt);
 
-	if (mAnimation == mAnimationJump) {
-		Jumping(dt);
-	}
+	
 
 	//Xử lý đạn
 	if (mListBullet )
@@ -138,21 +147,18 @@ void Notorbanger::Update(float dt)
 		//Kiểm tra va chạm
 		std::vector<Entity*> mListEntity;
 
-		for (int i = 0; i < sizeof(mListBullet); i++) {
+		for (int i = 0; i < sizeof(mListBullet)-1; i++) {
 
 			mListBullet[i].Update(dt);
 
-			CollisionManager::getInstance()->checkCollision(mPlayer, &mListBullet[i], dt/1000);
+			CollisionManager::getInstance()->checkCollision(mPlayer, &mListBullet[i], dt);
 
 			ViewPort::getInstance()->GetMapObject(mListEntity, &mListBullet[i]);
 			for (int j = 0; j < mListEntity.size(); j++)
 				if (mListEntity[j]!=this)
-					CollisionManager::getInstance()->checkCollision(mListEntity[j], &mListBullet[i], dt/1000);
-		}
+					CollisionManager::getInstance()->checkCollision(mListEntity[j], &mListBullet[i], dt);
+		}	
 	}
-	
-	mAnimation->Update(dt);
-	Entity::Update(dt);
 }
 
 void Notorbanger::Jumping(float dt)
@@ -171,11 +177,11 @@ void Notorbanger::Jumping(float dt)
 
 void Notorbanger::OnCollision(Entity * other, SideCollisions side)
 {
-	if (isAlive) {
 		if (other->Tag == EntityTypes::MegaBullet) {
-			hp--;
-			other->Tag = EntityTypes::None;
-			return;
+				hp-=other->dame;
+				other->Tag = EntityTypes::None;
+				return;
+			
 		}
 		if (other->Tag == EntityTypes::Wall) {
 			vx = 0;
@@ -196,7 +202,7 @@ void Notorbanger::OnCollision(Entity * other, SideCollisions side)
 					mAnimation = mAnimationStand;
 				}
 			}
-		}
+		
 	}
 }
 
@@ -204,10 +210,10 @@ void Notorbanger::Draw(D3DXVECTOR2 transform)
 {
 	if (mListBullet)
 	{
-		for (int i = 0; i < sizeof(mListBullet); i++)
+		for (int i = 0; i < sizeof(mListBullet)-1; i++)
 			mListBullet[i].Draw(transform);
 	}
-	if (isAlive) {
+	if (this->isAlive) {
 		mAnimation->SetPosition(this->GetPosition());
 		mAnimation->FlipVertical(!isFaceLeft);
 		mAnimation->Draw(transform);
@@ -219,10 +225,9 @@ void Notorbanger::Draw(D3DXVECTOR2 transform)
 
 void Notorbanger::Die()
 {
-	if (isAlive) {
-		mAnimation = mAnimationDie;
-		this->Tag = EntityTypes::None;
+	if (this->isAlive) {
 		explosion = new RedExplosion(posX, posY);
-		isAlive = false;
+		this->isAlive = false;
+		//Entity::isAlive = false;
 	}
 }
