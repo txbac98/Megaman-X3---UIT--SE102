@@ -39,6 +39,9 @@ Notorbanger::Notorbanger(float posX, float posY)
 void Notorbanger::Update(float dt)
 {
 	if (isAlive) {
+		this->SetWidth(mAnimation->GetWidth());
+		this->SetHeight(mAnimation->GetHeight());
+
 		//kiểm tra va chạm viên đạn player
 		for (int i = 0; i < sizeof(mPlayer->mListBullet); i++) {
 			CollisionManager::getInstance()->checkCollision(&mPlayer->mListBullet[i], this, dt / 1000);
@@ -48,20 +51,22 @@ void Notorbanger::Update(float dt)
 			Die();
 			return;
 		}
-		if (abs(posX - mPlayer->posX )< 100 && mAnimation != mAnimationJump)	// khoảng cách dưới 100
+		if (abs(posX - mPlayer->posX )< 120 && mAnimation != mAnimationJump)	// khoảng cách dưới 100
 		{
-			type = 1;	//xiên
-			if (abs(posX - mPlayer->posX) < 20) type = 2;	//thẳng đứng
-			if (mPlayer->posX < posX )	//bên trái
-			{
-				isFaceLeft = true;
-				direction = -1;
+			if (type == 0) {
+				type = 1;	//xiên
+				if (abs(posX - mPlayer->posX) < 40) type = 2;	//thẳng đứng
+				if (mPlayer->posX < posX)	//bên trái
+				{
+					isFaceLeft = true;
+					direction = -1;
+				}
+				else
+				{		//bên phải
+					isFaceLeft = false;
+					direction = 1;
+				}
 			}	
-			else
-			{		//bên phải
-				isFaceLeft = false;
-				direction = 1;
-			}
 		}
 		
 		//Hết Stand ->Quay súng -> Shoot (3 vien) ->Trả súng -> Jump
@@ -71,12 +76,12 @@ void Notorbanger::Update(float dt)
 				if (type == 1) {
 					mAnimationUp1->Start();
 					mAnimation = mAnimationUp1;
-					this->AddPositionY(-8);
+					this->AddPositionY(-6);
 				}
 				else if (type == 2) {
 					mAnimationUp2->Start();
 					mAnimation = mAnimationUp2;
-					this->AddPositionY(-8);
+					this->AddPositionY(-6);
 				}
 				else {
 					mAnimationStand->Start();
@@ -104,7 +109,8 @@ void Notorbanger::Update(float dt)
 					mAnimationJump->Start();
 					mAnimation = mAnimationJump;
 					iBullet = 0;
-					this->AddPositionY(8);
+					type = 0;
+					this->AddPositionY(6);
 				}
 				else {
 					if (type==1)
@@ -126,12 +132,27 @@ void Notorbanger::Update(float dt)
 		Jumping(dt);
 	}
 
+	//Xử lý đạn
 	if (mListBullet )
 	{
-		for (int i = 0; i < sizeof(mListBullet); i++)
-			mListBullet[i].Update(dt);
-	}
+		//Kiểm tra va chạm
+		std::vector<Entity*> mListEntity;
 
+		for (int i = 0; i < sizeof(mListBullet); i++) {
+
+			mListBullet[i].Update(dt);
+
+			CollisionManager::getInstance()->checkCollision(mPlayer, &mListBullet[i], dt/1000);
+
+			ViewPort::getInstance()->GetMapObject(mListEntity, &mListBullet[i]);
+			for (int j = 0; j < mListEntity.size(); j++)
+				if (mListEntity[j]!=this)
+					CollisionManager::getInstance()->checkCollision(mListEntity[j], &mListBullet[i], dt/1000);
+		}
+
+		
+	}
+	
 	mAnimation->Update(dt);
 	Entity::Update(dt);
 }

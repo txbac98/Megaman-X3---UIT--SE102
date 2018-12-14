@@ -32,5 +32,6 @@ protected:
 	int type;	//Loại nòng quay: 1 xiên, 2 thẳng để gọi khi bắn viên đạn
 	bool isFaceLeft;
 	bool allowMoveLeft, allowMoveRight;
-	NotorBullet *mListBullet;
+	//std::vector<NotorBullet*> mListBullet;
+	NotorBullet* mListBullet;
 };
