@@ -7,7 +7,7 @@ EnemyBullet::EnemyBullet()
 	mAnimation2 = new Animation("Resources/Enemies/HeadgunnerBullet.png", "Resources/Enemies/HeadBullet.txt", 0.2f, false);
 	mAnimation3= new Animation("Resources/Enemies/HelitBullet.png", "Resources/Enemies/HelitBullet.txt", 0.2f, false);
 	wasBorn = false;
-	
+	dame = 1;
 	
 	typeBullet = 0;
 }
@@ -26,6 +26,7 @@ void EnemyBullet::Spawn(int type,bool faceRight, float posx, float posy, float v
 	typeBullet = type;
 	if (type == 1) {
 		ay = NotorDefine::BULLET_ACCELERATOR_Y;
+		
 		this->SetWidth(mSprite1->GetWidth());
 		this->SetHeight(mSprite1->GetHeight());
 	}
@@ -46,7 +47,7 @@ void EnemyBullet::Spawn(int type,bool faceRight, float posx, float posy, float v
 
 void EnemyBullet::Update(float dt)
 {
-	if (wasBorn) {
+	if (isAlive) {
 		//gia tốc rơi
 		vy += ay;
 		Entity::Update(dt);
@@ -67,7 +68,7 @@ void EnemyBullet::OnCollision(Entity * other, SideCollisions side)
 	if (isAlive) {
 		if (other->Tag != EntityTypes::Notorbanger) {
 			mExplosion = new RedExplosion(posX, posY);
-			wasBorn = false;
+			//wasBorn = false;
 			this->isAlive = false;
 			this->Tag = EntityTypes::None;
 		}
@@ -77,7 +78,7 @@ void EnemyBullet::OnCollision(Entity * other, SideCollisions side)
 
 void EnemyBullet::Draw(D3DXVECTOR2 transform)
 {
-	if (wasBorn) {
+	if (isAlive) {
 		if (typeBullet == 1) {
 			mSprite1->SetPosition(posX, posY);
 			mSprite1->Draw(D3DXVECTOR3(), RECT(), D3DXVECTOR2(), transform);

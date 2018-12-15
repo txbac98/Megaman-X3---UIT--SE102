@@ -98,6 +98,7 @@
     <ClCompile Include="GameComponents\Sprite.cpp" />
     <ClCompile Include="GameComponents\ViewPort.cpp" />
     <ClCompile Include="GameControllers\SceneManager.cpp" />
+    <ClCompile Include="GameObjects\Boss\Genjibo.cpp" />
     <ClCompile Include="GameObjects\Effect\PlayerDashingSmoke.cpp" />
     <ClCompile Include="GameObjects\Enemies\HeadGunner.cpp" />
     <ClCompile Include="GameObjects\Enemies\Helit.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="GameComponents\ViewPort.h" />
     <ClInclude Include="GameControllers\SceneManager.h" />
     <ClInclude Include="GameDefines\GameDefine.h" />
+    <ClInclude Include="GameObjects\Boss\Genjibo.h" />
     <ClInclude Include="GameObjects\Effect\PlayerDashingSmoke.h" />
     <ClInclude Include="GameObjects\Enemies\HeadGunner.h" />
     <ClInclude Include="GameObjects\Enemies\Helit.h" />

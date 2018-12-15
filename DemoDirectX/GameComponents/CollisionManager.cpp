@@ -53,7 +53,7 @@ RECT CollisionManager::getCollisionRect(RECT rectM, RECT rectS)
 }
 bool CollisionManager::AABBCheck(RECT & rectM, RECT & rectS)
 {
-	return (rectM.bottom > rectS.top && rectM.top < rectS.bottom && rectM.left < rectS.right && rectM.right > rectS.left);
+	return (rectM.bottom >= rectS.top && rectM.top <= rectS.bottom && rectM.left <= rectS.right && rectM.right >= rectS.left);
 }
 Entity::SideCollisions CollisionManager::getSideCollision(Entity *M, Entity *S)
 {

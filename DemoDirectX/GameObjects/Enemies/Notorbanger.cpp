@@ -33,6 +33,7 @@ Notorbanger::Notorbanger(float posx, float posy)
 	allowMoveRight = true;
 	direction = -1;
 	iBullet = 0;
+	dame = 1;
 	//Bullet
 	mListBullet = new EnemyBullet[3];
 }
@@ -51,114 +52,114 @@ void Notorbanger::Update(float dt)
 		if (mPlayer) {
 			CollisionManager::getInstance()->checkCollision(mPlayer, this, dt);
 		}
-
-		//CollisionManager::getInstance
-
-		if (hp <= 0) {
-			Die();
-			return;
-		}
-		if (abs(posX - mPlayer->posX )< 200 && mAnimation != mAnimationJump)	// khoảng cách dưới 100
-		{
-			if (type == 0) {
-				type = 1;	//xiên
-				if (abs(posX - mPlayer->posX) < 70) type = 2;	//thẳng đứng
-				if (mPlayer->posX < posX)	//bên trái
-				{
-					isFaceLeft = true;
-					direction = -1;
-				}
-				else
-				{		//bên phải
-					isFaceLeft = false;
-					direction = 1;
-				}
-			}	
-		}
-		
-		//Hết Stand ->Quay súng -> Shoot (3 vien)-> Jump
-		if (mAnimation->mEndAnimate) {
-			if (mAnimation == mAnimationStand) {
-				//Kiểm tra type để quay súng
-				if (type == 1) {
-					mAnimationUp1->Start();
-					mAnimation = mAnimationUp1;
-					this->AddPositionY(-6);
-				}
-				else if (type == 2) {
-					mAnimationUp2->Start();
-					mAnimation = mAnimationUp2;
-					this->AddPositionY(-6);
-				}
-				else {
-					mAnimationStand->Start();
-					mAnimation = mAnimationStand;
-				}
-
-			}
-			else if (mAnimation == mAnimationUp1 || mAnimation == mAnimationUp2) {
-				if (type == 1) {
-					mAnimationShoot1->Start();
-					mAnimation = mAnimationShoot1;
-					mAnimationShoot = mAnimationShoot1;
-				}
-				else if (type == 2) {
-					mAnimationShoot2->Start();
-					mAnimation = mAnimationShoot2;
-					mAnimationShoot = mAnimationShoot2;
-				}
-				//this->AddPositionY(-8);
-			}
-			else if (mAnimation == mAnimationShoot)  //bullet 2 duoc spawn
-			{
-				if (iBullet > 2) {
-					vy = -NotorDefine::JUMP_SPEED_Y;
-					mAnimationJump->Start();
-					mAnimation = mAnimationJump;
-					iBullet = 0;
-					type = 0;
-					this->AddPositionY(6);
-				}
-				else {
-					if (type==1)
-						mListBullet[iBullet].Spawn(1,false,this->posX, this->posY, direction*NotorDefine::BULLET_SPEED_X_1,-NotorDefine::BULLET_SPEED_Y_1);
-					else if (type==2)
-						mListBullet[iBullet].Spawn(1,false,this->posX, this->posY-10, direction*NotorDefine::BULLET_SPEED_X_2, -NotorDefine::BULLET_SPEED_Y_2);
-					mAnimationShoot->Start();
-					mAnimation = mAnimationShoot;
-					iBullet++;
-				}
-			}
-		}
-		if (mAnimation == mAnimationJump) {
-			Jumping(dt);
-		}
-		mAnimation->Update(dt);
-		Entity::Update(dt);
-	}	
-
-	if (explosion) explosion->Update(dt);
-
 	
+			//CollisionManager::getInstance
 
-	//Xử lý đạn
-	if (mListBullet )
-	{
-		//Kiểm tra va chạm
-		std::vector<Entity*> mListEntity;
+			if (hp <= 0) {
+				Die();
+				return;
+			}
+			if (abs(posX - mPlayer->posX) < 200 && mAnimation != mAnimationJump)	// khoảng cách dưới 100
+			{
+				if (type == 0) {
+					type = 1;	//xiên
+					if (abs(posX - mPlayer->posX) < 70) type = 2;	//thẳng đứng
+					if (mPlayer->posX < posX)	//bên trái
+					{
+						isFaceLeft = true;
+						direction = -1;
+					}
+					else
+					{		//bên phải
+						isFaceLeft = false;
+						direction = 1;
+					}
+				}
+			}
 
-		for (int i = 0; i < sizeof(mListBullet)-1; i++) {
+			//Hết Stand ->Quay súng -> Shoot (3 vien)-> Jump
+			if (mAnimation->mEndAnimate) {
+				if (mAnimation == mAnimationStand) {
+					//Kiểm tra type để quay súng
+					if (type == 1) {
+						mAnimationUp1->Start();
+						mAnimation = mAnimationUp1;
+						this->AddPositionY(-6);
+					}
+					else if (type == 2) {
+						mAnimationUp2->Start();
+						mAnimation = mAnimationUp2;
+						this->AddPositionY(-6);
+					}
+					else {
+						mAnimationStand->Start();
+						mAnimation = mAnimationStand;
+					}
 
-			mListBullet[i].Update(dt);
+				}
+				else if (mAnimation == mAnimationUp1 || mAnimation == mAnimationUp2) {
+					if (type == 1) {
+						mAnimationShoot1->Start();
+						mAnimation = mAnimationShoot1;
+						mAnimationShoot = mAnimationShoot1;
+					}
+					else if (type == 2) {
+						mAnimationShoot2->Start();
+						mAnimation = mAnimationShoot2;
+						mAnimationShoot = mAnimationShoot2;
+					}
+					//this->AddPositionY(-8);
+				}
+				else if (mAnimation == mAnimationShoot)  //bullet 2 duoc spawn
+				{
+					if (iBullet > 2) {
+						vy = -NotorDefine::JUMP_SPEED_Y;
+						mAnimationJump->Start();
+						mAnimation = mAnimationJump;
+						iBullet = 0;
+						type = 0;
+						this->AddPositionY(6);
+					}
+					else {
+						if (type == 1)
+							mListBullet[iBullet].Spawn(1, false, this->posX, this->posY, direction*NotorDefine::BULLET_SPEED_X_1, -NotorDefine::BULLET_SPEED_Y_1);
+						else if (type == 2)
+							mListBullet[iBullet].Spawn(1, false, this->posX, this->posY - 10, direction*NotorDefine::BULLET_SPEED_X_2, -NotorDefine::BULLET_SPEED_Y_2);
+						mAnimationShoot->Start();
+						mAnimation = mAnimationShoot;
+						iBullet++;
+					}
+				}
+			}
+			if (mAnimation == mAnimationJump) {
+				Jumping(dt);
+			}
+			mAnimation->Update(dt);
+			Entity::Update(dt);
+		}
 
-			CollisionManager::getInstance()->checkCollision(mPlayer, &mListBullet[i], dt);
+		if (explosion) explosion->Update(dt);
 
-			ViewPort::getInstance()->GetMapObject(mListEntity, &mListBullet[i]);
-			for (int j = 0; j < mListEntity.size(); j++)
-				if (mListEntity[j]!=this)
-					CollisionManager::getInstance()->checkCollision(mListEntity[j], &mListBullet[i], dt);
-		}	
-	}
+
+
+		//Xử lý đạn
+
+			//Kiểm tra va chạm
+			std::vector<Entity*> mListEntity;
+
+			for (int i = 0; i < sizeof(mListBullet) - 1; i++) {
+
+				if (mListBullet[i].wasBorn) {
+					mListBullet[i].Update(dt);
+
+					CollisionManager::getInstance()->checkCollision(mPlayer, &mListBullet[i], dt);
+
+					ViewPort::getInstance()->GetMapObject(mListEntity, &mListBullet[i]);
+					for (int j = 0; j < mListEntity.size(); j++)
+						if (mListEntity[j] != this)
+							CollisionManager::getInstance()->checkCollision(mListEntity[j], &mListBullet[i], dt);
+				}
+			}
 }
 
 void Notorbanger::Jumping(float dt)
@@ -202,17 +203,17 @@ void Notorbanger::OnCollision(Entity * other, SideCollisions side)
 					mAnimation = mAnimationStand;
 				}
 			}
-		
-	}
+
+		}
 }
 
 void Notorbanger::Draw(D3DXVECTOR2 transform)
 {
-	if (mListBullet)
-	{
-		for (int i = 0; i < sizeof(mListBullet)-1; i++)
+
+	for (int i = 0; i < sizeof(mListBullet)-1; i++)
+		if (mListBullet[i].wasBorn)
 			mListBullet[i].Draw(transform);
-	}
+
 	if (this->isAlive) {
 		mAnimation->SetPosition(this->GetPosition());
 		mAnimation->FlipVertical(!isFaceLeft);

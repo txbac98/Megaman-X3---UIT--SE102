@@ -60,6 +60,7 @@ private:
 	std::vector<Door*>				mListDoor;
 	std::vector<Notorbanger*>		mListNotor;
 	std::vector<Entity*> mListObjectMap;
+	std::vector<Entity*> mListEntityMap;
 	Notorbanger* notor;
 	//std::vector<Entity*>			mListObjectMap;
     Sprite                          *mSpriteBricks, *mSpriteBrickGold;

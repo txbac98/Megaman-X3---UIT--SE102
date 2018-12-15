@@ -49,6 +49,7 @@ Player::Player()
 	this->isImmortal = false;
 	this->turnDraw = false;
 	this->isAlive = true;
+	beingAttacked = false;
 	dtImmortal = 0;
 	this->Tag = Entity::EntityTypes::Megaman;
 
@@ -252,26 +253,34 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 	//Chung
 	if (other->Tag == EntityTypes::None) return;
 	
-	if (other->Tag == EntityTypes::Notorbanger || other->Tag==EntityTypes::EnemiesBullet
-		|| other->Tag== EntityTypes::Headgunner) {
-		if (isImmortal) {
+
+	//Enemies
+	if (other->Tag == EntityTypes::Notorbanger 
+		|| other->Tag== EntityTypes::Headgunner || other->Tag == EntityTypes::EnemiesBullet) { 
+		if (isImmortal || beingAttacked) {
 			return;
 		}
-		//if (other->isAlive)
-		if (this->getState()!=PlayerState::BeingAttacked) {
-			mHP->AddDame(1);
-			if (mHP->HP <= 0) {
-				if (this->isAlive) {
-					mDeathEffect = new PlayerDeathEffect(posX, posY);
-					this->isAlive = false;
+		
+		if (other->isAlive)
+		{
+			{
+				mHP->AddDame(other->dame);
+				if (mHP->HP <= 0) {
+					if (this->isAlive) {
+						mDeathEffect = new PlayerDeathEffect(posX, posY);
+						this->isAlive = false;
+						return;
+					}
 				}
-			}
-			else this->SetState(new PlayerBeingAttackedState(mPlayerData));
-			return;
+				if (!beingAttacked) {
+					beingAttacked = true;
+					this->SetState(new PlayerBeingAttackedState(mPlayerData));
+					return;
+				}
+				
+			}	
 		}
 			
-		
-		
 	}
 	if (other->Tag == EntityTypes::Wall || other->Tag== EntityTypes::Elevator) {
 		if (side == SideCollisions::Top) {

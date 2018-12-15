@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "GameMap.h"
+#include "ViewPort.h"
 
 GameMap::GameMap(char* filePath, char *fileQuadTree, int posx, int posy)
 {
@@ -261,32 +262,8 @@ bool GameMap::IsBoundBottom()
 
 void GameMap::Update(float dt)
 {
-	for (size_t i = 0; i < mListEntity.size(); i++) {
-		mListEntity[i]->Update(dt);
-			if (mListEntity[i]->Tag == Entity::EntityTypes::Notorbanger) {
-				RECT rectCamera = mCamera->GetBound();
-				RECT rectEntity = mListEntity[i]->GetBound();
-				//va chạm với rìa camera
-				if (rectCamera.left==rectEntity.right || rectCamera.right==rectEntity.left ||
-					rectCamera.top==rectEntity.bottom || rectCamera.bottom==rectEntity.top) 
-				{
-					if (!mListEntity[i]->isAlive)	//Chưa sinh ra hoặc đã chết
-						mListEntity[i] = new Notorbanger(mListEntity[i]->posX, mListEntity[i]->posY);
-				}
-				
-				//if (!mListEntity[i]->isSpawn)	
-				
-			}
-			
-			//va chạm map
-			std::vector<Entity*> mListObjectMap;
-			this->GetQuadTree()->getEntitiesCollideAble(mListObjectMap, mListEntity[i]);
-			for (size_t j = 0; j < mListObjectMap.size(); j++) {
-				CollisionManager::getInstance()->checkCollision(mListEntity[i], mListObjectMap[j], dt);
-			
-		}
-		
-	}
+	RECT rectCamera = mCamera->GetBound();
+
 	for (size_t i = 0; i < mListElevator.size(); i++)
 	{
 		mListElevator[i]->Update(dt);
@@ -295,6 +272,31 @@ void GameMap::Update(float dt)
 	{
 		mListDoor[i]->Update(dt);
 	}
+
+	for (size_t i = 0; i < mListEntity.size(); i++) {
+		if (!CollisionManager::getInstance()->AABBCheck(mCamera->GetBound(), mListEntity[i]->GetBound()))
+		//Không va chạm thì bỏ qua
+		continue;		
+		if (mListEntity[i]->Tag == Entity::EntityTypes::Notorbanger) {
+			RECT rectEntity = mListEntity[i]->GetBound();
+			//va chạm với rìa camera
+			if (rectCamera.left==rectEntity.right || rectCamera.right==rectEntity.left ||
+				rectCamera.top==rectEntity.bottom || rectCamera.bottom==rectEntity.top) 
+			{
+			if (!mListEntity[i]->isAlive)	//Chưa sinh ra hoặc đã chết
+				mListEntity[i] = new Notorbanger(mListEntity[i]->posX, mListEntity[i]->posY);
+			}	
+			//kiểm tra va chạm map
+			std::vector<Entity*> mListObjectMap;
+			ViewPort::getInstance()->GetMapObject(mListObjectMap, mListEntity[i]);
+			for (size_t j = 0; j < mListObjectMap.size(); j++) {
+				CollisionManager::getInstance()->checkCollision(mListEntity[i], mListObjectMap[j], dt);
+			}
+		}
+		mListEntity[i]->Update(dt);
+	}
+		
+	
 
 	
 
@@ -380,7 +382,13 @@ void GameMap::Draw()
 
 	for (size_t i = 0; i < mListEntity.size(); i++)
 	{
-		mListEntity[i]->Draw(trans);
+		if (mListEntity[i]->Tag != Entity::EntityTypes::Wall) {
+			if (!CollisionManager::getInstance()->AABBCheck(mCamera->GetBound(), mListEntity[i]->GetBound()))
+				//Không va chạm thì không vẽ
+				continue;
+			mListEntity[i]->Draw(trans);
+		}
+		
 	}
 	for (size_t i = 0; i < mListDoor.size(); i++) {
 		mListDoor[i]->Draw(trans);

@@ -25,6 +25,7 @@ HeadGunner::HeadGunner(float posX, float posY, bool faceRight)
 	isFaceRight = faceRight;
 	isAlive = true;
 	hp = 4;
+	dame = 1;
 	this->Tag = EntityTypes::Headgunner;
 }
 

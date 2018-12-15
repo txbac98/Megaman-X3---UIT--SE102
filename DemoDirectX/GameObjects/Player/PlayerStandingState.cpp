@@ -8,6 +8,7 @@ PlayerStandingState::PlayerStandingState(PlayerData *playerData)
 	this->mPlayerData->player->SetVy(0);
 	this->mPlayerData->player->allowMoveLeft = true;
 	this->mPlayerData->player->allowMoveRight = true;
+	this->mPlayerData->player->beingAttacked = false;
 }
 
 
@@ -19,6 +20,7 @@ PlayerStandingState::PlayerStandingState(PlayerData *playerData, bool allowLeft,
 	this->mPlayerData->player->SetVy(0);
 	this->mPlayerData->player->allowMoveLeft = allowLeft;
 	this->mPlayerData->player->allowMoveRight = allowRight;
+	this->mPlayerData->player->beingAttacked = false;
 }
 
 

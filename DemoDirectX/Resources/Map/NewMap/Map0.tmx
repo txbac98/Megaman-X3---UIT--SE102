@@ -11,7 +11,7 @@
   <object id="3" x="512" y="85" width="127" height="111"/>
   <object id="4" x="352.5" y="131" width="166" height="66"/>
   <object id="5" x="504" y="2.16667" width="152.5" height="12.8333"/>
-  <object id="9" name="Notorbanger" x="293" y="142" width="38" height="31"/>
+  <object id="9" name="Notorbanger" x="659" y="144" width="38" height="25"/>
   <object id="10" name="Headgunner Right" x="16" y="140" width="44" height="32"/>
   <object id="12" name="Helit" x="682" y="0" width="20" height="32"/>
  </objectgroup>

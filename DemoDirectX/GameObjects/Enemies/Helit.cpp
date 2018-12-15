@@ -23,6 +23,7 @@ Helit::Helit(float posX, float posY)
 	iBullet = 0;
 	posX1 = posX;
 	posY1 = posY;
+	dame = 1;
 	//Bullet
 	mBullet =new EnemyBullet();
 }

@@ -53,6 +53,9 @@
     <Filter Include="FrameWork\GameObjects\Player\Effect">
       <UniqueIdentifier>{8a4f34cd-9c16-4608-adcb-06f4f7df8e07}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FrameWork\GameObjects\Boss">
+      <UniqueIdentifier>{3614ee36-fe00-4ae2-975c-0b81e49f4652}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -258,6 +261,9 @@
     </ClCompile>
     <ClCompile Include="GameObjects\Enemies\Helit.cpp">
       <Filter>FrameWork\GameObjects\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Boss\Genjibo.cpp">
+      <Filter>FrameWork\GameObjects\Boss</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -479,6 +485,9 @@
     </ClInclude>
     <ClInclude Include="GameObjects\Enemies\Helit.h">
       <Filter>FrameWork\GameObjects\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Boss\Genjibo.h">
+      <Filter>FrameWork\GameObjects\Boss</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

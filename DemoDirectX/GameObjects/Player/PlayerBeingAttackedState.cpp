@@ -18,6 +18,7 @@ void PlayerBeingAttackedState::Update(float dt)
 {
 	if (this->mPlayerData->player->mAnimationBeingAttacked->mEndAnimate) {
 		this->mPlayerData->player->isImmortal = true;
+		this->mPlayerData->player->beingAttacked = false;
 		this->mPlayerData->player->SetState(new PlayerStandingState(mPlayerData));
 		return;
 	}
@@ -29,11 +30,10 @@ void PlayerBeingAttackedState::HandleKeyboard()
 
 void PlayerBeingAttackedState::OnCollision(Entity * other, Entity::SideCollisions side)
 {
-	/*if (other->Tag == Entity::EntityTypes::Wall || Entity::EntityTypes::Elevator) {
-
-	}*/
-	if (side == Entity::SideCollisions::Bottom) {
-		this->mPlayerData->player->vy = 0;
+	if (other->Tag == Entity::EntityTypes::Wall || Entity::EntityTypes::Elevator) {
+		if (side == Entity::SideCollisions::Bottom) {
+			this->mPlayerData->player->vy = 0;
+		}
 	}
 }
 
