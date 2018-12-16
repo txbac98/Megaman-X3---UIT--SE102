@@ -135,7 +135,9 @@ void ViewPort::ChangeCurrentMap()
 		//Xét đã vào trong next map hay chưa
 		if (mPlayer->posX > rectNextMap.left && mPlayer->posX < rectNextMap.right
 			&& mPlayer->posY < rectNextMap.bottom && mPlayer->posY > rectNextMap.top) {
+			
 			iCurrentMap++;
+			if (iCurrentMap == 4) mPlayer->AddPositionX(20);
 			mBackMap = mCurrentMap;
 			mCurrentMap = mNextMap;
 			if (iCurrentMap < mListMap.size() - 1)

@@ -1,5 +1,5 @@
 ﻿#include "Player.h"
-
+#include "../../GameComponents/ViewPort.h"
 
 Player::Player()
 {
@@ -49,6 +49,7 @@ Player::Player()
 	this->isImmortal = false;
 	this->turnDraw = false;
 	this->isAlive = true;
+	inSlopingWall = false;
 	beingAttacked = false;
 	dtImmortal = 0;
 	this->Tag = Entity::EntityTypes::Megaman;
@@ -92,9 +93,8 @@ void Player::Update(float dt)
 		}
 	
 		//Update animation Bullet
-		RECT rectCamera = mCamera->GetBound();
 		for (int i = 0; i < sizeof(mListBullet); i++) {
-			mListBullet[i].Update(dt, rectCamera);
+			mListBullet[i].Update(dt, mCamera->GetBound());
 		}
 
 		//Update list smoke
@@ -103,11 +103,21 @@ void Player::Update(float dt)
 		}
 
 		if (isAlive) {
+			
 			//Update player
 			this->width = mCurrentAnimation->GetWidth();
 			this->height = mCurrentAnimation->GetHeight();
 
-			mCurrentAnimation->Update(dt);
+			
+
+			//Kiểm tra va chạm player với object
+			std::vector<Entity*> mListMapObject;
+			ViewPort::getInstance()->GetMapObject(mListMapObject, this);
+			for (size_t i = 0; i < mListMapObject.size(); i++)
+			{
+				//Entity::SideCollisions direction;	
+				CollisionManager::getInstance()->checkCollision(this, mListMapObject[i], dt/1000);
+			}
 
 			//Update animation Effect
 			if (mCurrentEffectAnimation != NULL) {
@@ -119,6 +129,8 @@ void Player::Update(float dt)
 				this->mPlayerData->state->Update(dt);
 			}
 
+			mCurrentAnimation->Update(dt);
+
 			HandleKeyboard(dt);
 
 			CheckNoCollisionWithBottom();
@@ -129,11 +141,15 @@ void Player::Update(float dt)
 void Player::CheckNoCollisionWithBottom() {
 	
 	if (objectBottom == NULL) return;
-
+	if (inSlopingWall) return;
 	
 	RECT rectBottom, mRect;
 	rectBottom = objectBottom->GetBound();
 	mRect = this->GetBound();
+
+	//rơi xuống
+	if (mCurrentState == PlayerState::Falling && mCurrentState == PlayerState::Jumping)
+		return;
 
 	if (objectBottom->Tag == EntityTypes::Elevator) {
 		if (rectBottom.top < mRect.bottom && rectBottom.left<this->posX && rectBottom.right>this->posX)
@@ -145,9 +161,45 @@ void Player::CheckNoCollisionWithBottom() {
 
 	}
 
-	//rơi xuống
-	if (mCurrentState == PlayerState::Falling && mCurrentState == PlayerState::Jumping)
+	if (objectBottom->Tag == EntityTypes::ConveyorRight) {
+		if (mRect.right <= rectBottom.right)
+			this->AddPositionX(1);
+		//Phía left
+		if (this->posX < objectBottom->posX) {
+			if ((mRect.right - rectBottom.left) < this->width*0.1) {
+				this->SetState(new PlayerFallingState(this->mPlayerData));
+			}
+			return;
+		}
+		//Phía right
+		if (this->posX > objectBottom->posX) {
+			if ((rectBottom.right - mRect.left) < this->width*0.1) {
+				this->SetState(new PlayerFallingState(this->mPlayerData));
+			}
+			return;
+		}
+	}
+	if (objectBottom->Tag == EntityTypes::ConveyorLeft) {
+		if (mRect.left >= rectBottom.left)
+			this->AddPositionX(-1);
+		//Phía left
+		if (this->posX < objectBottom->posX) {
+			if ((mRect.right - rectBottom.left) < this->width*0.1) {
+				this->SetState(new PlayerFallingState(this->mPlayerData));
+			}
+			return;
+		}
+		//Phía right
+		if (this->posX > objectBottom->posX) {
+			if ((rectBottom.right - mRect.left) < this->width*0.1) {
+				this->SetState(new PlayerFallingState(this->mPlayerData));
+			}
+			return;
+		}
 		return;
+	}
+
+	
 	
 	//nằm trên, chưa ra rìa
 	if (rectBottom.left<= mRect.left && rectBottom.right>=mRect.right)
@@ -167,6 +219,7 @@ void Player::CheckNoCollisionWithBottom() {
 		return;
 	}
 
+	
 	
 	
 	
@@ -256,7 +309,9 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 
 	//Enemies
 	if (other->Tag == EntityTypes::Notorbanger 
-		|| other->Tag== EntityTypes::Headgunner || other->Tag == EntityTypes::EnemiesBullet) { 
+		|| other->Tag== EntityTypes::HeadgunnerLeft || other->Tag==HeadgunnerRight || other->Tag == EntityTypes::EnemiesBullet
+		||other->Tag==EntityTypes::Genjibo
+		|| other->Tag==EntityTypes::Spine) { 
 		if (isImmortal || beingAttacked) {
 			return;
 		}
@@ -264,7 +319,8 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 		if (other->isAlive)
 		{
 			{
-				mHP->AddDame(other->dame);
+				if (other->Tag == EntityTypes::Spine) mHP->AddDame(1);
+				else mHP->AddDame(other->dame);
 				if (mHP->HP <= 0) {
 					if (this->isAlive) {
 						mDeathEffect = new PlayerDeathEffect(posX, posY);
@@ -282,7 +338,10 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 		}
 			
 	}
-	if (other->Tag == EntityTypes::Wall || other->Tag== EntityTypes::Elevator) {
+	if (other->Tag == EntityTypes::Wall || other->Tag== EntityTypes::Elevator 
+		|| other->Tag==EntityTypes::Door || other->Tag==EntityTypes::ConveyorRight
+		|| other->Tag== EntityTypes::ConveyorLeft
+		|| other->Tag==EntityTypes::Box) {
 		if (side == SideCollisions::Top) {
 			this->SetVy(PlayerDefine::JUMP_ACCELERATOR_Y);
 			this->SetState(new PlayerFallingState(mPlayerData));
@@ -291,6 +350,8 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 		if (side == SideCollisions::Bottom || side == SideCollisions::BottomLeft || side == SideCollisions::BottomRight) {
 
 			objectBottom = other;
+			
+			inSlopingWall = false;
 			//vy = 0;
 			//if (other->Tag == EntityTypes::Elevator) this->SetVy(other->GetVy());
 		}
@@ -308,7 +369,37 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 		}
 		//Riêng từng state
 		this->mPlayerData->state->OnCollision(other, side);
+		return;
 	}	
+	//if (other->Tag == SlopingWall) {
+	//	inSlopingWall = true;
+	//	if (vy > 0) {	//rơi xuống
+	//		if ((posY - other->GetBound().bottom)/(posX - other->GetBound().left) < 0.5) {
+	//			this->vy = 0;
+	//			this->SetState(new PlayerStandingState(mPlayerData));
+	//			return;
+	//		}
+	//	}
+	//	if (other->GetBound().bottom - this->GetBound().bottom > 0.1f) {
+	//		if (vy == 0) {
+	//			if (vx > 0) {
+	//				this->AddPositionY(-1);
+	//			}
+	//			else if (vx < 0)
+	//			{
+	//				this->AddPositionY(1);
+	//			}
+	//		}
+	//		if (other->GetBound().bottom - this->GetBound().bottom > (other->height - 0.2f)) {
+	//			inSlopingWall = false;
+	//			this->SetState(new PlayerFallingState(mPlayerData));
+	//		}
+	//	}
+	//	else { (this->AddPositionY(other->GetBound().bottom - this->GetBound().bottom)); 
+	//	inSlopingWall = false;
+	//	}
+	//	
+	//}
 }
 
 

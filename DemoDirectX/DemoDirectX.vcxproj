@@ -85,7 +85,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Box.cpp" />
     <ClCompile Include="GameComponents\Animation.cpp" />
     <ClCompile Include="GameComponents\Camera.cpp" />
     <ClCompile Include="GameComponents\CollisionManager.cpp" />
@@ -98,13 +97,17 @@
     <ClCompile Include="GameComponents\Sprite.cpp" />
     <ClCompile Include="GameComponents\ViewPort.cpp" />
     <ClCompile Include="GameControllers\SceneManager.cpp" />
+    <ClCompile Include="GameObjects\Boss\Carryarm.cpp" />
+    <ClCompile Include="GameObjects\Boss\DebrisCarry.cpp" />
     <ClCompile Include="GameObjects\Boss\Genjibo.cpp" />
     <ClCompile Include="GameObjects\Effect\PlayerDashingSmoke.cpp" />
+    <ClCompile Include="GameObjects\Enemies\BoxObject.cpp" />
     <ClCompile Include="GameObjects\Enemies\HeadGunner.cpp" />
     <ClCompile Include="GameObjects\Enemies\Helit.cpp" />
     <ClCompile Include="GameObjects\Enemies\Notorbanger.cpp" />
     <ClCompile Include="GameObjects\Enemies\EnemyBullet.cpp" />
     <ClCompile Include="GameObjects\Enemies\RedExplosion.cpp" />
+    <ClCompile Include="GameObjects\Enemies\SubCarry.cpp" />
     <ClCompile Include="GameObjects\Entity.cpp" />
     <ClCompile Include="GameObjects\MapObjects\Door.cpp" />
     <ClCompile Include="GameObjects\MapObjects\Elevator.cpp" />
@@ -156,7 +159,6 @@
     <ClCompile Include="Transformable.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Box.h" />
     <ClInclude Include="Constant.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="GameComponents\Animation.h" />
@@ -172,13 +174,17 @@
     <ClInclude Include="GameComponents\ViewPort.h" />
     <ClInclude Include="GameControllers\SceneManager.h" />
     <ClInclude Include="GameDefines\GameDefine.h" />
+    <ClInclude Include="GameObjects\Boss\Carryarm.h" />
+    <ClInclude Include="GameObjects\Boss\DebrisCarry.h" />
     <ClInclude Include="GameObjects\Boss\Genjibo.h" />
     <ClInclude Include="GameObjects\Effect\PlayerDashingSmoke.h" />
+    <ClInclude Include="GameObjects\Enemies\BoxObject.h" />
     <ClInclude Include="GameObjects\Enemies\HeadGunner.h" />
     <ClInclude Include="GameObjects\Enemies\Helit.h" />
     <ClInclude Include="GameObjects\Enemies\Notorbanger.h" />
     <ClInclude Include="GameObjects\Enemies\EnemyBullet.h" />
     <ClInclude Include="GameObjects\Enemies\RedExplosion.h" />
+    <ClInclude Include="GameObjects\Enemies\SubCarrry.h" />
     <ClInclude Include="GameObjects\Entity.h" />
     <ClInclude Include="GameObjects\MapObjects\Door.h" />
     <ClInclude Include="GameObjects\MapObjects\Elevator.h" />

@@ -1,8 +1,7 @@
-#pragma once
+﻿#pragma once
 
 #include <d3dx9.h>
 #include <d3d9.h>
-#include "../Box.h"
 #include <map>
 
 class Entity 
@@ -33,14 +32,19 @@ public:
 
     enum EntityTypes
     {
-        Megaman, MegaBullet, None, Wall, Elevator, Door, Brick, Enemy, EnemiesBullet, Static, Notorbanger,
-		PosNotorbanger, Headgunner
+        Megaman, MegaBullet, None, Wall, Box, SubCarryarm, Carryarm, DebrisCarryarm, Spine, Elevator, Door, Brick, Enemy, EnemiesBullet, Notorbanger,
+		PosNotorbanger, HeadgunnerLeft, HeadgunnerRight, Helit, Genjibo, SlopingWall, ConveyorRight, ConveyorLeft
     };
+	enum EntityKind
+	{
+		Static, Dynamic
+	};
 
     EntityTypes Tag; //Tag de nhan vien loai Entity
+	EntityKind	Kind; //Loại tĩnh hay động
 
     virtual RECT GetBound();
-	virtual RectF GetBoundF();
+	//virtual RectF GetBoundF();
 	virtual D3DXVECTOR2 GetPosition();
 
 	virtual void Draw(D3DXVECTOR2 transform);

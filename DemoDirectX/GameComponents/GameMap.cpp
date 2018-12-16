@@ -4,7 +4,9 @@
 
 GameMap::GameMap(char* filePath, char *fileQuadTree, int posx, int posy)
 {
-    mCamera = new Camera(GameGlobal::GetWidth(), GameGlobal::GetHeight());
+    //mCamera = new Camera(GameGlobal::GetWidth(), GameGlobal::GetHeight());
+	mCamera = ViewPort::getInstance()->mCamera;
+	mPlayer = ViewPort::getInstance()->mPlayer;
 	PosX = posx;
 	PosY = posy;
 	//Xoa du lieu fie quadtree
@@ -62,78 +64,6 @@ void GameMap::LoadMap(char* filePath, char* fileQuadTree)
         mListTileset.insert(pair<int, Sprite*>(i, sprite));
     }
 
-    //khoi tao cac khoi Brick (vien gach)
-#pragma region -BRICK AND COIN LAYER-
-    //for (size_t i = 0; i < GetMap()->GetNumTileLayers(); i++)
-    //{
-    //    const Tmx::TileLayer *layer = mMap->GetTileLayer(i);
-
-    //    if (layer->IsVisible())
-    //        continue;
-
-    //    //xac dinh layer Brick bi an di de tu do tao ra cac vien gach trong game, nhung vien gach khong phai la 1 physic static nos co the bi pha huy duoc
-
-    //    if (layer->GetName() == "brick" || layer->GetName() == "coin")
-    //    {
-    //        for (size_t j = 0; j < mMap->GetNumTilesets(); j++)
-    //        {
-    //            const Tmx::Tileset *tileSet = mMap->GetTileset(j);
-
-    //            int tileWidth = mMap->GetTileWidth();
-    //            int tileHeight = mMap->GetTileHeight();
-
-    //            int tileSetWidth = tileSet->GetImage()->GetWidth() / tileWidth;
-    //            int tileSetHeight = tileSet->GetImage()->GetHeight() / tileHeight;
-
-    //            for (size_t m = 0; m < layer->GetHeight(); m++)
-    //            {
-    //                for (size_t n = 0; n < layer->GetWidth(); n++)
-    //                {
-    //                    if (layer->GetTileTilesetIndex(n, m) != -1)
-    //                    {
-    //                        int tileID = layer->GetTileId(n, m);
-
-    //                        int y = tileID / tileSetWidth;
-    //                        int x = tileID - y * tileSetWidth;
-
-    //                        RECT sourceRECT;
-    //                        sourceRECT.top = y * tileHeight;
-    //                        sourceRECT.bottom = sourceRECT.top + tileHeight;
-    //                        sourceRECT.left = x * tileWidth;
-    //                        sourceRECT.right = sourceRECT.left + tileWidth;
-
-    //                        RECT bound;
-    //                        bound.left = n * tileWidth;
-    //                        bound.top = m * tileHeight;
-    //                        bound.right = bound.left + tileWidth;
-    //                        bound.bottom = bound.top + tileHeight;
-
-    //                        D3DXVECTOR3 position(n * tileWidth + tileWidth / 2, m * tileHeight + tileHeight / 2, 0);
-
-    //                        Brick *brick = nullptr;
-
-    //                        if (layer->GetName() == "coin")
-    //                        {
-    //                            brick = new BrickGold(position);
-    //                            brick->Tag = Entity::EntityTypes::BrickGoldNormal;
-    //                            mListBricks.push_back(brick);
-    //                        }
-    //                        else
-    //                        {
-    //                            brick = new BrickNormal(position);
-    //                            brick->Tag = Entity::EntityTypes::Brick;
-    //                            mListBricks.push_back(brick);
-    //                        }
-
-
-    //                        if (brick)
-    //                            mQuadTree->insertEntity(brick);
-    //                    }
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
 
 #pragma endregion
 
@@ -151,49 +81,58 @@ void GameMap::LoadMap(char* filePath, char* fileQuadTree)
 			
 			Entity *entity = new Entity();
 			entity->Tag = Entity::EntityTypes::Wall;
+			entity->Kind = Entity::EntityKind::Static;
 			float posX = PosX + object->GetX() + object->GetWidth() / 2;
 			float posY = PosY + object->GetY() + object->GetHeight() / 2;
 
 			if (object->GetName() == "Elevator") {
-				 Elevator *elevator= new Elevator(posX, posY);
-				 mListEntity.push_back(elevator);
-				 mQuadTree->insertEntity(elevator, object->GetId());
+				entity->Tag = Entity::EntityTypes::Elevator;
+				entity=new Elevator(mListEntity[i]->posX, mListEntity[i]->posY);
 			}
 			else if(object->GetName()=="Door"){
-				Door *door = new Door(posX, posY);
-				mListEntity.push_back(door);
-				mQuadTree->insertEntity(door, object->GetId());
+				entity->Tag = Entity::EntityTypes::Door;
+				entity = new Door(mListEntity[i]->posX, mListEntity[i]->posY);
+			}
+			else if (object->GetName() == "Spine") {
+				entity->Tag= Entity::EntityTypes::Spine;
+				entity->isAlive = true;			
+			}
+			else if (object->GetName() == "Conveyor Right") {
+				entity->Tag = Entity::EntityTypes::ConveyorRight;
+			}
+			else if (object->GetName() == "Conveyor Left") {
+				entity->Tag = Entity::EntityTypes::ConveyorLeft;
+			}
+			else if (object->GetName() == "Genjibo") {
+				entity->Tag = Entity::EntityTypes::Genjibo;
 			}
 			else if (object->GetName() == "Notorbanger") {
 				//Notorbanger *notor = new Notorbanger( posX, posY);
 				entity->Tag = Entity::EntityTypes::Notorbanger;
-				entity->SetPosition(posX, posY);
-				entity->SetWidth(object->GetWidth());
-				entity->SetHeight(object->GetHeight());
-				mListEntity.push_back(entity);
-				mQuadTree->insertEntity(entity, object->GetId());
 			}
 			else if (object->GetName() == "Headgunner Right") {
-				HeadGunner *head = new HeadGunner(posX, posY, true);
-				mListEntity.push_back(head);
-				mQuadTree->insertEntity(head, object->GetId());
+				entity->Tag = Entity::EntityTypes::HeadgunnerRight;
 			}
 			else if (object->GetName() == "Headgunner Left") {
-				HeadGunner *head = new HeadGunner(posX, posY, false);
-				mListEntity.push_back(head);
-				mQuadTree->insertEntity(head, object->GetId());
+				entity->Tag = Entity::EntityTypes::HeadgunnerLeft;
 			}
 			else if (object->GetName() == "Helit") {
-				Helit *helit = new Helit(posX, posY);
-				mListEntity.push_back(helit);
-				mQuadTree->insertEntity(helit, object->GetId());
+				entity->Tag = Entity::EntityTypes::Helit;
 			}
-			else {
-				entity->SetPosition(posX, posY);
-				entity->SetWidth(object->GetWidth());
-				entity->SetHeight(object->GetHeight());
-				mQuadTree->insertEntity(entity, object->GetId());
+			else if (object->GetName() == "Sloping Wall") {
+				entity->Tag = Entity::EntityTypes::SlopingWall;
+			}		
+			else if (object->GetName() == "Box") {
+				entity->Tag = Entity::EntityTypes::Box;
 			}
+			else if (object->GetName() == "SubCarryarm") {
+				entity->Tag = Entity::EntityTypes::SubCarryarm;
+			}
+			entity->SetPosition(posX, posY);
+			entity->SetWidth(object->GetWidth());
+			entity->SetHeight(object->GetHeight());
+			mListEntity.push_back(entity);
+			mQuadTree->insertEntity(entity, object->GetId());
         }
     }
 #pragma endregion
@@ -274,33 +213,51 @@ void GameMap::Update(float dt)
 	}
 
 	for (size_t i = 0; i < mListEntity.size(); i++) {
-		if (!CollisionManager::getInstance()->AABBCheck(mCamera->GetBound(), mListEntity[i]->GetBound()))
-		//Không va chạm thì bỏ qua
-		continue;		
-		if (mListEntity[i]->Tag == Entity::EntityTypes::Notorbanger) {
-			RECT rectEntity = mListEntity[i]->GetBound();
-			//va chạm với rìa camera
-			if (rectCamera.left==rectEntity.right || rectCamera.right==rectEntity.left ||
-				rectCamera.top==rectEntity.bottom || rectCamera.bottom==rectEntity.top) 
-			{
-			if (!mListEntity[i]->isAlive)	//Chưa sinh ra hoặc đã chết
-				mListEntity[i] = new Notorbanger(mListEntity[i]->posX, mListEntity[i]->posY);
-			}	
-			//kiểm tra va chạm map
-			std::vector<Entity*> mListObjectMap;
-			ViewPort::getInstance()->GetMapObject(mListObjectMap, mListEntity[i]);
-			for (size_t j = 0; j < mListObjectMap.size(); j++) {
-				CollisionManager::getInstance()->checkCollision(mListEntity[i], mListObjectMap[j], dt);
-			}
+		if (mListEntity[i]->Tag == Entity::EntityTypes::Elevator || mListEntity[i]->Tag == Entity::EntityTypes::Door) {
+			mListEntity[i]->Update(dt);
 		}
-		mListEntity[i]->Update(dt);
+		else if (mListEntity[i]->isSpawn) mListEntity[i]->Update(dt);
+
+		if (!CollisionManager::getInstance()->AABBCheck(mCamera->GetBound(), mListEntity[i]->GetBound())) {
+			if (!mListEntity[i]->isAlive) mListEntity[i]->isSpawn = false;
+			//Không ở trong màn hình
+			continue;
+		}
+
+		if (!mListEntity[i]->isAlive && !mListEntity[i]->isSpawn) {
+			if (mListEntity[i]->Tag == Entity::EntityTypes::Notorbanger) {
+				mListEntity[i] = new Notorbanger(mListEntity[i]->posX, mListEntity[i]->posY);
+				continue;
+			}
+			if (mListEntity[i]->Tag == Entity::EntityTypes::Genjibo) {
+				mListEntity[i] = new Genjibo(mListEntity[i]->posX, mListEntity[i]->posY);
+				continue;
+			}
+			if (mListEntity[i]->Tag == Entity::EntityTypes::HeadgunnerLeft) {
+				mListEntity[i] = new HeadGunner(mListEntity[i]->posX, mListEntity[i]->posY,false);
+				continue;
+			}
+			if (mListEntity[i]->Tag == Entity::EntityTypes::HeadgunnerRight) {
+				mListEntity[i] = new HeadGunner(mListEntity[i]->posX, mListEntity[i]->posY, true);
+				continue;
+			}
+			if (mListEntity[i]->Tag == Entity::EntityTypes::Helit) {
+				mListEntity[i] = new Helit(mListEntity[i]->posX, mListEntity[i]->posY);
+				continue;
+			}
+			if (mListEntity[i]->Tag == Entity::EntityTypes::Box) {
+				mListEntity[i] = new BoxObject(mListEntity[i]->posX, mListEntity[i]->posY);
+				continue;
+			}
+			if (mListEntity[i]->Tag == Entity::EntityTypes::SubCarryarm) {
+				mListEntity[i] = new SubCarry(mListEntity[i]->posX, mListEntity[i]->posY);
+				continue;
+			}
+			//if (mListEntity[i]->Tag == Entity::EntityTypes::Elevator)
+				//mListEntity[i] = new Elevator(mListEntity[i]->posX, mListEntity[i]->posY);
+
+		}
 	}
-		
-	
-
-	
-
-	//check collision
 	
 }
 
@@ -383,10 +340,11 @@ void GameMap::Draw()
 	for (size_t i = 0; i < mListEntity.size(); i++)
 	{
 		if (mListEntity[i]->Tag != Entity::EntityTypes::Wall) {
-			if (!CollisionManager::getInstance()->AABBCheck(mCamera->GetBound(), mListEntity[i]->GetBound()))
-				//Không va chạm thì không vẽ
-				continue;
-			mListEntity[i]->Draw(trans);
+			//if (!CollisionManager::getInstance()->AABBCheck(mCamera->GetBound(), mListEntity[i]->GetBound()))
+			//	//Không va chạm thì không vẽ
+			//	continue;
+			if (mListEntity[i]->isSpawn)
+				mListEntity[i]->Draw(trans);
 		}
 		
 	}

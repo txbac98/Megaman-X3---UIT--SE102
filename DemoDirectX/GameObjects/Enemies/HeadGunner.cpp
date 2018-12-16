@@ -24,9 +24,12 @@ HeadGunner::HeadGunner(float posX, float posY, bool faceRight)
 	mBullet = new EnemyBullet();
 	isFaceRight = faceRight;
 	isAlive = true;
+	isSpawn = true;
 	hp = 4;
 	dame = 1;
-	this->Tag = EntityTypes::Headgunner;
+	if (isFaceRight)
+		this->Tag = EntityTypes::HeadgunnerRight;
+	else this->Tag = EntityTypes::HeadgunnerLeft;
 }
 
 void HeadGunner::Update(float dt)

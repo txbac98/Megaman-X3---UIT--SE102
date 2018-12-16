@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="40" height="8" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="6">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="40" height="8" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="11">
  <tileset firstgid="1" source="Map2.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="8">
   <data encoding="base64" compression="zlib">
@@ -11,5 +11,10 @@
   <object id="3" x="156" y="165" width="67" height="50"/>
   <object id="4" x="65" y="134" width="93" height="83"/>
   <object id="5" x="0" y="184" width="70" height="30"/>
+  <object id="6" x="992.5" y="165.697" width="286.727" height="90.3182"/>
+  <object id="7" x="1056.61" y="82.8182" width="45.8939" height="89.7576"/>
+  <object id="8" x="1247.95" y="12.1212" width="30.8333" height="166.667"/>
+  <object id="9" x="908.621" y="4.15152" width="363.924" height="27.2727"/>
+  <object id="10" name="Spine" x="976.5" y="177.5" width="22.5" height="78.5"/>
  </objectgroup>
 </map>

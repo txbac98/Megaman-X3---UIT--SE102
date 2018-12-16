@@ -19,7 +19,7 @@ void PlayerBeingAttackedState::Update(float dt)
 	if (this->mPlayerData->player->mAnimationBeingAttacked->mEndAnimate) {
 		this->mPlayerData->player->isImmortal = true;
 		this->mPlayerData->player->beingAttacked = false;
-		this->mPlayerData->player->SetState(new PlayerStandingState(mPlayerData));
+		this->mPlayerData->player->SetState(new PlayerFallingState(mPlayerData));
 		return;
 	}
 }

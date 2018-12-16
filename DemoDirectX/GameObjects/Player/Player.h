@@ -72,6 +72,7 @@ public:
 	bool isDownKeyAttack;
 	bool isImmortal;	//vừa mới tấn công xong
 	bool beingAttacked;
+	bool inSlopingWall;
 	float dtImmortal;	//đếm time immortal
 	bool turnDraw;		//Chớp khi miễn kháng
 	int typeBullet;

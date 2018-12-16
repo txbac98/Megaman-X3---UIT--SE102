@@ -66,7 +66,10 @@ void EnemyBullet::Update(float dt)
 void EnemyBullet::OnCollision(Entity * other, SideCollisions side)
 {
 	if (isAlive) {
-		if (other->Tag != EntityTypes::Notorbanger) {
+		if (other->Tag != EntityTypes::Notorbanger  
+			&& other->Tag != EntityTypes::HeadgunnerLeft
+			&& other->Tag != EntityTypes::HeadgunnerRight
+			&& other->Tag != EntityTypes::Helit) {
 			mExplosion = new RedExplosion(posX, posY);
 			//wasBorn = false;
 			this->isAlive = false;

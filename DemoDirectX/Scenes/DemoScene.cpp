@@ -61,17 +61,7 @@ void DemoScene::Draw()
 void DemoScene::checkCollision(float dt)
 {
 
-    vector<Entity*> listMapObject;
-
-	ViewPort::getInstance()->GetMapObject(listMapObject, mPlayer);
-	RECT rect = mPlayer->GetBound();
-
-	for (size_t i = 0; i < listMapObject.size(); i++)
-	{
-		//Entity::SideCollisions direction;
-		if (listMapObject[i]->Tag==Entity::EntityTypes::Wall || listMapObject[i]->Tag == Entity::EntityTypes::Elevator)	//va chạm quái được kiểm tra trong từng con quái
-		CollisionManager::getInstance()->checkCollision(mPlayer, listMapObject.at(i), dt / 1000);	
-	}
+    
 
 	
 }

@@ -10,6 +10,8 @@ Elevator::Elevator(float posX, float posY)
 	this->SetWidth(mAnimation->GetWidth());
 	this->SetHeight(mAnimation->GetHeight() - 20);
 	this->Tag = Entity::EntityTypes::Elevator;
+	isSpawn = true;
+	isAlive = true;
 }
 
 Elevator::~Elevator()

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="8" height="32" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="15">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="8" height="32" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="22">
  <tileset firstgid="1" source="Map6.tsx"/>
  <layer id="1" name="Tile Layer 1" width="8" height="32">
   <data encoding="base64" compression="zlib">
@@ -7,19 +7,25 @@
   </data>
  </layer>
  <objectgroup id="2" name="Object Layer 1">
-  <object id="1" x="-0.0303" y="179.879" width="109.606" height="54.5455"/>
-  <object id="2" x="97.9394" y="948.576" width="157.758" height="75.3939"/>
-  <object id="3" x="97" y="133" width="63" height="108"/>
+  <object id="1" x="-3.2803" y="179.879" width="109.606" height="73.0455"/>
+  <object id="2" x="97.9394" y="952.576" width="157.758" height="71.3939"/>
+  <object id="3" x="99" y="133" width="61" height="108"/>
   <object id="4" x="228" y="23" width="28" height="339"/>
-  <object id="5" x="101" y="3" width="155" height="28"/>
-  <object id="6" x="70" y="359" width="177" height="19"/>
+  <object id="5" x="28" y="3" width="228" height="28"/>
+  <object id="6" name="Conveyor Left" x="66.75" y="359" width="180.25" height="23.5"/>
   <object id="7" x="-2" y="278" width="20" height="385"/>
   <object id="8" x="1" y="252" width="37" height="33"/>
-  <object id="9" x="55" y="453" width="118" height="23"/>
-  <object id="10" x="85" y="549" width="121" height="24"/>
-  <object id="11" x="14" y="645" width="158" height="23"/>
+  <object id="9" name="Conveyor Right" x="55" y="455.5" width="121" height="23"/>
+  <object id="10" name="Conveyor Left" x="85" y="550.5" width="121" height="22.5"/>
+  <object id="11" name="Conveyor Right" x="14" y="647" width="158" height="21"/>
   <object id="12" x="243" y="383" width="13" height="274"/>
-  <object id="13" x="100" y="741" width="150" height="23"/>
+  <object id="13" name="Conveyor Left" x="100" y="743.25" width="150" height="20.75"/>
   <object id="14" x="2" y="671" width="29" height="354"/>
+  <object id="15" name="Notorhanger" x="128" y="328" width="30.6667" height="25.3333"/>
+  <object id="17" name="Notorhanger" x="120" y="518.667" width="33.3333" height="25.3333"/>
+  <object id="18" name="Notorhanger" x="123.333" y="714.333" width="33.3333" height="25.3333"/>
+  <object id="19" name="Headgunner Left" x="203.167" y="897.333" width="41" height="48"/>
+  <object id="20" name="Spine" x="242.25" y="653.5" width="20.25" height="89.25"/>
+  <object id="21" x="0" y="1" width="32" height="125"/>
  </objectgroup>
 </map>

@@ -26,15 +26,15 @@ RECT Entity::GetBound()
 
     return bound;
 }
-RectF Entity::GetBoundF()
-{
-	RectF bound;
-	bound.x = posX - width / 2;
-	bound.y = posY - height / 2;
-	bound.width = width;
-	bound.height = height;
-	return bound;
-}
+//RectF Entity::GetBoundF()
+//{
+//	RectF bound;
+//	bound.x = posX - width / 2;
+//	bound.y = posY - height / 2;
+//	bound.width = width;
+//	bound.height = height;
+//	return bound;
+//}
 
 Entity::SideCollisions Entity::GetPhysicsBodySide() {
 	return physicsSide;

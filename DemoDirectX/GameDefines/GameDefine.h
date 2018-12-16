@@ -40,6 +40,11 @@ namespace HelitDefine {
 	const float BULLET_ACCELERATOR_Y = 3.0f;
 }
 
+namespace GenjiboDefine {
+	const float SPEED_X = 100.0f;
+	const float SPEED_Y = 100.0f;
+}
+
 namespace BulletDefine {
 	const float PLAYER_BULLET_SPEED = 300.0f;
 }

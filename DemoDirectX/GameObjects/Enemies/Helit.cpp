@@ -19,6 +19,7 @@ Helit::Helit(float posX, float posY)
 	//mGameMap = map;
 	hp = 3;
 	isAlive = true;
+	isSpawn = true;
 	direction = -1;
 	iBullet = 0;
 	posX1 = posX;

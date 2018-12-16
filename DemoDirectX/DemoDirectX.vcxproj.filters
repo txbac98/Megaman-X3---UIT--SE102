@@ -190,9 +190,6 @@
     <ClCompile Include="RectF.cpp">
       <Filter>FrameWork\GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="Box.cpp">
-      <Filter>FrameWork\GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="GameObjects\Player\PlayerStandingState.cpp">
       <Filter>FrameWork\GameObjects\Player</Filter>
     </ClCompile>
@@ -263,6 +260,18 @@
       <Filter>FrameWork\GameObjects\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="GameObjects\Boss\Genjibo.cpp">
+      <Filter>FrameWork\GameObjects\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Boss\Carryarm.cpp">
+      <Filter>FrameWork\GameObjects\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Enemies\BoxObject.cpp">
+      <Filter>FrameWork\GameObjects\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Enemies\SubCarry.cpp">
+      <Filter>FrameWork\GameObjects\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Boss\DebrisCarry.cpp">
       <Filter>FrameWork\GameObjects\Boss</Filter>
     </ClCompile>
   </ItemGroup>
@@ -414,9 +423,6 @@
     <ClInclude Include="Constant.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Box.h">
-      <Filter>FrameWork\GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="RectF.h">
       <Filter>FrameWork\GameObjects</Filter>
     </ClInclude>
@@ -487,6 +493,18 @@
       <Filter>FrameWork\GameObjects\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="GameObjects\Boss\Genjibo.h">
+      <Filter>FrameWork\GameObjects\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Boss\Carryarm.h">
+      <Filter>FrameWork\GameObjects\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Enemies\BoxObject.h">
+      <Filter>FrameWork\GameObjects\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Enemies\SubCarrry.h">
+      <Filter>FrameWork\GameObjects\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Boss\DebrisCarry.h">
       <Filter>FrameWork\GameObjects\Boss</Filter>
     </ClInclude>
   </ItemGroup>
