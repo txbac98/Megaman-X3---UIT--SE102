@@ -311,7 +311,10 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 	if (other->Tag == EntityTypes::Notorbanger 
 		|| other->Tag== EntityTypes::HeadgunnerLeft || other->Tag==HeadgunnerRight || other->Tag == EntityTypes::EnemiesBullet
 		||other->Tag==EntityTypes::Genjibo
-		|| other->Tag==EntityTypes::Spine) { 
+		|| other->Tag==EntityTypes::Spine
+		|| other->Tag==EntityTypes::Box
+		|| other->Tag==EntityTypes::Stone5
+		|| other->Tag==EntityTypes::Stone3) { 
 		if (isImmortal || beingAttacked) {
 			return;
 		}
@@ -341,7 +344,8 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 	if (other->Tag == EntityTypes::Wall || other->Tag== EntityTypes::Elevator 
 		|| other->Tag==EntityTypes::Door || other->Tag==EntityTypes::ConveyorRight
 		|| other->Tag== EntityTypes::ConveyorLeft
-		|| other->Tag==EntityTypes::Box) {
+		//|| other->Tag==EntityTypes::Box
+		) {
 		if (side == SideCollisions::Top) {
 			this->SetVy(PlayerDefine::JUMP_ACCELERATOR_Y);
 			this->SetState(new PlayerFallingState(mPlayerData));

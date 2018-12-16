@@ -51,7 +51,7 @@ ViewPort* ViewPort::getInstance()
 void ViewPort::Init(Player *player)
 {
 	mPlayer = player;
-	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map0.tmx", "Resources/Map/NewMap/Map0_QuadTree.txt", 0, 512));	//0	ngang, không chuyển map, khóa: trái
+	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map7.tmx", "Resources/Map/NewMap/Map0_QuadTree.txt", 0, 512));	//0	ngang, không chuyển map, khóa: trái
 	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map1.tmx", "Resources/Map/NewMap/Map1_QuadTree.txt", 768, 0));	//1	doc, không chuyển map, khóa trái, phải ở phía trên <600
 	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map2.tmx", "Resources/Map/NewMap/Map2_QuadTree.txt", 1024, 0));	//2	ngang, chuyển map phái dướt, khóa: phải
 	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map3.tmx", "Resources/Map/NewMap/Map3_QuadTree.txt", 1536, 255));	//3	doc, chuyển map phía trên, khóa trái, phải phía trên

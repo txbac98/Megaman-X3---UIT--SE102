@@ -128,6 +128,12 @@ void GameMap::LoadMap(char* filePath, char* fileQuadTree)
 			else if (object->GetName() == "SubCarryarm") {
 				entity->Tag = Entity::EntityTypes::SubCarryarm;
 			}
+			else if (object->GetName() == "Stone5") {
+				entity->Tag = Entity::EntityTypes::Stone5;
+			}
+			else if (object->GetName() == "Stone3") {
+				entity->Tag = Entity::EntityTypes::Stone3;
+			}
 			entity->SetPosition(posX, posY);
 			entity->SetWidth(object->GetWidth());
 			entity->SetHeight(object->GetHeight());
@@ -251,6 +257,14 @@ void GameMap::Update(float dt)
 			}
 			if (mListEntity[i]->Tag == Entity::EntityTypes::SubCarryarm) {
 				mListEntity[i] = new SubCarry(mListEntity[i]->posX, mListEntity[i]->posY);
+				continue;
+			}
+			if (mListEntity[i]->Tag == Entity::EntityTypes::Stone5) {
+				mListEntity[i] = new Stone(mListEntity[i]->posX, mListEntity[i]->posY, 5);
+				continue;
+			}
+			if (mListEntity[i]->Tag == Entity::EntityTypes::Stone3) {
+				mListEntity[i] = new Stone(mListEntity[i]->posX, mListEntity[i]->posY, 3);
 				continue;
 			}
 			//if (mListEntity[i]->Tag == Entity::EntityTypes::Elevator)

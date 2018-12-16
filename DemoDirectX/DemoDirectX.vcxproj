@@ -107,6 +107,7 @@
     <ClCompile Include="GameObjects\Enemies\Notorbanger.cpp" />
     <ClCompile Include="GameObjects\Enemies\EnemyBullet.cpp" />
     <ClCompile Include="GameObjects\Enemies\RedExplosion.cpp" />
+    <ClCompile Include="GameObjects\Enemies\Stone.cpp" />
     <ClCompile Include="GameObjects\Enemies\SubCarry.cpp" />
     <ClCompile Include="GameObjects\Entity.cpp" />
     <ClCompile Include="GameObjects\MapObjects\Door.cpp" />
@@ -184,6 +185,7 @@
     <ClInclude Include="GameObjects\Enemies\Notorbanger.h" />
     <ClInclude Include="GameObjects\Enemies\EnemyBullet.h" />
     <ClInclude Include="GameObjects\Enemies\RedExplosion.h" />
+    <ClInclude Include="GameObjects\Enemies\Stone.h" />
     <ClInclude Include="GameObjects\Enemies\SubCarrry.h" />
     <ClInclude Include="GameObjects\Entity.h" />
     <ClInclude Include="GameObjects\MapObjects\Door.h" />

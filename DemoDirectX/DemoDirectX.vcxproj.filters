@@ -274,6 +274,9 @@
     <ClCompile Include="GameObjects\Boss\DebrisCarry.cpp">
       <Filter>FrameWork\GameObjects\Boss</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjects\Enemies\Stone.cpp">
+      <Filter>FrameWork\GameObjects\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameComponents\Game.h">
@@ -506,6 +509,9 @@
     </ClInclude>
     <ClInclude Include="GameObjects\Boss\DebrisCarry.h">
       <Filter>FrameWork\GameObjects\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Enemies\Stone.h">
+      <Filter>FrameWork\GameObjects\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

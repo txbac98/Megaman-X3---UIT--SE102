@@ -11,6 +11,7 @@ BoxObject::BoxObject()
 	this->SetHeight(mSprite->GetHeight());
 	mPlayer = ViewPort::getInstance()->mPlayer;
 	this->Tag = EntityTypes::Box;
+	dame = 1;
 }
 
 BoxObject::BoxObject(float posX, float posY)
@@ -26,6 +27,8 @@ BoxObject::BoxObject(float posX, float posY)
 	isSpawn = true;
 	mPlayer = ViewPort::getInstance()->mPlayer;
 	this->Tag = EntityTypes::Box;
+	dame = 1;
+	vy = 0;
 }
 
 void BoxObject::Spawn(float posX, float posY)
@@ -48,6 +51,8 @@ void BoxObject::Update(float dt)
 		}
 		CollisionManager::getInstance()->checkCollision(mPlayer, this, dt);
 	}
+	if (vy > 0)
+		Entity::Update(dt);
 }
 
 void BoxObject::OnCollision(Entity * other, SideCollisions side)
