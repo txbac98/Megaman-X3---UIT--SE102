@@ -23,8 +23,9 @@ public:
 	void Draw(D3DXVECTOR2 transform = D3DXVECTOR2());
 	void Update(float dt);
 	void Die();
-	RedExplosion *explosion;
+	RedExplosion **explosion;
 	bool wasBorn = false;
 	float ay;
+	int count;
 	int mType;
 };

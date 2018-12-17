@@ -26,20 +26,15 @@ Stone::Stone(float posx, float posy, int type)
 		this->SetHeight(mAnimation5->GetHeight());
 		mAnimation = mAnimation5;
 		this->Tag = EntityTypes::Stone5;
-
+		count = 15;
 	}
 	else if (type == 3) {
 		this->SetWidth(mAnimation3->GetWidth());
 		this->SetHeight(mAnimation3->GetHeight());
 		mAnimation = mAnimation3;
 		this->Tag = EntityTypes::Stone3;
+		count = 9;
 	}
-	/*else if (type == 1) {
-		this->SetWidth(mAnimation1->GetWidth());
-		this->SetHeight(mAnimation1->GetHeight());
-		mAnimation = mAnimation1;
-		this->SetVy(500);
-	}*/
 
 	
 	mPlayer = ViewPort::getInstance()->mPlayer;
@@ -78,20 +73,17 @@ void Stone::Update(float dt) {
 				}
 			else 
 				mBox->Update(dt);
-			/*	this->SetWidth(mAnimation1->GetWidth());
-				this->SetHeight(mAnimation1->GetHeight());
-				mAnimation = mAnimation1;*/
-			/*this->SetVy(100);
-			mAnimation->Update(dt);
-			Entity::Update(dt);
-			return;*/
+		
 		}
 		mAnimation->Update(dt);
 		Entity::Update(dt);
 	}
-
 	if (explosion)
-		explosion->Update(dt);
+	for (int i = 0; i < count; i++) {
+			explosion[i]->Update(dt);
+	}
+	/*if (explosion)
+		explosion->Update(dt);*/
 }
 void Stone::OnCollision(Entity * other, SideCollisions side)
 {
@@ -114,25 +106,37 @@ void Stone::Draw(D3DXVECTOR2 transform)
 			mAnimation3->SetPosition(this->GetPosition());
 			mAnimation3->Draw(transform);
 		}
-	/*	else if (mType == 1) {
-			mAnimation1->SetPosition(this->GetPosition());
-			mAnimation1->Draw(transform);
-		}*/
 	}
 	if (mBox->isSpawn) {
 		mBox->Draw(transform);
 	}
-	//else {
-	//	mAnimation1->SetPosition(this->GetPosition());
-	//	mAnimation1->Draw(transform);
-	//}
 	if (explosion)
-		explosion->Draw(transform);
+	for (int i = 0; i < count; i++) {
+			explosion[i]->Draw(transform);
+	}
+	//if (explosion)
+	//	explosion->Draw(transform);
 }
 void Stone::Die() {
 	if (isAlive) {
 		this->Tag = EntityTypes::None;
-		explosion = new RedExplosion(posX, posY);
+		
+		explosion = new RedExplosion*[count];
+		int dx=-10, dy;
+		if (count == 15)
+			dy = -150;
+		else
+			dy = -90;
+		for (int i = 0; i < count; i++) {
+			explosion[i] = new RedExplosion(posX + dx, posY + dy);
+			dx += 10;
+			dy += 20;
+			if (i % 3 == 2)
+			{
+				dx = -10;
+			}
+		}
+
 		isAlive = false;
 	}
 }

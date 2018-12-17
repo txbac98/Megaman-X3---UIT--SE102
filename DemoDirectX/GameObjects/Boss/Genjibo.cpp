@@ -23,7 +23,7 @@ Genjibo::Genjibo(float posX, float posY)
 	posX1 = posX;
 	posY1 = posY;
 	mPlayer = ViewPort::getInstance()->mPlayer;
-	hp = 20;
+	hp = 10;
 	vx = 100;
 	vy = 20;
 	dame = 2;
@@ -32,10 +32,12 @@ Genjibo::Genjibo(float posX, float posY)
 	onDraw = false;
 	typeAttack = 0;
 	this->Tag = EntityTypes::Genjibo;
+	count = 0;
 }
 
 void Genjibo::Update(float dt)
 {
+	int dx = -5, dy = -5;
 	if (isAlive ) {
 	//Con ong bay xuống
 	if (abs(posY1-mAnimationSub->GetPosition().y)>30) {
@@ -59,7 +61,6 @@ void Genjibo::Update(float dt)
 		}
 
 		Entity::Update(dt);
-
 		if (hp > 15) {
 			typeAttack = 1;
 		}
@@ -69,8 +70,9 @@ void Genjibo::Update(float dt)
 		else typeAttack = 3;
 
 		if (hp <= 0) {
-			isAlive = false;
+			Die();
 		}
+		
 		
 		//kiểm tra va chạm  object với map
 		std::vector<Entity*> mListMapObject;
@@ -89,7 +91,20 @@ void Genjibo::Update(float dt)
 			CollisionManager::getInstance()->checkCollision(mPlayer, this, dt);
 		}
 	}
-	
+	if (explosion) {
+		Sleep(150);
+		for (int j = 0; j < 5; j++)
+		{
+			explosion[j]->Update(dt);
+		}
+		if (explosion[4]->mEndAnimate)
+			explosion = NULL;
+		/*explosion[count]->Update(dt);
+		if (explosion[count]->mEndAnimate)
+			count++;
+		if (count == 4)
+			explosion = NULL;*/
+	}
 }
 
 void Genjibo::OnCollision(Entity * other, SideCollisions side)
@@ -160,6 +175,7 @@ void Genjibo::OnCollision(Entity * other, SideCollisions side)
 		hp -= other->dame;
 		other->Tag = EntityTypes::None;
 	}
+
 }
 
 void Genjibo::Draw(D3DXVECTOR2 transform)
@@ -175,7 +191,29 @@ void Genjibo::Draw(D3DXVECTOR2 transform)
 		if (!mAnimationSpawn->mEndAnimate)
 			mAnimationSub->Draw(transform);
 	}
-	
+	if (explosion) 
+	{
+		for (int i = 0; i < 5; i++)
+		{
+			explosion[i]->Draw(transform);
+		}
+	}
+}
+void Genjibo::Die() {
+	if (isAlive) {
+		this->Tag = EntityTypes::None;
+		explosion = new RedExplosion*[5];
 
-	
+		int dx = -10, dy = -15;
+		for (int i = 0; i < 5; i++) {
+			explosion[i] = new RedExplosion(posX + dx, posY + dy);
+			dx += 10;
+			dy += 10;
+			if (i % 3 == 1)
+			{
+				dx = -10;
+			}
+		}
+		isAlive = false;
+	}
 }
