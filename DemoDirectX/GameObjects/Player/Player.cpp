@@ -3,7 +3,7 @@
 
 Player::Player()
 {
-	mHP = new PlayerHP(20,50);
+	mHP = new PlayerHP(30,50);
 	mAnimationSpawning = new Animation("Resources/Megaman/Megaman.png", "Resources/Megaman/Spawning.txt", 0.07f, false);
     mAnimationJumping = new Animation("Resources/Megaman/Megaman.png", "Resources/Megaman/Jumping.txt",0.2f,false);
 	mAnimationFalling = new Animation("Resources/Megaman/Megaman.png", "Resources/Megaman/Falling.txt", 0.2f, false);
@@ -224,6 +224,10 @@ void Player::CheckNoCollisionWithBottom() {
 	
 	
 }
+void Player::Die()
+{
+	mHP->AddDame(mHP->HP);
+}
 void Player::HandleKeyboard(float dt) {
 
 	if (this->getState()==PlayerState::BeingAttacked) {
@@ -312,9 +316,11 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 		|| other->Tag== EntityTypes::HeadgunnerLeft || other->Tag==HeadgunnerRight || other->Tag == EntityTypes::EnemiesBullet
 		||other->Tag==EntityTypes::Genjibo
 		|| other->Tag==EntityTypes::Spine
-		|| other->Tag==EntityTypes::Box
-		|| other->Tag==EntityTypes::Stone5
-		|| other->Tag==EntityTypes::Stone3) { 
+		||other->Tag==EntityTypes::Box
+		||other->Tag==EntityTypes::HornetBoss
+		||other->Tag==EntityTypes::HornetChild
+		|| other->Tag == EntityTypes::Stone5
+		|| other->Tag == EntityTypes::Stone3) {
 		if (isImmortal || beingAttacked) {
 			return;
 		}
@@ -344,8 +350,7 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 	if (other->Tag == EntityTypes::Wall || other->Tag== EntityTypes::Elevator 
 		|| other->Tag==EntityTypes::Door || other->Tag==EntityTypes::ConveyorRight
 		|| other->Tag== EntityTypes::ConveyorLeft
-		//|| other->Tag==EntityTypes::Box
-		) {
+		|| other->Tag==EntityTypes::DebrisCarryarm) {
 		if (side == SideCollisions::Top) {
 			this->SetVy(PlayerDefine::JUMP_ACCELERATOR_Y);
 			this->SetState(new PlayerFallingState(mPlayerData));
@@ -372,6 +377,7 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 			}
 		}
 		//Riêng từng state
+		if (this->mPlayerData->state)
 		this->mPlayerData->state->OnCollision(other, side);
 		return;
 	}	
@@ -536,6 +542,10 @@ void Player::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DX
 			//vẽ thanh máu
 			if (mHP) {
 				mHP->Draw();
+			}
+
+			if (hornetHP) {
+				hornetHP->Draw();
 			}
 
 			//vẽ chêt

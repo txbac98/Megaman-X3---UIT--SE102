@@ -81,6 +81,8 @@ void GameMap::LoadMap(char* filePath, char* fileQuadTree)
 			
 			Entity *entity = new Entity();
 			entity->Tag = Entity::EntityTypes::Wall;
+			entity->isAlive = false;
+			entity->isSpawn = false;
 			entity->Kind = Entity::EntityKind::Static;
 			float posX = PosX + object->GetX() + object->GetWidth() / 2;
 			float posY = PosY + object->GetY() + object->GetHeight() / 2;
@@ -127,6 +129,12 @@ void GameMap::LoadMap(char* filePath, char* fileQuadTree)
 			}
 			else if (object->GetName() == "SubCarryarm") {
 				entity->Tag = Entity::EntityTypes::SubCarryarm;
+			}
+			else if (object->GetName() == "Carryarm") {
+				entity->Tag = Entity::EntityTypes::Carryarm;
+			}
+			else if (object->GetName() == "Hornet") {
+				entity->Tag = Entity::EntityTypes::HornetBoss;
 			}
 			else if (object->GetName() == "Stone5") {
 				entity->Tag = Entity::EntityTypes::Stone5;
@@ -209,20 +217,12 @@ void GameMap::Update(float dt)
 {
 	RECT rectCamera = mCamera->GetBound();
 
-	for (size_t i = 0; i < mListElevator.size(); i++)
-	{
-		mListElevator[i]->Update(dt);
-	}
-	for (size_t i = 0; i < mListDoor.size(); i++)
-	{
-		mListDoor[i]->Update(dt);
-	}
-
 	for (size_t i = 0; i < mListEntity.size(); i++) {
-		if (mListEntity[i]->Tag == Entity::EntityTypes::Elevator || mListEntity[i]->Tag == Entity::EntityTypes::Door) {
+		/*if (mListEntity[i]->Tag == Entity::EntityTypes::Elevator || mListEntity[i]->Tag == Entity::EntityTypes::Door) {
 			mListEntity[i]->Update(dt);
 		}
-		else if (mListEntity[i]->isSpawn) mListEntity[i]->Update(dt);
+		else */
+		if (mListEntity[i]->isSpawn) mListEntity[i]->Update(dt);
 
 		if (!CollisionManager::getInstance()->AABBCheck(mCamera->GetBound(), mListEntity[i]->GetBound())) {
 			if (!mListEntity[i]->isAlive) mListEntity[i]->isSpawn = false;
@@ -259,6 +259,22 @@ void GameMap::Update(float dt)
 				mListEntity[i] = new SubCarry(mListEntity[i]->posX, mListEntity[i]->posY);
 				continue;
 			}
+			if (mListEntity[i]->Tag == Entity::EntityTypes::Carryarm) {
+				mListEntity[i] = new Carryarm(mListEntity[i]->posX, mListEntity[i]->posY);
+				continue;
+			}
+			if (mListEntity[i]->Tag == Entity::EntityTypes::HornetBoss) {
+				mListEntity[i] = new Hornet(mListEntity[i]->posX, mListEntity[i]->posY);
+				continue;
+			}
+			if (mListEntity[i]->Tag == Entity::EntityTypes::Door) {
+				mListEntity[i] = new Door(mListEntity[i]->posX, mListEntity[i]->posY);
+				continue;
+			}
+			if (mListEntity[i]->Tag == Entity::EntityTypes::Elevator) {
+				mListEntity[i] = new Elevator(mListEntity[i]->posX, mListEntity[i]->posY);
+				continue;
+			}
 			if (mListEntity[i]->Tag == Entity::EntityTypes::Stone5) {
 				mListEntity[i] = new Stone(mListEntity[i]->posX, mListEntity[i]->posY, 5);
 				continue;
@@ -267,8 +283,6 @@ void GameMap::Update(float dt)
 				mListEntity[i] = new Stone(mListEntity[i]->posX, mListEntity[i]->posY, 3);
 				continue;
 			}
-			//if (mListEntity[i]->Tag == Entity::EntityTypes::Elevator)
-				//mListEntity[i] = new Elevator(mListEntity[i]->posX, mListEntity[i]->posY);
 
 		}
 	}
@@ -353,7 +367,9 @@ void GameMap::Draw()
 
 	for (size_t i = 0; i < mListEntity.size(); i++)
 	{
-		if (mListEntity[i]->Tag != Entity::EntityTypes::Wall) {
+		if (mListEntity[i]->Tag != Entity::EntityTypes::Wall || mListEntity[i]->Tag!=Entity::EntityTypes::ConveyorLeft  
+			|| mListEntity[i]->Tag != Entity::EntityTypes::ConveyorRight
+				|| mListEntity[i]->Tag != Entity::EntityTypes::Spine){
 			//if (!CollisionManager::getInstance()->AABBCheck(mCamera->GetBound(), mListEntity[i]->GetBound()))
 			//	//Không va chạm thì không vẽ
 			//	continue;
@@ -361,12 +377,6 @@ void GameMap::Draw()
 				mListEntity[i]->Draw(trans);
 		}
 		
-	}
-	for (size_t i = 0; i < mListDoor.size(); i++) {
-		mListDoor[i]->Draw(trans);
-	}
-	for (size_t i = 0; i < mListNotor.size(); i++) {
-		mListNotor[i]->Draw(trans);
 	}
 #pragma endregion
 }

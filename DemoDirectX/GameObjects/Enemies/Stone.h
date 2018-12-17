@@ -15,7 +15,7 @@ public:
 	~Stone();
 	Stone(float posx, float posy, int type);
 
-	Animation *mAnimation5, *mAnimation3, *mAnimation;
+	Sprite *mSprite5, *mSprite3, *mSprite;
 	Player *mPlayer;
 	Camera *mCamera;
 	BoxObject *mBox;

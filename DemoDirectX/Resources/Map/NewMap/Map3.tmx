@@ -8,7 +8,7 @@
  </layer>
  <objectgroup id="2" name="Object Layer 1">
   <object id="1" x="344.5" y="693" width="649.5" height="28.5"/>
-  <object id="2" name="Conveyor Left" x="181.5" y="185" width="298.5" height="20"/>
+  <object id="2" name="Conveyor Right" x="181.5" y="185" width="298.5" height="20"/>
   <object id="3" x="466" y="-4" width="38" height="514"/>
   <object id="4" name="Door" x="753" y="642" width="12" height="51"/>
   <object id="5" x="0" y="33" width="32" height="665"/>
@@ -19,7 +19,7 @@
   <object id="10" x="178" y="614" width="110" height="145"/>
   <object id="11" x="283" y="646" width="69" height="54.5"/>
   <object id="12" x="403" y="308" width="66" height="30"/>
-  <object id="14" name="Conveyor Left" x="181.5" y="444" width="297.5" height="18"/>
+  <object id="14" name="Conveyor Right" x="181.5" y="444" width="297.5" height="18"/>
   <object id="15" x="27" y="441" width="69" height="27"/>
   <object id="16" name="Notorbanger" x="40" y="120" width="50" height="52"/>
   <object id="17" name="Notorbanger" x="339" y="124" width="50" height="52"/>

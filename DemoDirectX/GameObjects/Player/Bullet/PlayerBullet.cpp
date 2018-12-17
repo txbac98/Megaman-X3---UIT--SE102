@@ -57,7 +57,6 @@ void PlayerBullet::Update(float dt, RECT rectCamera)
 void PlayerBullet::OnCollision(Entity * other, SideCollisions side)
 {
 		wasBorn = false;
-
 }
 
 void PlayerBullet::Draw(D3DXVECTOR2 transform)

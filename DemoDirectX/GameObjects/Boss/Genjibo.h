@@ -23,6 +23,7 @@ protected:
 	Player* mPlayer;
 	RedExplosion **explosion, **explosion2;
 	int count;
+	bool die;
 	vector<RedExplosion*> mExplosion;
 	int typeAttack;
 	float posX1, posY1;

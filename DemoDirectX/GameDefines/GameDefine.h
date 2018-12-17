@@ -45,6 +45,15 @@ namespace GenjiboDefine {
 	const float SPEED_Y = 100.0f;
 }
 
+namespace ChildHornetDefine {
+	const float TIME_DELAY = 2.0f;
+}
+
+namespace HornetDefine {
+	const float SPEED_X = 100.0f;
+	const float SPEED_Y = 50.0f;
+}
+
 namespace BulletDefine {
 	const float PLAYER_BULLET_SPEED = 300.0f;
 }

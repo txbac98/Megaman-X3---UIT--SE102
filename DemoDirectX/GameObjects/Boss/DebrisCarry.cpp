@@ -8,15 +8,15 @@ DebrisCarry::DebrisCarry(int type, float posX, float posY)
 {
 	if (type == 1) {
 		//Mảng D to
-		mSprite = new Sprite("Resources/Enemies/DebrisCarrryarm1.png");	
+		mSprite = new Sprite("Resources/Boss/DebrisCarryarm1.png");	
 	}
 	else if (type == 2) {
 		//Thanh dọc
-		mSprite = new Sprite("Resources/Enemies/DebrisCarrryarm2.png");
+		mSprite = new Sprite("Resources/Boss/DebrisCarryarm2.png");
 	}
 	else if (type == 3) {
 		//Thang ngang
-		mSprite = new Sprite("Resources/Enemies/DebrisCarrryarm3.png");
+		mSprite = new Sprite("Resources/Boss/DebrisCarryarm3.png");
 	}
 	this->SetWidth(mSprite->GetWidth());
 	this->SetHeight(mSprite->GetHeight());

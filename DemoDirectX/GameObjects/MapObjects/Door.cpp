@@ -14,6 +14,8 @@ Door::Door(float posX, float posY)
 	this->SetHeight(mAnimation->GetHeight());
 	this->Tag = Entity::EntityTypes::Door;
 	isOpening = false;
+	isSpawn = true;
+	isAlive = true;
 }
 
 void Door::Update(float dt)

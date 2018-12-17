@@ -12,6 +12,8 @@ Elevator::Elevator(float posX, float posY)
 	this->Tag = Entity::EntityTypes::Elevator;
 	isSpawn = true;
 	isAlive = true;
+	posX1 = posX;
+	posY1 = posY;
 }
 
 Elevator::~Elevator()
@@ -29,8 +31,15 @@ void Elevator::Update(float dt)
 	if (this->vy != 0) 
 		mAnimation->Update(dt);
 	if (this->posY > 195)  Entity::Update(dt);
-	if (mPlayer!=NULL)
+	if (mPlayer) {
 		CollisionManager::getInstance()->checkCollision(mPlayer, this, dt / 1000);
+		if (posY != posY1 && abs(mPlayer->posY - posY) > 256) {
+			this->vy = 0;
+			this->posY = posY1;
+			mPlayer = NULL;
+		}
+	}
+		
 }
 
 void Elevator::OnCollision(Entity * other, SideCollisions side)

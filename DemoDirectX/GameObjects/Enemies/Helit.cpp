@@ -13,7 +13,7 @@ Helit::Helit(float posX, float posY)
 	this->SetWidth(mAnimation->GetWidth());
 	this->SetHeight(mAnimation->GetHeight());
 	this->Tag = Entity::EntityTypes::Enemy;
-	isFaceLeft = true;
+	isFaceRight = false;
 	mPlayer = ViewPort::getInstance()->mPlayer;
 	mCamera = ViewPort::getInstance()->mCamera;
 	//mGameMap = map;
@@ -42,7 +42,7 @@ void Helit::Update(float dt)
 			Die();
 			return;
 		}
-		if (posY <= posY1 && vy<0) {
+		if (posY <= posY1 && vy<0) {	//đi lên
 			vy = 0;
 		}
 		if (abs(posX - mPlayer->posX) < 100 && abs(posY - mPlayer->posY)<100)	// khoảng cách dưới 100
@@ -60,12 +60,13 @@ void Helit::Update(float dt)
 			if ( vy==0) {
 				vy = HelitDefine::SPEED_Y;
 			}
-			if (posY > mPlayer->posY && vy>0) {
-				vy = 0; 
-				if (!mBullet->wasBorn || abs(mBullet->posX-posX)>200) {
-					mBullet->Spawn(3, isFaceRight, this->posX, this->posY, direction*HelitDefine::BULLET_SPEED_X, 0);
-					vy = -HelitDefine::SPEED_Y;
-				}
+			
+		}
+		if (posY > mPlayer->posY && vy > 0) {
+			vy = 0;
+			if (!mBullet->wasBorn || abs(mBullet->posX - posX) > 200) {
+				mBullet->Spawn(3, isFaceRight, this->posX, this->posY, direction*HelitDefine::BULLET_SPEED_X, 0);
+				vy = -HelitDefine::SPEED_Y;
 			}
 		}
 		
@@ -108,7 +109,7 @@ void Helit::Draw(D3DXVECTOR2 transform)
 	mBullet->Draw(transform);
 	if (isAlive) {
 		mAnimation->SetPosition(this->GetPosition());
-		mAnimation->FlipVertical(!isFaceLeft);
+		mAnimation->FlipVertical(isFaceRight);
 		mAnimation->Draw(transform);
 	}
 	if (explosion)

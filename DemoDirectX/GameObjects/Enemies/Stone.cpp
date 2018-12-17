@@ -16,27 +16,27 @@ Stone::Stone(float posx, float posy, int type)
 	isAlive = true;*/
 
 
-	mAnimation5 = new Animation("Resources/Enemies/Stone5.png", "Resources/Enemies/Stone5.txt", 0.2f, false);
-	mAnimation3 = new Animation("Resources/Enemies/Stone3.png", "Resources/Enemies/Stone3.txt", 0.2f, false);
-	//mAnimation1 = new Animation("Resources/MapObject/Stone.png", "Resources/MapObject/Stone.txt", 0.1f, false);
+	mSprite5 = new Sprite("Resources/Enemies/Stone5.png");
+	mSprite3 = new Sprite("Resources/Enemies/Stone3.png");
+	//mSprite1 = new Sprite("Resources/MapObject/Stone.png", "Resources/MapObject/Stone.txt", 0.1f, false);
 	this->SetPosition(posx, posy);
 
 	if (type == 5) {
-		this->SetWidth(mAnimation5->GetWidth());
-		this->SetHeight(mAnimation5->GetHeight());
-		mAnimation = mAnimation5;
+		this->SetWidth(mSprite5->GetWidth());
+		this->SetHeight(mSprite5->GetHeight());
+		mSprite = mSprite5;
 		this->Tag = EntityTypes::Stone5;
 		count = 15;
 	}
 	else if (type == 3) {
-		this->SetWidth(mAnimation3->GetWidth());
-		this->SetHeight(mAnimation3->GetHeight());
-		mAnimation = mAnimation3;
+		this->SetWidth(mSprite3->GetWidth());
+		this->SetHeight(mSprite3->GetHeight());
+		mSprite = mSprite3;
 		this->Tag = EntityTypes::Stone3;
 		count = 9;
 	}
 
-	
+
 	mPlayer = ViewPort::getInstance()->mPlayer;
 	mCamera = ViewPort::getInstance()->mCamera;
 	mBox = new BoxObject();
@@ -54,8 +54,8 @@ void Stone::Update(float dt) {
 		mBox->Update(dt);
 	}
 	if (isAlive) {
-		this->SetWidth(mAnimation->GetWidth());
-		this->SetHeight(mAnimation->GetHeight());
+		this->SetWidth(mSprite->GetWidth());
+		this->SetHeight(mSprite->GetHeight());
 		for (int i = 0; i < sizeof(mPlayer->mListBullet); i++) {
 			CollisionManager::getInstance()->checkCollision(&mPlayer->mListBullet[i], this, dt / 1000);
 		}
@@ -65,25 +65,22 @@ void Stone::Update(float dt) {
 
 		if (hp <= 0) {
 			Die();
-			
+
 			if (!mBox->isAlive) {
 				mBox->Spawn(posX, posY - 150);
 				mBox->SetVy(450);
-				mBox->Update(-1+dt);
-				}
-			else 
+				mBox->Update(-1 + dt);
+			}
+			else
 				mBox->Update(dt);
-		
+
 		}
-		mAnimation->Update(dt);
 		Entity::Update(dt);
 	}
 	if (explosion)
-	for (int i = 0; i < count; i++) {
+		for (int i = 0; i < count; i++) {
 			explosion[i]->Update(dt);
-	}
-	/*if (explosion)
-		explosion->Update(dt);*/
+		}
 }
 void Stone::OnCollision(Entity * other, SideCollisions side)
 {
@@ -99,30 +96,30 @@ void Stone::Draw(D3DXVECTOR2 transform)
 {
 	if (this->isAlive) {
 		if (mType == 5) {
-			mAnimation5->SetPosition(this->GetPosition());
-			mAnimation5->Draw(transform);
+			mSprite5->SetPosition(this->GetPosition());
+			mSprite5->Draw(D3DXVECTOR3(), RECT(), D3DXVECTOR2(), transform);
 		}
 		else if (mType == 3) {
-			mAnimation3->SetPosition(this->GetPosition());
-			mAnimation3->Draw(transform);
+			mSprite3->SetPosition(this->GetPosition());
+			mSprite3->Draw(D3DXVECTOR3(), RECT(), D3DXVECTOR2(), transform);
 		}
 	}
 	if (mBox->isSpawn) {
 		mBox->Draw(transform);
 	}
 	if (explosion)
-	for (int i = 0; i < count; i++) {
+		for (int i = 0; i < count; i++) {
 			explosion[i]->Draw(transform);
-	}
+		}
 	//if (explosion)
 	//	explosion->Draw(transform);
 }
 void Stone::Die() {
 	if (isAlive) {
 		this->Tag = EntityTypes::None;
-		
+
 		explosion = new RedExplosion*[count];
-		int dx=-10, dy;
+		int dx = -10, dy;
 		if (count == 15)
 			dy = -150;
 		else

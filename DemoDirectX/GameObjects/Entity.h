@@ -33,7 +33,7 @@ public:
     enum EntityTypes
     {
         Megaman, MegaBullet, None, Wall, Box, SubCarryarm, Carryarm, DebrisCarryarm, Spine, Elevator, Door, Brick, Enemy, EnemiesBullet, Notorbanger,
-		PosNotorbanger, HeadgunnerLeft, HeadgunnerRight, Helit, Genjibo, SlopingWall, ConveyorRight, ConveyorLeft, Stone5, Stone3
+		PosNotorbanger, HeadgunnerLeft, HeadgunnerRight, Helit, Genjibo, SlopingWall, ConveyorRight, ConveyorLeft, HornetBoss, HornetChild, Stone5, Stone3
     };
 	enum EntityKind
 	{
@@ -108,8 +108,8 @@ public:
     float posX, posY;
 
 	bool isCollision;
-	bool isAlive=false;
-	bool isSpawn = false;
+	bool isAlive;
+	bool isSpawn;
 	bool isCollisionCross;
 	bool isFaceLeft;
 	int dame;

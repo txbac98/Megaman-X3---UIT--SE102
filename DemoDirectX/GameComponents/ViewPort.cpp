@@ -1,45 +1,6 @@
 ﻿#include "ViewPort.h"
 
-//ViewPort::ViewPort()
-//{
-//	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map0.tmx", "Resources/Map/NewMap/Map0_QuadTree.txt" ,mPlayer,0, 512));	//0	ngang, không chuyển map, khóa: trái
-//	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map1.tmx", "Resources/Map/NewMap/Map1_QuadTree.txt",mPlayer, 768, 0));	//1	doc, không chuyển map, khóa trái, phải ở phía trên <600
-//	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map2.tmx", "Resources/Map/NewMap/Map2_QuadTree.txt",mPlayer, 1024, 0));	//2	ngang, chuyển map phái dướt, khóa: phải
-//	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map3.tmx", "Resources/Map/NewMap/Map3_QuadTree.txt",mPlayer, 1536, 255));	//3	doc, chuyển map phía trên, khóa trái, phải phía trên
-//	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map4.tmx", "Resources/Map/NewMap/Map4_QuadTree.txt", mPlayer, 2304, 768));	//4	Boss 1
-//	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map5.tmx", "Resources/Map/NewMap/Map5_QuadTree.txt", mPlayer, 2559, 580));	//5	ngang, 
-//	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map6.tmx", "Resources/Map/NewMap/Map6_QuadTree.txt", mPlayer, 5631, 766));	//6	doc
-//	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map7.tmx", "Resources/Map/NewMap/Map7_QuadTree.txt", mPlayer, 5887, 1523));	//7	ngang
-//	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map8.tmx", "Resources/Map/NewMap/Map8_QuadTree.txt", mPlayer, 7167, 1535));	//8 Boss hornet
-//
-//	iCurrentMap = 0;
-//	mCurrentMap = mListMap.at(iCurrentMap);
-//	mNextMap = mListMap.at(iCurrentMap+1);
-//	canUpdateCamera = false;
-//}
-//
-//ViewPort::ViewPort(Player * player)
-//{
-//	mPlayer = player;
-//	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map0.tmx", "Resources/Map/NewMap/Map0_QuadTree.txt", mPlayer, 0, 512));	//0	ngang, không chuyển map, khóa: trái
-//	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map1.tmx", "Resources/Map/NewMap/Map1_QuadTree.txt", mPlayer, 768, 0));	//1	doc, không chuyển map, khóa trái, phải ở phía trên <600
-//	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map2.tmx", "Resources/Map/NewMap/Map2_QuadTree.txt", mPlayer, 1024, 0));	//2	ngang, chuyển map phái dướt, khóa: phải
-//	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map3.tmx", "Resources/Map/NewMap/Map3_QuadTree.txt", mPlayer, 1536, 255));	//3	doc, chuyển map phía trên, khóa trái, phải phía trên
-//	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map4.tmx", "Resources/Map/NewMap/Map4_QuadTree.txt", mPlayer, 2304, 768));	//4	Boss 1
-//	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map5.tmx", "Resources/Map/NewMap/Map5_QuadTree.txt", mPlayer, 2559, 580));	//5	ngang, 
-//	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map6.tmx", "Resources/Map/NewMap/Map6_QuadTree.txt", mPlayer, 5631, 766));	//6	doc
-//	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map7.tmx", "Resources/Map/NewMap/Map7_QuadTree.txt", mPlayer, 5887, 1523));	//7	ngang
-//	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map8.tmx", "Resources/Map/NewMap/Map8_QuadTree.txt", mPlayer, 7167, 1535));	//8 Boss hornet
-//
-//	iCurrentMap = 0;
-//	mCurrentMap = mListMap.at(iCurrentMap);
-//	mNextMap = mListMap.at(iCurrentMap + 1);
-//	canUpdateCamera = false;
-//}
-//
-//ViewPort::~ViewPort()
-//{
-//}
+
 ViewPort* ViewPort::instance = 0;
 ViewPort* ViewPort::getInstance()
 {
@@ -51,19 +12,23 @@ ViewPort* ViewPort::getInstance()
 void ViewPort::Init(Player *player)
 {
 	mPlayer = player;
-	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map4.tmx", "Resources/Map/NewMap/Map0_QuadTree.txt", 0, 512));	//0	ngang, không chuyển map, khóa: trái
+	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map0.tmx", "Resources/Map/NewMap/Map0_QuadTree.txt", 0, 512));	//0	ngang, không chuyển map, khóa: trái
 	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map1.tmx", "Resources/Map/NewMap/Map1_QuadTree.txt", 768, 0));	//1	doc, không chuyển map, khóa trái, phải ở phía trên <600
 	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map2.tmx", "Resources/Map/NewMap/Map2_QuadTree.txt", 1024, 0));	//2	ngang, chuyển map phái dướt, khóa: phải
 	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map3.tmx", "Resources/Map/NewMap/Map3_QuadTree.txt", 1536, 255));	//3	doc, chuyển map phía trên, khóa trái, phải phía trên
-	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map4.tmx", "Resources/Map/NewMap/Map4_QuadTree.txt", 2304, 768));	//4	Boss 1
-	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map5.tmx", "Resources/Map/NewMap/Map5_QuadTree.txt", 2559, 580));	//5	ngang, 
-	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map6.tmx", "Resources/Map/NewMap/Map6_QuadTree.txt", 5631, 766));	//6	doc
-	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map7.tmx", "Resources/Map/NewMap/Map7_QuadTree.txt", 5887, 1523));	//7	ngang
-	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map8.tmx", "Resources/Map/NewMap/Map8_QuadTree.txt", 7167, 1535));	//8 Boss hornet
+	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map4.tmx", "Resources/Map/NewMap/Map4_QuadTree.txt", 2304, 769));	//4	Boss 1
+	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map5.tmx", "Resources/Map/NewMap/Map5_QuadTree.txt", 2559, 610));	//5	ngang, 
+	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map6.tmx", "Resources/Map/NewMap/Map6_QuadTree.txt", 5631, 769));	//6	doc
+	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map7.tmx", "Resources/Map/NewMap/Map7_QuadTree.txt", 5887, 1527));	//7	ngang
+	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map8.tmx", "Resources/Map/NewMap/Map8_QuadTree.txt", 7167, 1537));	//8 Boss hornet
 
 	iCurrentMap = 0;
+	//mPlayer->SetPosition(7190, 1620);  //Test Boss 8
+	//mPlayer->SetPosition(5700, 800);		//Test map 6
+	//mPlayer->SetPosition(4700, 800);		//Map 5:: Carry
+	//mPlayer->SetPosition(2390, 800);		//Genji
 	mCurrentMap = mListMap.at(iCurrentMap);
-	mNextMap = mListMap.at(iCurrentMap + 1);
+	mNextMap = mListMap.at(iCurrentMap+1);
 	canUpdateCamera = false;
 }
 
@@ -137,7 +102,7 @@ void ViewPort::ChangeCurrentMap()
 			&& mPlayer->posY < rectNextMap.bottom && mPlayer->posY > rectNextMap.top) {
 			
 			iCurrentMap++;
-			if (iCurrentMap == 4) mPlayer->AddPositionX(20);
+			if (iCurrentMap == 4 || iCurrentMap==5 || iCurrentMap==6 || iCurrentMap==8) mPlayer->AddPositionX(20);
 			mBackMap = mCurrentMap;
 			mCurrentMap = mNextMap;
 			if (iCurrentMap < mListMap.size() - 1)
@@ -153,6 +118,11 @@ void ViewPort::CheckCameraWithWouldMap()
 	//Set position camera
 	if (mCamera && mPlayer) {
 
+		//mCamera->SetPosition(mPlayer->GetPosition());	//Test map
+		
+		if (mPlayer->posY > mCurrentMap->GetWorldMapBound().bottom)
+			mPlayer->Die();
+		else 
 		switch (iCurrentMap)
 		{
 		case 0:	//Done		//Ngang
@@ -169,7 +139,7 @@ void ViewPort::CheckCameraWithWouldMap()
 					this->SetCameraPositionX(mCurrentMap->PosX + mCamera->GetWidth() / 2);
 				}
 				else {
-					posCameraY = mPlayer->posY - 20;
+					posCameraY = mCurrentMap->PosY+ mCamera->GetHeight()/2;
 					//this->SetCameraPositionY(mPlayer->posY - 20);
 					posCameraX = mPlayer->posX + 30;
 					if (posCameraX - mCamera->GetWidth() / 2 < mCurrentMap->PosX) {	//phía bên trái
@@ -195,7 +165,6 @@ void ViewPort::CheckCameraWithWouldMap()
 			break;
 		case 3:	//doc	//done
 			this->SetCameraPositionX(mPlayer->posX + 30);
-			
 			if (mCamera->GetBound().left < mCurrentMap->PosX) {	//phía bên trái
 				this->SetCameraPositionX(mCurrentMap->PosX + mCamera->GetWidth() / 2);
 			}
@@ -215,29 +184,47 @@ void ViewPort::CheckCameraWithWouldMap()
 			break;
 		case 5:	//ngang  //can xet lai vi tri
 			this->SetCameraPositionX(mPlayer->posX + 30);
-			this->SetCameraPositionY(mPlayer->posY - 20);
 			if (posCameraX - mCamera->GetWidth() / 2 < mCurrentMap->PosX) {	//phía bên trái
 				this->SetCameraPositionX(mCurrentMap->PosX + mCamera->GetWidth() / 2);
 			}
 			if (mCamera->GetBound().right > mCurrentMap->GetWidth() + mCurrentMap->PosX) {	//bên phải
 				this->SetCameraPositionX(mCurrentMap->GetWorldMapBound().right - mCamera->GetWidth() / 2);
 			}
+			if (mPlayer->posY > mCurrentMap->GetWorldMapBound().bottom - 256)	//chạm đáy cho map dọc	//256 cho 1 màn hình
+			{
+				posCameraY=mCurrentMap->GetWorldMapBound().bottom - mCamera->GetHeight() / 2;
+				//posCameraY=(mCurrentMap->GetWorldMapBound().bottom - mCamera->GetHeight() / 2);		
+			}
+			else if (mPlayer->posY < mCurrentMap->GetWorldMapBound().top + 256)	//chạm top
+			{
+				posCameraY=mCurrentMap->GetWorldMapBound().top + mCamera->GetHeight() / 2;
+				//posCameraY=(mCurrentMap->GetWorldMapBound().bottom - mCamera->GetHeight() / 2);		
+			}
+			else posCameraY = mPlayer->posY - 20;
 			break;
 		case 6:	//doc	//done
 			this->SetCameraPositionX(mPlayer->posX + 30);
 			if (mPlayer->posY > mCurrentMap->GetWorldMapBound().bottom - 256)	//chạm đáy cho map dọc	//256 cho 1 màn hình
 			{
-				posCameraY = (mCurrentMap->GetWorldMapBound().bottom - mCamera->GetHeight() / 2);
+				posCameraY = (mCurrentMap->GetWorldMapBound().bottom - mCamera->GetHeight() / 2 - 10);
 			}
-			else {
-				this->SetCameraPositionY(mPlayer->posY - 20);
+			else if(mPlayer->posY < mCurrentMap->GetWorldMapBound().top + 256) {	// ở trên
+				posCameraY = (mCurrentMap->GetWorldMapBound().top + mCamera->GetHeight() / 2);	
+				if (mCamera->GetBound().right > mCurrentMap->GetWidth() + mCurrentMap->PosX) {	//bên phải
+					this->SetCameraPositionX(mCurrentMap->GetWorldMapBound().right - mCamera->GetWidth() / 2);
+				}
+			}
+			else {// ở giữa
+				this->SetCameraPositionY(posCameraY=mPlayer->posY);
+				if (mCamera->GetBound().right > mCurrentMap->GetWidth() + mCurrentMap->PosX) {	//bên phải
+					this->SetCameraPositionX(mCurrentMap->GetWorldMapBound().right - mCamera->GetWidth() / 2);
+				}
 			}
 			if (mCamera->GetBound().left < mCurrentMap->PosX) {	//phía bên trái
 				this->SetCameraPositionX(mCurrentMap->PosX + mCamera->GetWidth() / 2);
 			}
-			if (mCamera->GetBound().right > mCurrentMap->GetWidth() + mCurrentMap->PosX) {	//bên phải
-				this->SetCameraPositionX(mCurrentMap->GetWorldMapBound().right - mCamera->GetWidth() / 2);
-			}
+			
+			
 			break;
 		case 7:	//ngang //done
 			this->SetCameraPositionX(mPlayer->posX + 30);

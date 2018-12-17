@@ -100,8 +100,11 @@
     <ClCompile Include="GameObjects\Boss\Carryarm.cpp" />
     <ClCompile Include="GameObjects\Boss\DebrisCarry.cpp" />
     <ClCompile Include="GameObjects\Boss\Genjibo.cpp" />
+    <ClCompile Include="GameObjects\Boss\Hornet.cpp" />
+    <ClCompile Include="GameObjects\Boss\HornetHP.cpp" />
     <ClCompile Include="GameObjects\Effect\PlayerDashingSmoke.cpp" />
     <ClCompile Include="GameObjects\Enemies\BoxObject.cpp" />
+    <ClCompile Include="GameObjects\Enemies\ChildHornet.cpp" />
     <ClCompile Include="GameObjects\Enemies\HeadGunner.cpp" />
     <ClCompile Include="GameObjects\Enemies\Helit.cpp" />
     <ClCompile Include="GameObjects\Enemies\Notorbanger.cpp" />
@@ -178,8 +181,11 @@
     <ClInclude Include="GameObjects\Boss\Carryarm.h" />
     <ClInclude Include="GameObjects\Boss\DebrisCarry.h" />
     <ClInclude Include="GameObjects\Boss\Genjibo.h" />
+    <ClInclude Include="GameObjects\Boss\Hornet.h" />
+    <ClInclude Include="GameObjects\Boss\HornetHP.h" />
     <ClInclude Include="GameObjects\Effect\PlayerDashingSmoke.h" />
     <ClInclude Include="GameObjects\Enemies\BoxObject.h" />
+    <ClInclude Include="GameObjects\Enemies\ChildHornet.h" />
     <ClInclude Include="GameObjects\Enemies\HeadGunner.h" />
     <ClInclude Include="GameObjects\Enemies\Helit.h" />
     <ClInclude Include="GameObjects\Enemies\Notorbanger.h" />

@@ -20,6 +20,7 @@ public:
 protected:
 	
 	void OnSetPosition(D3DXVECTOR3 poks);
+	float posX1, posY1;
 	Entity *mPlayer;
 	Animation *mAnimation;
 };

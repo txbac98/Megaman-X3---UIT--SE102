@@ -23,6 +23,7 @@
 #include "../Effect/PlayerDashingSmoke.h"
 #include "HP/PlayerHP.h"
 #include "PlayerDeathEffect.h"
+#include "../Boss/HornetHP.h"
 
 class Player : public Entity
 {
@@ -53,6 +54,8 @@ public:
 	void OnAABBCheck(Entity * other);
 
     void CheckNoCollisionWithBottom();
+
+	void Die();
 
     MoveDirection getMoveDirection();
 
@@ -86,6 +89,7 @@ public:
 	PlayerDeathEffect *mDeathEffect;
 
 	PlayerHP *mHP;
+	HornetHP *hornetHP;
 	
 //protected:
 	Animation   *mAnimationSpawning,

@@ -10,8 +10,9 @@ BoxObject::BoxObject()
 	this->SetWidth(mSprite->GetWidth());
 	this->SetHeight(mSprite->GetHeight());
 	mPlayer = ViewPort::getInstance()->mPlayer;
+	isAlive = false;
+	isSpawn = false;
 	this->Tag = EntityTypes::Box;
-	dame = 1;
 }
 
 BoxObject::BoxObject(float posX, float posY)
@@ -27,8 +28,6 @@ BoxObject::BoxObject(float posX, float posY)
 	isSpawn = true;
 	mPlayer = ViewPort::getInstance()->mPlayer;
 	this->Tag = EntityTypes::Box;
-	dame = 1;
-	vy = 0;
 }
 
 void BoxObject::Spawn(float posX, float posY)

@@ -20,7 +20,10 @@
 #include "../GameObjects/Boss/Genjibo.h"
 #include "../GameObjects/Enemies/BoxObject.h"
 #include "../GameObjects/Enemies/SubCarrry.h"
+#include "../GameObjects/Boss/Carryarm.h"
+#include "../GameObjects/Boss/Hornet.h"
 #include "../GameObjects/Enemies/Stone.h"
+
 using namespace std;
 class GameMap
 {

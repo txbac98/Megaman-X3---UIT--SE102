@@ -7,7 +7,6 @@ SubCarry::~SubCarry()
 
 SubCarry::SubCarry(float posX, float posY)
 {
-	//mSprite = new Sprite("Resources/Enemies/Box1.png");
 	mAnimationFly = new Animation("Resources/Boss/SubCarryarm.png", "Resources/Boss/SubCarryarmFly.txt", 0.1f, true);
 	mAnimationDrop = new Animation("Resources/Boss/SubCarryarm.png", "Resources/Boss/SubCarryarmDrop.txt", 0.1f, false);
 
@@ -19,21 +18,44 @@ SubCarry::SubCarry(float posX, float posY)
 	this->SetHeight(mAnimation->GetHeight());
 	mAnimation->SetPosition(posX, posY);
 	mBox = new BoxObject();
-	//posBoxX = this->width / 2 + mBox->GetWidth()/2;
 	posBoxY = this->height / 2 + mBox->GetHeight() / 2;
 	hp = 5;
+	dtY = 100;
 	isAlive = true;
 	isSpawn = true;
 	haveBox = false;
 	this->Tag = EntityTypes::SubCarryarm;
 }
 
+SubCarry::SubCarry(float posX, float posY, float dty)
+{
+	mAnimationFly = new Animation("Resources/Boss/SubCarryarm.png", "Resources/Boss/SubCarryarmFly.txt", 0.1f, true);
+	mAnimationDrop = new Animation("Resources/Boss/SubCarryarm.png", "Resources/Boss/SubCarryarmDrop.txt", 0.1f, false);
+
+	mAnimation = mAnimationFly;
+	this->SetPosition(posX, posY);
+	posX1 = posX;
+	posY1 = posY;
+	this->SetWidth(mAnimation->GetWidth());
+	this->SetHeight(mAnimation->GetHeight());
+	mAnimation->SetPosition(posX, posY);
+	mBox = new BoxObject();
+	posBoxY = this->height / 2 + mBox->GetHeight() / 2;
+	hp = 5;
+	isAlive = true;
+	isSpawn = true;
+	haveBox = false;
+	this->Tag = EntityTypes::SubCarryarm;
+	dtY = dty;
+}
+
 void SubCarry::Update(float dt)
 {
-	if (mBox->isSpawn) {
-		mBox->Update(dt);
-	}
+	//if (mBox)
 	if (isAlive) {
+		if (mBox->isSpawn) {
+			mBox->Update(dt);
+		}
 		if (hp <= 0) {
 			isAlive = false;
 			return;
@@ -45,12 +67,9 @@ void SubCarry::Update(float dt)
 				haveBox = true;
 			}
 		}
-		else mBox->Update(dt);
-
-
 
 		if (haveBox) {	//Dính liền	
-			if (posY < posY1 + 80) {		//80: tính ở map sau
+			if (posY < posY1 + dtY) {		//dt: tính tay
 				this->AddPositionY(0.5);
 				mBox->AddPositionY(0.5);
 			}
@@ -77,10 +96,10 @@ void SubCarry::OnCollision(Entity * other, SideCollisions side)
 
 void SubCarry::Draw(D3DXVECTOR2 transform)
 {
-	if (mBox->isSpawn) {
-		mBox->Draw(transform);
-	}
 	if (isAlive) {
+		if (mBox->isSpawn) {
+			mBox->Draw(transform);
+		}
 		mAnimation->SetPosition(posX, posY);
 		mAnimation->Draw(transform);
 	}

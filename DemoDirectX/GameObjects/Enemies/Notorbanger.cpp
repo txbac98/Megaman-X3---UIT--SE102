@@ -26,7 +26,7 @@ Notorbanger::Notorbanger(float posx, float posy)
 	mCamera = ViewPort::getInstance()->mCamera;
 	//mGameMap = map;
 	hp = 3;
-	this->SetVy(10);
+	this->SetVy(100);
 	isAlive = true;
 	isSpawn = true;
 	allowMoveLeft = true;
@@ -48,7 +48,7 @@ void Notorbanger::Update(float dt)
 		std::vector<Entity*> mListMapObject;
 		ViewPort::getInstance()->GetMapObject(mListMapObject, this);
 		for (size_t j = 0; j < mListMapObject.size(); j++) {
-			CollisionManager::getInstance()->checkCollision(this, mListMapObject[j], dt);
+			CollisionManager::getInstance()->checkCollision(this, mListMapObject[j], dt/1000);
 		}
 
 		//kiểm tra va chạm viên đạn player
@@ -61,7 +61,7 @@ void Notorbanger::Update(float dt)
 				Die();
 				return;
 			}
-			if (abs(posX - mPlayer->posX) < 200  && abs(posY - mPlayer->posY) < 50)	// khoảng cách dưới 100
+			if (abs(posX - mPlayer->posX) < 200  && (posY- mPlayer->posY) < 50)	// khoảng cách dưới 100
 			{
 				if (type == 0) {
 					type = 1;	//xiên
@@ -131,6 +131,10 @@ void Notorbanger::Update(float dt)
 						}
 					}
 				}
+				
+				if (mAnimation == mAnimationJump) {
+					Jumping(dt);
+				}
 			}
 			else {
 				if (mAnimation != mAnimationStand) {
@@ -138,15 +142,10 @@ void Notorbanger::Update(float dt)
 					vx = 0;
 					vy = 50;
 				}
-					
-			}
-
-			
-			if (mAnimation == mAnimationJump) {
-				Jumping(dt);
 			}
 			mAnimation->Update(dt);
 			Entity::Update(dt);
+			
 		}
 
 		if (explosion) explosion->Update(dt);
@@ -207,7 +206,7 @@ void Notorbanger::OnCollision(Entity * other, SideCollisions side)
 				|| side == SideCollisions::TopRight) {
 				allowMoveRight = false;
 			}
-			if (side == SideCollisions::Bottom) {
+			if (side == SideCollisions::Bottom || side == SideCollisions::BottomLeft || side == SideCollisions::BottomRight) {
 				vy = 0;
 				if (mAnimation == mAnimationJump) {
 					mAnimationStand->Start();
