@@ -20,12 +20,13 @@ protected:
 	void SpawnChild1();
 	void SpawnChildAndFollow();
 	void Prepare();
-	void Attack();
+	void SpawnFollow();
 	Animation *mAnimation, *mAnimationAttack, *mAnimationSpawnChild, *mAnimationDie,
-		*mAnimationFly,*mAnimationStand, *mAnimationPrepare;
+		*mAnimationFly,*mAnimationStand, *mAnimationPrepare, *mAnimationFollow;
 	Player* mPlayer;
 	Camera* mCamera;
 	ChildHornet *mChild;
+	ChildHornet *mChildFollow;
 	std::vector<ChildHornet* > mListChild;
 	RECT rectMove;
 	int midRectY;

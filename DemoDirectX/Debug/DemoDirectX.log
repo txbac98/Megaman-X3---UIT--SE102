@@ -1,34 +1,17 @@
-﻿  ViewPort.cpp
+﻿  Hornet.cpp
   c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(108): warning C4018: '<': signed/unsigned mismatch
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(131): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(132): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(139): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(142): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(146): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(151): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(154): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(161): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(163): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(169): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(173): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(178): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(182): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(183): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(188): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(191): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(195): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(200): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(209): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(212): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(214): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(220): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(224): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(231): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(233): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(237): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\game c++\manx\directxgame\demodirectx\gamecomponents\viewport.cpp(238): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Genjibo.cpp
-  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-  Generating Code...
+d:\game c++\manx\directxgame\demodirectx\gameobjects\boss\hornet.cpp(125): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\boss\hornet.cpp(138): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\boss\hornet.cpp(143): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\boss\hornet.cpp(150): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\boss\hornet.cpp(151): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\boss\hornet.cpp(190): warning C4018: '<': signed/unsigned mismatch
+d:\game c++\manx\directxgame\demodirectx\gameobjects\boss\hornet.cpp(206): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\boss\hornet.cpp(269): warning C4018: '<': signed/unsigned mismatch
+d:\game c++\manx\directxgame\demodirectx\gameobjects\boss\hornet.cpp(284): warning C4018: '<': signed/unsigned mismatch
+d:\game c++\manx\directxgame\demodirectx\gameobjects\boss\hornet.cpp(291): warning C4018: '<': signed/unsigned mismatch
+d:\game c++\manx\directxgame\demodirectx\gameobjects\boss\hornet.cpp(293): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\boss\hornet.cpp(304): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\boss\hornet.cpp(306): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\boss\hornet.cpp(316): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   DemoDirectX.vcxproj -> D:\Game C++\manx\DirectXGame\Debug\DemoDirectX.exe

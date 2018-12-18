@@ -73,9 +73,34 @@ void ChildHornet::Update(float dt)
 void ChildHornet::OnCollision(Entity * other, SideCollisions side)
 {
 	if (other->Tag == EntityTypes::Wall) {
-		waittingDie = true;
-		vx = 0;
-		vy = 0;
+		if (typeAttack == 1) {
+			waittingDie = true;
+			vx = 0;
+			vy = 0;
+		}
+		else if (typeAttack == 2) {
+			int vxRand, vyRand;
+			vxRand = rand() % 30 + 10;
+			vyRand = rand() % 30 + 10;
+
+			if (side == SideCollisions::Right || side == SideCollisions::BottomRight || side == SideCollisions::TopRight) {
+				vxRand *= -1;
+				if (vy < 0) vxRand *= -1;
+			}
+			if (side == SideCollisions::Bottom || side == SideCollisions::BottomLeft || side == SideCollisions::BottomRight) {
+				if (vx<0) vxRand *= -1;
+				vyRand *= -1;
+			}
+			vx = vxRand;
+			vy = vyRand;
+			if (vx > 0) {
+				isFaceRight = false;
+			}
+			else {
+				isFaceRight = true;
+			}
+
+		}
 	}
 	if (other->Tag == EntityTypes::Megaman) {
 		Die();

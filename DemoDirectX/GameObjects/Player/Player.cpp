@@ -23,6 +23,9 @@ Player::Player()
 	mAnimationEffect1->Start();
 	mAnimationEffect2->Start();
 
+	//Follow Boss
+	mFollow = new Sprite("Resources/Megaman/MegaEffect/Follow.png");
+
 	//Khởi tạo mảng Bullet
 	mListBullet = new PlayerBullet[5];
 	/*for (int i = 0; i < 5; i++) {
@@ -49,6 +52,7 @@ Player::Player()
 	this->isImmortal = false;
 	this->turnDraw = false;
 	this->isAlive = true;
+	onFollow = false;
 	inSlopingWall = false;
 	beingAttacked = false;
 	dtImmortal = 0;
@@ -537,21 +541,28 @@ void Player::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DX
 				}
 			}
 			
-			
+			//vẽ chêt
+			if (mDeathEffect) {
+				mDeathEffect->Draw(trans);
+			}
+			if (onFollow) {
+				mFollow->SetPosition(this->GetPosition());
+				mFollow->Draw(D3DXVECTOR3(), RECT(), D3DXVECTOR2(), trans);
+			}
 
 			//vẽ thanh máu
 			if (mHP) {
 				mHP->Draw();
 			}
 
+			//Máu boss
 			if (hornetHP) {
 				hornetHP->Draw();
 			}
 
-			//vẽ chêt
-			if (mDeathEffect) {
-				mDeathEffect->Draw(trans);
-			}
+			
+
+			
 		}
 		else
 		{

@@ -11,7 +11,7 @@ Hornet::Hornet(float posX, float posY)
 	mAnimationStand = new Animation("Resources/Boss/Hornet.png", "Resources/Boss/HornetStand.txt", 0.05f, false);
 	mAnimationPrepare= new Animation("Resources/Boss/Hornet.png", "Resources/Boss/HornetAttack2.txt", 0.05f, false);
 	mAnimationAttack = new Animation("Resources/Boss/Hornet.png", "Resources/Boss/HornetAttack2.txt", 0.05f, false);
-	mAnimationSpawnChild = new Animation("Resources/Boss/Hornet.png", "Resources/Boss/HornetSpawnChild.txt", 0.2f, false);
+	mAnimationSpawnChild = new Animation("Resources/Boss/Hornet.png", "Resources/Boss/HornetSpawnChild.txt", 0.05f, false);
 	mAnimationDie = new Animation("Resources/Boss/Hornet.png", "Resources/Boss/HornetDie.txt", 0.1f, false);
 	
 	mAnimation = mAnimationStand;
@@ -24,6 +24,7 @@ Hornet::Hornet(float posX, float posY)
 	isSpawn = true;
 	mPlayer = ViewPort::getInstance()->mPlayer;
 	mCamera = ViewPort::getInstance()->mCamera;
+
 	rectMove = mCamera->GetBound();
 	rectMove.left += 50;
 	rectMove.right -= 50;
@@ -34,6 +35,7 @@ Hornet::Hornet(float posX, float posY)
 	midRectY = rectMove.top + (rectMove.bottom - rectMove.top) / 2;
 
 	mPlayer->hornetHP = new HornetHP(225, 60);
+	mListChild.push_back(new ChildHornet());
 	mListChild.push_back(new ChildHornet());
 	mListChild.push_back(new ChildHornet());
 	mListChild.push_back(new ChildHornet());
@@ -52,7 +54,7 @@ void Hornet::Update(float dt)
 		if (mAnimation != mAnimationDie) {
 			mAnimationDie->Start();
 			mAnimation = mAnimationDie;
-			//vy = 100;
+			vy=200;
 		}			
 	}
 	else if (mPlayer->hornetHP->HP > 30) {
@@ -106,8 +108,7 @@ void Hornet::Update(float dt)
 			}
 			else if (typeAttack == 3) {
 				//Spawn child and follow
-				mAnimationSpawnChild->Start();
-				mAnimation = mAnimationSpawnChild;
+					SpawnFollow();		
 			}
 		}
 		else if (mAnimation == mAnimationSpawnChild) {
@@ -122,7 +123,7 @@ void Hornet::Update(float dt)
 		}
 		else if (mAnimation == mAnimationPrepare) {	//Kết thúc chuẩn bị: Prepare->Attack
 				posMegaX = mPlayer->posX;
-				posMegaY = mPlayer->posY;
+				posMegaY = rectMove.bottom;
 				mAnimationAttack->Start();
 				mAnimation = mAnimationAttack;			
 		}
@@ -170,7 +171,7 @@ void Hornet::Update(float dt)
 
 		//Xoay mặt hướng nhân vật
 		if (mPlayer->posX >= posX) {
-			isFaceRight = true;
+			isFaceRight = true;			
 			direction = 1;
 		}
 		else {
@@ -189,40 +190,93 @@ void Hornet::Update(float dt)
 	for (int i = 0; i < mListChild.size(); i++) {
 		mListChild[i]->Update(dt);
 	}
+
+	//Follow
+	if (mAnimationFollow) {
+		int xFollow, yFollow, xPlayer, yPlayer;
+		xFollow = int(mAnimationFollow->GetPosition().x);
+		yFollow = int(mAnimationFollow->GetPosition().y);
+		xPlayer = int(mPlayer->posX);
+		yPlayer = int(mPlayer->posY);
+		if (xFollow < xPlayer) xFollow++;
+		else if (xFollow > xPlayer) xFollow--;
+		if (yFollow < yPlayer) yFollow++;
+		else if (yFollow > yPlayer) yFollow--;
+			
+		mAnimationFollow->SetPosition(xFollow, yFollow);
+		mAnimationFollow->Update(dt);
+		if (xFollow == xPlayer && yFollow == yPlayer) {
+			mPlayer->onFollow=true;
+			mAnimationFollow = NULL;
+		}
+	}
+	if (mChildFollow) {
+		if (!mChildFollow->isAlive)	mPlayer->onFollow = false;
+		if (mPlayer->onFollow) {
+			if (int(mChildFollow->posX) < int(mPlayer->posX)) {
+				mChildFollow->isFaceRight = false;
+				mChildFollow->AddPositionX(1);
+			}
+			else if (int(mChildFollow->posX) > int(mPlayer->posX)) { 
+				mChildFollow->isFaceRight = true;
+				mChildFollow->AddPositionX(-1); 
+			}
+
+			//Chạy tới player
+			if (int(mChildFollow->posY) < int(mPlayer->posY)) {
+				mChildFollow->AddPositionY(1);
+			}
+			else if (int(mChildFollow->posY) > int(mPlayer->posY)) mChildFollow->AddPositionY(-1);
+		}
+		mChildFollow->Update(dt);
+	}
 }
 
 void Hornet::OnCollision(Entity * other, SideCollisions side)
 {
-	if (mAnimation != mAnimationDie) {
-		if (other->Tag == EntityTypes::MegaBullet) {
-			mPlayer->hornetHP->AddDame(other->dame);
-			other->Tag = EntityTypes::None;
-		}
-		if (other->Tag == Wall) {
-			if (side == SideCollisions::Bottom) {
-				if (mAnimation == mAnimationAttack) {
-					mAnimationFly->Start();
-					mAnimation = mAnimationFly;
-					vy = -HornetDefine::SPEED_Y;
-				}
-			}
-		}
+	 
+	if (other->Tag == EntityTypes::MegaBullet) {
+		mPlayer->hornetHP->AddDame(other->dame);
+		other->Tag = EntityTypes::None;
 	}
+	if (other->Tag == Wall) {
+		//if (side == SideCollisions::Bottom) {
+		
+		if (mAnimation == mAnimationAttack) {
+				mAnimationFly->Start();
+				mAnimation = mAnimationFly;
+				vy = -HornetDefine::SPEED_Y;
+		}
+		if (mAnimation == mAnimationDie && side == SideCollisions::Bottom)
+		 {
+				vy = 0;
+				vx = 0;
+		}
+
+	}
+	
 	
 }
 
 void Hornet::Draw(D3DXVECTOR2 transform)
 {
-	for (int i = 0; i < mListChild.size(); i++) {
-		mListChild[i]->Draw(transform);
-	}
+	
 	
 	mAnimation->SetPosition(posX, posY);
 	mAnimation->FlipVertical(isFaceRight);
 	mAnimation->Draw(transform);
 
-	//HP vẽ bên player để player ở sau máu
+	for (int i = 0; i < mListChild.size(); i++) {
+		mListChild[i]->Draw(transform);
+	}
+
+	if (mAnimationFollow) {
+		mAnimationFollow->Draw(transform);
+	}
 	
+	if (mChildFollow) {
+		mChildFollow->Draw(transform);
+	}
 }
 
 void Hornet::SpawnChild1()
@@ -236,9 +290,33 @@ void Hornet::SpawnChild1()
 	}
 	for (int i = 0; i < mListChild.size(); i++) {
 		if (!mListChild[i]->isAlive) {
-			mListChild[i] = new ChildHornet(1, posX, posY, direction*30, -5 +i*5);
+			mListChild[i] = new ChildHornet(1, posX, posY, direction*30, -10 +i*7);
 		}
 	}
 	mAnimationSpawnChild->Start();
 	mAnimation = mAnimationSpawnChild;
+}
+
+void Hornet::SpawnFollow()
+{
+	if (toAttack) {
+		if (!mChildFollow)
+			mChildFollow = new ChildHornet(2, posX, posY, direction * 30, -20);
+		if (!mPlayer->onFollow) {
+			if (!mChildFollow->isAlive)	mChildFollow = new ChildHornet(2, posX, posY, direction * 30, -20);
+			mAnimationFollow = new Animation("Resources/Enemies/Follow.png", "Resources/Enemies/Follow.txt", 0.1f, true);
+			mAnimationFollow->SetPosition(posX, posY);
+		}
+		mAnimationSpawnChild->Start();
+		mAnimation = mAnimationSpawnChild;
+	}
+	else
+	{
+		if (!mChildFollow)
+			mChildFollow = new ChildHornet(2, posX, posY, direction * 30, -20);
+		SpawnChild1();
+	}
+	toAttack = !toAttack;
+	
+	//SpawnChild1();
 }

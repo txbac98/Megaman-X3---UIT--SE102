@@ -78,6 +78,7 @@ public:
 	bool inSlopingWall;
 	float dtImmortal;	//đếm time immortal
 	bool turnDraw;		//Chớp khi miễn kháng
+	bool onFollow;
 	int typeBullet;
 	Animation   *mCurrentAnimation;
 	Animation	*mCurrentEffectAnimation;
@@ -90,6 +91,7 @@ public:
 
 	PlayerHP *mHP;
 	HornetHP *hornetHP;
+	Sprite *mFollow;
 	
 //protected:
 	Animation   *mAnimationSpawning,
