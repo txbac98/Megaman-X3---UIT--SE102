@@ -90,10 +90,12 @@
     <ClCompile Include="GameComponents\CollisionManager.cpp" />
     <ClCompile Include="GameComponents\Game.cpp" />
     <ClCompile Include="GameComponents\GameGlobal.cpp" />
+    <ClCompile Include="GameComponents\GameLog.cpp" />
     <ClCompile Include="GameComponents\GameMap.cpp" />
     <ClCompile Include="GameComponents\GameTime.cpp" />
     <ClCompile Include="GameComponents\QuadTree.cpp" />
     <ClCompile Include="GameComponents\Scene.cpp" />
+    <ClCompile Include="GameComponents\Sound.cpp" />
     <ClCompile Include="GameComponents\Sprite.cpp" />
     <ClCompile Include="GameComponents\ViewPort.cpp" />
     <ClCompile Include="GameControllers\SceneManager.cpp" />
@@ -170,10 +172,12 @@
     <ClInclude Include="GameComponents\CollisionManager.h" />
     <ClInclude Include="GameComponents\Game.h" />
     <ClInclude Include="GameComponents\GameGlobal.h" />
+    <ClInclude Include="GameComponents\GameLog.h" />
     <ClInclude Include="GameComponents\GameMap.h" />
     <ClInclude Include="GameComponents\GameTime.h" />
     <ClInclude Include="GameComponents\QuadTree.h" />
     <ClInclude Include="GameComponents\Scene.h" />
+    <ClInclude Include="GameComponents\Sound.h" />
     <ClInclude Include="GameComponents\Sprite.h" />
     <ClInclude Include="GameComponents\ViewPort.h" />
     <ClInclude Include="GameControllers\SceneManager.h" />

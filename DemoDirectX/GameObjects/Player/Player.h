@@ -75,10 +75,11 @@ public:
 	bool isDownKeyAttack;
 	bool isImmortal;	//vừa mới tấn công xong
 	bool beingAttacked;
-	bool inSlopingWall;
+	//bool inSlopingWall;
 	float dtImmortal;	//đếm time immortal
 	bool turnDraw;		//Chớp khi miễn kháng
 	bool onFollow;
+	bool noDownKey;
 	int typeBullet;
 	Animation   *mCurrentAnimation;
 	Animation	*mCurrentEffectAnimation;
@@ -92,6 +93,7 @@ public:
 	PlayerHP *mHP;
 	HornetHP *hornetHP;
 	Sprite *mFollow;
+
 	
 //protected:
 	Animation   *mAnimationSpawning,

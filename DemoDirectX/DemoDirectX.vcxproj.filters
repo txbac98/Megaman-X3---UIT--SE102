@@ -286,6 +286,12 @@
     <ClCompile Include="GameObjects\Enemies\Stone.cpp">
       <Filter>FrameWork\GameObjects\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="GameComponents\Sound.cpp">
+      <Filter>FrameWork\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponents\GameLog.cpp">
+      <Filter>FrameWork\GameComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameComponents\Game.h">
@@ -530,6 +536,12 @@
     </ClInclude>
     <ClInclude Include="GameObjects\Enemies\Stone.h">
       <Filter>FrameWork\GameObjects\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\Sound.h">
+      <Filter>FrameWork\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\GameLog.h">
+      <Filter>FrameWork\GameComponents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

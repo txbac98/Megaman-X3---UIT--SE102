@@ -1,5 +1,6 @@
 ﻿#include "Player.h"
 #include "../../GameComponents/ViewPort.h"
+#include "../../GameComponents/Sound.h"
 
 Player::Player()
 {
@@ -53,7 +54,8 @@ Player::Player()
 	this->turnDraw = false;
 	this->isAlive = true;
 	onFollow = false;
-	inSlopingWall = false;
+	noDownKey = false;
+	//inSlopingWall = false;
 	beingAttacked = false;
 	dtImmortal = 0;
 	this->Tag = Entity::EntityTypes::Megaman;
@@ -145,7 +147,6 @@ void Player::Update(float dt)
 void Player::CheckNoCollisionWithBottom() {
 	
 	if (objectBottom == NULL) return;
-	if (inSlopingWall) return;
 	
 	RECT rectBottom, mRect;
 	rectBottom = objectBottom->GetBound();
@@ -170,14 +171,14 @@ void Player::CheckNoCollisionWithBottom() {
 			this->AddPositionX(1);
 		//Phía left
 		if (this->posX < objectBottom->posX) {
-			if ((mRect.right - rectBottom.left) < this->width*0.1) {
+			if ((mRect.right - rectBottom.left) < 0) { //this->width*0.1
 				this->SetState(new PlayerFallingState(this->mPlayerData));
 			}
 			return;
 		}
 		//Phía right
 		if (this->posX > objectBottom->posX) {
-			if ((rectBottom.right - mRect.left) < this->width*0.1) {
+			if ((rectBottom.right - mRect.left) < 0) {
 				this->SetState(new PlayerFallingState(this->mPlayerData));
 			}
 			return;
@@ -230,78 +231,101 @@ void Player::CheckNoCollisionWithBottom() {
 }
 void Player::Die()
 {
-	mHP->AddDame(mHP->HP);
+	if (!mDeathEffect) {
+		Sound::getInstance()->play("Die", false, 1);
+		mHP->AddDame(mHP->HP);
+		mDeathEffect = new PlayerDeathEffect(posX, posY);
+		this->isAlive = false;
+		return;
+	}
 }
 void Player::HandleKeyboard(float dt) {
 
-	if (this->getState()==PlayerState::BeingAttacked) {
-		return;
-	}
-	//Effect when keep keyAttack
-	if (KEY->keyAttack && !isDownKeyAttack) {
-		timeDownAttackKey = 0;
-		typeBullet = 0;
-		isDownKeyAttack = true;
-	}
-	if (isDownKeyAttack) timeDownAttackKey += dt;
-	if (timeDownAttackKey > PlayerDefine::TIME_EFFECT2) {
-		mCurrentEffectAnimation = mAnimationEffect2;
-		typeBullet = 2;
-	}
-	else if (timeDownAttackKey > PlayerDefine::TIME_EFFECT1) {
-		mCurrentEffectAnimation = mAnimationEffect1;
-		typeBullet = 1;
-	}
-	//Spawn bullet
-	if (KEY->keyAttackUp && isDownKeyAttack) {
-		
-		isDownKeyAttack = false;
-		timeDownAttackKey=0;
-		mCurrentEffectAnimation = NULL;
-		switch (this->getState())
-		{
-		case PlayerState::Standing:
-			this->SetState(new PlayerStandingAndShootState(mPlayerData));
-			break;
-		case PlayerState::Running:
-			this->SetState(new PlayerRunningAndShootState(mPlayerData));
-			break;
-		case PlayerState::Jumping:	case PlayerState::Falling:
-			this->SetState(new PlayerJumpingAndShootState(mPlayerData));
-			break;
-		case PlayerState::Cling:
-			this->SetState(new PlayerClingAndShootState(mPlayerData));
-			break;
-		case PlayerState::Dashing:	//Dashing không cho bắn
+	if (!noDownKey) {
+		if (this->getState() == PlayerState::BeingAttacked) {
 			return;
-		default:
-			break;
 		}
-		for (int i = 0; i < sizeof(mListBullet); i++) {
-			if (mListBullet[i].wasBorn) continue;
-			mListBullet[i].Spawn(isFaceLeft, typeBullet);		//Cho phép bullet được vẽ, kiểu bullet
-			if (mCurrentReverse)
-				mListBullet[i].SetPosition(this->posX - 10, this->posY - 1);
-			else mListBullet[i].SetPosition(this->posX + 10, this->posY - 1);
-			break;
+		//Effect when keep keyAttack
+		if (KEY->keyAttack && !isDownKeyAttack) {
+			timeDownAttackKey = 0;
+			typeBullet = 0;
+			isDownKeyAttack = true;
 		}
-	}
+		if (isDownKeyAttack) timeDownAttackKey += dt;
+		if (timeDownAttackKey > PlayerDefine::TIME_EFFECT2) {
+			mCurrentEffectAnimation = mAnimationEffect2;
+			typeBullet = 2;
+		}
+		else if (timeDownAttackKey > PlayerDefine::TIME_EFFECT1) {
+			mCurrentEffectAnimation = mAnimationEffect1;
+			typeBullet = 1;
+		}
+		//Spawn bullet
+		if (KEY->keyAttackUp && isDownKeyAttack) {
+			
+			isDownKeyAttack = false;
+			timeDownAttackKey = 0;
+			mCurrentEffectAnimation = NULL;
+			switch (this->getState())
+			{
+			case PlayerState::Standing:
+				this->SetState(new PlayerStandingAndShootState(mPlayerData));
+				break;
+			case PlayerState::Running:
+				this->SetState(new PlayerRunningAndShootState(mPlayerData));
+				break;
+			case PlayerState::Jumping:	case PlayerState::Falling:
+				this->SetState(new PlayerJumpingAndShootState(mPlayerData));
+				break;
+			case PlayerState::Cling:
+				this->SetState(new PlayerClingAndShootState(mPlayerData));
+				break;
+			case PlayerState::Dashing:	//Dashing không cho bắn
+				return;
+			default:
+				break;
+			}
+			for (int i = 0; i < sizeof(mListBullet); i++) {
+				if (mListBullet[i].wasBorn) continue;
+				if (typeBullet==0) 
+					Sound::getInstance()->play("PlayerShoot", false, 1);
+				else 
+					Sound::getInstance()->play("PlayerShoot12", false, 1);
+				mListBullet[i].Spawn(isFaceLeft, typeBullet);		//Cho phép bullet được vẽ, kiểu bullet
+				if (mCurrentReverse)
+					mListBullet[i].SetPosition(this->posX - 10, this->posY - 1);
+				else mListBullet[i].SetPosition(this->posX + 10, this->posY - 1);
+				break;
+			}
+		}
 
-	//Jump
-  	if (KEY->keyJumpPress)
-	{
+		//Jump
+		if (KEY->keyJumpPress)
+		{		
 			if (mCurrentState == PlayerState::Running || mCurrentState == PlayerState::Standing)
 			{
+				Sound::getInstance()->play("Jump", false, 1);
 				this->SetState(new PlayerJumpingState(this->mPlayerData));
 				return;
 			}
+		}
+		//Gọi handlekey từng state
+		if (this->mPlayerData->state)
+		{
+			this->mPlayerData->state->HandleKeyboard();
+		}
 	}
-	//Gọi handlekey từng state
-	if (this->mPlayerData->state)
-	{
-		this->mPlayerData->state->HandleKeyboard();
+	else {
+		if (vy != 0) {
+			vx = 0;
+			this->SetState(new PlayerFallingState(mPlayerData));
+		}	
+		else {
+			if (this->getState()!=PlayerState::Standing)
+				this->SetState(new PlayerStandingState(mPlayerData));
+		}
+		return;
 	}
-	
 }
 
 
@@ -336,9 +360,7 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 				else mHP->AddDame(other->dame);
 				if (mHP->HP <= 0) {
 					if (this->isAlive) {
-						mDeathEffect = new PlayerDeathEffect(posX, posY);
-						this->isAlive = false;
-						return;
+						Die();
 					}
 				}
 				if (!beingAttacked) {
@@ -351,6 +373,21 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 		}
 			
 	}
+	
+	//Tường xiên
+	//if (other->Tag == SlopingWall) {
+	//	if (this->getState()!=PlayerState::Falling) {	//không rơi 
+	//		inSlopingWall = true;
+	//		if (vx > 0) {
+	//			this->AddPositionY(-0.5);
+	//		}
+	//		else if (vx < 0) {
+	//			this->AddPositionY(0.5);
+	//		}
+	//	}
+	//	else inSlopingWall = false;
+	//}
+
 	if (other->Tag == EntityTypes::Wall || other->Tag== EntityTypes::Elevator 
 		|| other->Tag==EntityTypes::Door || other->Tag==EntityTypes::ConveyorRight
 		|| other->Tag== EntityTypes::ConveyorLeft
@@ -363,57 +400,29 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 		if (side == SideCollisions::Bottom || side == SideCollisions::BottomLeft || side == SideCollisions::BottomRight) {
 
 			objectBottom = other;
-			
-			inSlopingWall = false;
+			//inSlopingWall = false;
 			//vy = 0;
 			//if (other->Tag == EntityTypes::Elevator) this->SetVy(other->GetVy());
 		}
 		if (side == SideCollisions::Left || side == SideCollisions::BottomLeft) {
-			if (this->isFaceLeft) {
+			if (this->isFaceLeft ) {
 				this->mPlayerData->player->allowMoveLeft = false;
 				this->mPlayerData->player->SetVx(0);
 			}
 		}
 		if (side == SideCollisions::Right || side == SideCollisions::BottomRight) {
-			if (!this->isFaceLeft) {
+			if (!this->isFaceLeft ) {
 				this->mPlayerData->player->SetVx(0);
 				this->mPlayerData->player->allowMoveRight = false;
 			}
 		}
 		//Riêng từng state
 		if (this->mPlayerData->state)
-		this->mPlayerData->state->OnCollision(other, side);
+			this->mPlayerData->state->OnCollision(other, side);
 		return;
 	}	
-	//if (other->Tag == SlopingWall) {
-	//	inSlopingWall = true;
-	//	if (vy > 0) {	//rơi xuống
-	//		if ((posY - other->GetBound().bottom)/(posX - other->GetBound().left) < 0.5) {
-	//			this->vy = 0;
-	//			this->SetState(new PlayerStandingState(mPlayerData));
-	//			return;
-	//		}
-	//	}
-	//	if (other->GetBound().bottom - this->GetBound().bottom > 0.1f) {
-	//		if (vy == 0) {
-	//			if (vx > 0) {
-	//				this->AddPositionY(-1);
-	//			}
-	//			else if (vx < 0)
-	//			{
-	//				this->AddPositionY(1);
-	//			}
-	//		}
-	//		if (other->GetBound().bottom - this->GetBound().bottom > (other->height - 0.2f)) {
-	//			inSlopingWall = false;
-	//			this->SetState(new PlayerFallingState(mPlayerData));
-	//		}
-	//	}
-	//	else { (this->AddPositionY(other->GetBound().bottom - this->GetBound().bottom)); 
-	//	inSlopingWall = false;
-	//	}
-	//	
-	//}
+	
+	
 }
 
 

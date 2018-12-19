@@ -65,7 +65,7 @@ void HeadGunner::Update(float dt)
 			isAlive = false;
 			explosion = new RedExplosion(posX,posY);
 		}
-		
+		if (abs(posX-mPlayer->posX) <100 && abs(posY-mPlayer->posY<100))
 		if (mAnimation->mEndAnimate) {
 			if (mAnimation == mAnimationStand) {
 				mAnimationShoot1->Start();

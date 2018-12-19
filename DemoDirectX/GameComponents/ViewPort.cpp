@@ -25,7 +25,7 @@ void ViewPort::Init(Player *player)
 	iCurrentMap = 8;
 	mPlayer->SetPosition(7190, 1620);  //Test Boss 8
 	//mPlayer->SetPosition(5700, 800);		//Test map 6
-	//mPlayer->SetPosition(4700, 800);		//Map 5:: Carry
+	//mPlayer->SetPosition(2559, 610);		//Map 5:: Carry
 	//mPlayer->SetPosition(2390, 800);		//Genji
 	mCurrentMap = mListMap.at(iCurrentMap);
 	//mNextMap = mListMap.at(iCurrentMap+1);

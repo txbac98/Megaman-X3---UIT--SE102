@@ -7,10 +7,10 @@ Hornet::~Hornet()
 
 Hornet::Hornet(float posX, float posY)
 {
-	mAnimationFly = new Animation("Resources/Boss/Hornet.png", "Resources/Boss/HornetFly.txt", 0.05f, true);
+	mAnimationFly = new Animation("Resources/Boss/Hornet.png", "Resources/Boss/HornetFly.txt", 0.02f, true);
 	mAnimationStand = new Animation("Resources/Boss/Hornet.png", "Resources/Boss/HornetStand.txt", 0.05f, false);
-	mAnimationPrepare= new Animation("Resources/Boss/Hornet.png", "Resources/Boss/HornetAttack2.txt", 0.05f, false);
-	mAnimationAttack = new Animation("Resources/Boss/Hornet.png", "Resources/Boss/HornetAttack2.txt", 0.05f, false);
+	mAnimationPrepare= new Animation("Resources/Boss/Hornet.png", "Resources/Boss/HornetPrepare.txt", 0.05f, false);
+	mAnimationAttack = new Animation("Resources/Boss/Hornet.png", "Resources/Boss/HornetAttack.txt", 0.05f, false);
 	mAnimationSpawnChild = new Animation("Resources/Boss/Hornet.png", "Resources/Boss/HornetSpawnChild.txt", 0.05f, false);
 	mAnimationDie = new Animation("Resources/Boss/Hornet.png", "Resources/Boss/HornetDie.txt", 0.1f, false);
 	

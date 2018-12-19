@@ -21,7 +21,7 @@ protected:
 	//Animation *mAnimation, *mAnimationSpawn, *mAnimationSub, *mAnimationRotate;
 	Sprite *mSpriteCarryarm, *mSpriteMove;
 	Player* mPlayer;
-	SubCarry* mSub;
+	SubCarry	*mSubLeft, *mSubRight, *mSub;
 	DebrisCarry *mDebris1, *mDebris2, *mDebris3;
 	float  posY1, posY2, posY3, posSubX1, posSubX2;
 };

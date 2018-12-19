@@ -62,6 +62,11 @@ void SubCarry::Update(float dt)
 		}
 		if (!mBox->isAlive) {
 			if (posY <= posY1) {
+				if (posY == posY1) {
+					if (posX<=posX1)	this->AddPositionX(40);
+					else this->AddPositionX(-40);
+				}
+				
 				hp--;
 				mBox->Spawn(posX, posY + posBoxY);
 				haveBox = true;
@@ -70,8 +75,8 @@ void SubCarry::Update(float dt)
 
 		if (haveBox) {	//Dính liền	
 			if (posY < posY1 + dtY) {		//dt: tính tay
-				this->AddPositionY(0.5);
-				mBox->AddPositionY(0.5);
+				this->AddPositionY(1);
+				mBox->AddPositionY(1);
 			}
 			else {
 				haveBox = false;
@@ -81,7 +86,7 @@ void SubCarry::Update(float dt)
 			/*mAnimationDrop->Start();
 			mAnimation = mAnimationDrop;*/
 			if (posY > posY1) {
-				this->AddPositionY(-0.5);
+				this->AddPositionY(-1);
 			}
 		}
 		mAnimation->Update(dt);

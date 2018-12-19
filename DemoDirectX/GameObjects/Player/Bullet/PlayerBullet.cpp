@@ -18,6 +18,7 @@ PlayerBullet::~PlayerBullet()
 
 void PlayerBullet::Spawn(bool goLeft, int typeBullet)
 {
+	
 	this->Tag = EntityTypes::MegaBullet;
 	if (typeBullet == 0) {
 		dame = 1;

@@ -12,6 +12,7 @@ BoxObject::BoxObject()
 	mPlayer = ViewPort::getInstance()->mPlayer;
 	isAlive = false;
 	isSpawn = false;
+	dame = 1;
 	this->Tag = EntityTypes::Box;
 }
 

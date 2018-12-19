@@ -1,5 +1,5 @@
 #include "RedExplosion.h"
-
+#include "../../GameComponents/Sound.h"
 RedExplosion::~RedExplosion()
 {
 }
@@ -10,6 +10,7 @@ RedExplosion::RedExplosion(float posX, float posY)
 	this->SetPosition(posX, posY);
 	mEndAnimate = mAnimation->mEndAnimate;
 	mAnimation->SetPosition(posX, posY);
+	Sound::getInstance()->play("Explosion", false, 1);
 }
 
 void RedExplosion::ReStart(float posX, float posY)
@@ -17,6 +18,7 @@ void RedExplosion::ReStart(float posX, float posY)
 	mAnimation->Start();
 	this->SetPosition(posX, posY);
 	mAnimation->SetPosition(posX, posY);
+	Sound::getInstance()->play("Explosion", false, 1);
 }
 
 void RedExplosion::Update(float dt)
