@@ -1,3 +1,13 @@
-﻿  PlayerBeingAttackedState.cpp
+﻿  Player.cpp
   c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(114): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(115): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(164): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(391): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(464): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(465): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(509): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(508): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(585): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\game c++\manx\directxgame\demodirectx\gameobjects\player\player.cpp(587): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
   DemoDirectX.vcxproj -> D:\Game C++\manx\DirectXGame\Debug\DemoDirectX.exe

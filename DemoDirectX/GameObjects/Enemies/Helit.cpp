@@ -60,15 +60,15 @@ void Helit::Update(float dt)
 			if ( vy==0) {
 				vy = HelitDefine::SPEED_Y;
 			}
-			
-		}
-		if (posY > mPlayer->posY /*&& vy > 0*/) {
-			vy = 0;
-			if (!mBullet->isAlive || abs(mBullet->posX - posX) > 200) {
-				mBullet->Spawn(3, isFaceRight, this->posX, this->posY, direction*HelitDefine::BULLET_SPEED_X, 0);
-				vy = -HelitDefine::SPEED_Y;
+			if (posY > mPlayer->posY /*&& vy > 0*/) {
+				vy = 0;
+				if (!mBullet->isAlive || abs(mBullet->posX - posX) > 200) {
+					mBullet->Spawn(3, isFaceRight, this->posX, this->posY, direction*HelitDefine::BULLET_SPEED_X, 0);
+					vy = -HelitDefine::SPEED_Y;
+				}
 			}
 		}
+		
 		
 		mAnimation->Update(dt);
 		Entity::Update(dt);

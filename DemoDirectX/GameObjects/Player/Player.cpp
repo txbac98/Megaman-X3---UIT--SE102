@@ -155,7 +155,7 @@ void Player::CheckNoCollisionWithBottom() {
 	
 
 	//rơi xuống
-	if (mCurrentState == PlayerState::Falling && mCurrentState == PlayerState::Jumping)
+	if (this->getState() == PlayerState::Falling && this->getState() == PlayerState::Jumping)
 		return;
 
 	if (objectBottom->Tag == EntityTypes::Elevator) {
@@ -170,40 +170,23 @@ void Player::CheckNoCollisionWithBottom() {
 
 	if (objectBottom->Tag == EntityTypes::ConveyorRight) {
 		if (mRect.right <= rectBottom.right)
+		{
 			this->AddPositionX(1);
-		//Phía left
-		if (this->posX < objectBottom->posX) {
-			if ((mRect.right - rectBottom.left) < 0) { //this->width*0.1
-				this->SetState(new PlayerFallingState(this->mPlayerData));
-			}
-			return;
+			/*if (vx ==0  ) {
+				if (allowMoveRight)
+					vx = 5;
+			}*/
+			//else vx += 5;
+			//this->AddPositionX(1);
 		}
-		//Phía right
-		if (this->posX > objectBottom->posX) {
-			if ((rectBottom.right - mRect.left) < 0) {
-				this->SetState(new PlayerFallingState(this->mPlayerData));
-			}
-			return;
-		}
+			
 	}
 	if (objectBottom->Tag == EntityTypes::ConveyorLeft) {
-		if (mRect.left >= rectBottom.left)
+		if (mRect.left>= rectBottom.left)
 			this->AddPositionX(-1);
-		//Phía left
-		if (this->posX < objectBottom->posX) {
-			if ((mRect.right - rectBottom.left) < this->width*0.1) {
-				this->SetState(new PlayerFallingState(this->mPlayerData));
-			}
-			return;
-		}
-		//Phía right
-		if (this->posX > objectBottom->posX) {
-			if ((rectBottom.right - mRect.left) < this->width*0.1) {
-				this->SetState(new PlayerFallingState(this->mPlayerData));
-			}
-			return;
-		}
-		return;
+			/*if (vx == 0) {
+				vx = -5;
+			}*/
 	}
 
 	
@@ -213,14 +196,16 @@ void Player::CheckNoCollisionWithBottom() {
 		return;
 	//Phía left
 	if (this->posX < objectBottom->posX) {
-		if ((mRect.right - rectBottom.left) < this->width*0.1) {
+		if ((mRect.right - rectBottom.left) < 0) {
+			//this->AddPositionX(-1);
 			this->SetState(new PlayerFallingState(this->mPlayerData));
 		}
 		return;
 	}
 	//Phía right
 	if (this->posX > objectBottom->posX) {
-		if ((rectBottom.right - mRect.left ) < this->width*0.1) {
+		if ((rectBottom.right - mRect.left ) < 0) {
+			//this->AddPositionX(1);
 			this->SetState(new PlayerFallingState(this->mPlayerData));
 		}
 		return;
@@ -400,8 +385,8 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 			this->SetState(new PlayerFallingState(mPlayerData));
 			return;
 		}
-		if (side == SideCollisions::Bottom || side == SideCollisions::BottomLeft || side == SideCollisions::BottomRight) {
-
+		if (side == SideCollisions::Bottom ) {
+			//|| side == SideCollisions::BottomLeft || side == SideCollisions::BottomRight
 			objectBottom = other;
 			this->AddPositionY(other->GetBound().top - this->GetBound().bottom);
 			//inSlopingWall = false;
