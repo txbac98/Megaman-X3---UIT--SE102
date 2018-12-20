@@ -13,8 +13,8 @@
 
 using namespace std;
 
-#define WIN_NAME L"Game DirectX"
-#define WIN_TITLE L"Game DirectX"
+#define WIN_NAME L"Megaman X3"
+#define WIN_TITLE L"Megaman X3"
 #define FPS 60
 #define KEYBOARD_BUFFERD_SIZE 1024
 
@@ -78,10 +78,14 @@ int initWindow(int cmdShow)
     GameGlobal::SetCurrentHINSTACE(mHInstance);
     GameGlobal::SetCurrentHWND(hWnd);
 
+	int x = (GetSystemMetrics(SM_CXSCREEN)) / 5;
+	int y = (GetSystemMetrics(SM_CYSCREEN)) / 7;
+
     ShowWindow(hWnd, cmdShow);
     UpdateWindow(hWnd);
+	
 	//Phóng to
-	SetWindowPos(hWnd, 0, 0, 0, 600, 600, SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE);
+	SetWindowPos(hWnd, 0, x, y , 600, 600, SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE);
 	//Keyboard
 	Keyboard::Create(mHInstance, hWnd);
 

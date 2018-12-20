@@ -23,15 +23,11 @@ public:
     void Update(float dt);
     void LoadContent();
     void Draw();
-	
- 
 
 protected:
-    void checkCollision(float dt);
-
-    GameMap *mMap, *mMap0, *mMap1, *mMap2, *mMapBack, *mMapNext;
     Camera *mCamera;
     Player *mPlayer;
+	float timeDelayRestart;
 	//ViewPort *mViewPort;
 };
 

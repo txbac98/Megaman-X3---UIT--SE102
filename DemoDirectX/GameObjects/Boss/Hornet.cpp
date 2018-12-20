@@ -67,6 +67,9 @@ void Hornet::Update(float dt)
 		typeAttack = 3;
 	}
 	if (mAnimation == mAnimationAttack) {	//Lao tới nv
+		/*float dtx, dty;
+		dtx = abs((posMegaX -posX) / (posMegaY - posY));
+		dty = abs((posMegaY - posY) / (posMegaX-posX));*/
 		if (int(posX) > posMegaX) {
 			this->AddPositionX(-1);
 		}
@@ -79,7 +82,7 @@ void Hornet::Update(float dt)
 		else if (int(posY) < posMegaY) {
 			this->AddPositionY(1);
 		}
-		if (int(posY) == posMegaY) {
+		if (int(posY) == posMegaY && int(posX)==posMegaX) {
 			mAnimationFly->Start();
 			mAnimation = mAnimationFly;
 			vy = -HornetDefine::SPEED_Y;
@@ -123,7 +126,7 @@ void Hornet::Update(float dt)
 		}
 		else if (mAnimation == mAnimationPrepare) {	//Kết thúc chuẩn bị: Prepare->Attack
 				posMegaX = mPlayer->posX;
-				posMegaY = rectMove.bottom;
+				posMegaY = mPlayer->posX;
 				mAnimationAttack->Start();
 				mAnimation = mAnimationAttack;			
 		}
@@ -140,7 +143,7 @@ void Hornet::Update(float dt)
 		}
 		if (posY < rectMove.top) {
 			//Stand
-			this->SetPosition(posX, rectMove.top);
+			this->SetPosition(posX, rectMove.top);	
 			mAnimationStand->Start();
 			mAnimation = mAnimationStand;
 			vy = 0;
@@ -152,11 +155,6 @@ void Hornet::Update(float dt)
 			vy = -HornetDefine::SPEED_Y;
 			vx = 0;			
 		}
-		/*else {
-			if (mPlayer->hornetHP->HP == 5) {
-				vx = HornetDefine::SPEED_X;
-			}
-		}*/
 	}
 	
 	

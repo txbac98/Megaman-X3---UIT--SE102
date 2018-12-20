@@ -162,6 +162,7 @@
     <ClCompile Include="MapReader\TmxUtil.cpp" />
     <ClCompile Include="RectF.cpp" />
     <ClCompile Include="Scenes\DemoScene.cpp" />
+    <ClCompile Include="Scenes\MenuScene.cpp" />
     <ClCompile Include="Transformable.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +248,7 @@
     <ClInclude Include="MapReader\zlib.h" />
     <ClInclude Include="RectF.h" />
     <ClInclude Include="Scenes\DemoScene.h" />
+    <ClInclude Include="Scenes\MenuScene.h" />
     <ClInclude Include="Transformable.h" />
   </ItemGroup>
   <ItemGroup>

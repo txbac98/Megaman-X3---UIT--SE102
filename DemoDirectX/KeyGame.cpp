@@ -24,9 +24,9 @@ void KeyGame::update()
 	keyDassPress = keyDash && !isKeyDashDownPrevious;
 	isKeyDashDownPrevious = keyDash;
 
-	/*keyChangeScene = key->IsKeyDown(DIK_RETURN);
+	keyChangeScene = key->IsKeyDown(DIK_RETURN);	
 	keyChangeScenePress = keyChangeScene && !isKeyChangeSceneDownPrevious;
-	isKeyChangeSceneDownPrevious = keyChangeScene;*/
+	isKeyChangeSceneDownPrevious = keyChangeScene;
 
 	keyUp = key->IsKeyDown(DIK_UP) ;
 	keyDown = key->IsKeyDown(DIK_DOWN) ;

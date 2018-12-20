@@ -292,6 +292,9 @@
     <ClCompile Include="GameComponents\GameLog.cpp">
       <Filter>FrameWork\GameComponents</Filter>
     </ClCompile>
+    <ClCompile Include="Scenes\MenuScene.cpp">
+      <Filter>FrameWork\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameComponents\Game.h">
@@ -542,6 +545,9 @@
     </ClInclude>
     <ClInclude Include="GameComponents\GameLog.h">
       <Filter>FrameWork\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\MenuScene.h">
+      <Filter>FrameWork\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

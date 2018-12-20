@@ -26,7 +26,7 @@ protected:
 	bool die;
 	vector<RedExplosion*> mExplosion;
 	int typeAttack;
-	float posX1, posY1;
+	float posX1, posY1, posXMid;
 	bool onDraw;
 	bool boom = false;
 };

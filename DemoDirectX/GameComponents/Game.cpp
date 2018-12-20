@@ -2,12 +2,22 @@
 #include "GameGlobal.h"
 #include "../GameControllers/SceneManager.h"
 #include "../Scenes/DemoScene.h"
+#include "../Scenes/MenuScene.h"
+#include "Sound.h"
 
 Game::Game(int fps)
 {
 	mFPS = fps;
 
-	SceneManager::GetInstance()->ReplaceScene(new DemoScene());
+	//Load âm thanh
+	Sound::getInstance()->loadSound("Resources/Sounds/Background.wav", "Background");
+	Sound::getInstance()->loadSound("Resources/Sounds/Explosion.wav", "Explosion");
+	Sound::getInstance()->loadSound("Resources/Sounds/Jump.wav", "PlayerShoot");
+	Sound::getInstance()->loadSound("Resources/Sounds/PlayerShoot.wav", "PlayerShoot12");
+	Sound::getInstance()->loadSound("Resources/Sounds/Jump.wav", "Jump");
+	Sound::getInstance()->loadSound("Resources/Sounds/Die.wav", "Die");
+
+	SceneManager::GetInstance()->ReplaceScene(new MenuScene());
 	
 	InitLoop();
 }

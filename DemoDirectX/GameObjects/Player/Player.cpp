@@ -152,6 +152,8 @@ void Player::CheckNoCollisionWithBottom() {
 	rectBottom = objectBottom->GetBound();
 	mRect = this->GetBound();
 
+	
+
 	//rơi xuống
 	if (mCurrentState == PlayerState::Falling && mCurrentState == PlayerState::Jumping)
 		return;
@@ -348,7 +350,8 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 		||other->Tag==EntityTypes::HornetBoss
 		||other->Tag==EntityTypes::HornetChild
 		|| other->Tag == EntityTypes::Stone5
-		|| other->Tag == EntityTypes::Stone3) {
+		|| other->Tag == EntityTypes::Stone3
+		|| other->Tag==EntityTypes::Helit) {
 		if (isImmortal || beingAttacked) {
 			return;
 		}
@@ -400,9 +403,9 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 		if (side == SideCollisions::Bottom || side == SideCollisions::BottomLeft || side == SideCollisions::BottomRight) {
 
 			objectBottom = other;
+			this->AddPositionY(other->GetBound().top - this->GetBound().bottom);
 			//inSlopingWall = false;
 			//vy = 0;
-			//if (other->Tag == EntityTypes::Elevator) this->SetVy(other->GetVy());
 		}
 		if (side == SideCollisions::Left || side == SideCollisions::BottomLeft) {
 			if (this->isFaceLeft ) {

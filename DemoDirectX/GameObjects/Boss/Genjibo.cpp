@@ -26,7 +26,8 @@ Genjibo::Genjibo(float posX, float posY)
 	posX1 = posX;
 	posY1 = posY;
 	mPlayer = ViewPort::getInstance()->mPlayer;
-	hp = 25;
+	posXMid = ViewPort::getInstance()->mCamera->GetPosition().x;
+	hp = 30;
 	vx = 100;
 	vy = 20;
 	dame = 2;
@@ -68,10 +69,10 @@ void Genjibo::Update(float dt)
 		}
 		Entity::Update(dt);
 
-		if (hp > 15) {
+		if (hp > 20) {
 			typeAttack = 1;
 		}
-		else if (hp > 8) {
+		else if (hp > 10) {
 			typeAttack = 2;
 		}
 		else typeAttack = 3;
@@ -79,8 +80,17 @@ void Genjibo::Update(float dt)
 		if (hp <= 0) {
 			//Die();
 			this->Tag = EntityTypes::None;
-
 			die = true;
+		}
+
+
+		//Tấn công:
+		if (typeAttack == 2) {	//Tới giữa thì nhảy lên
+			if (vy == 0 && vx < 0) {
+				if (posX < posXMid) {
+					vy = -GenjiboDefine::SPEED_Y;
+				}
+			}
 		}
 
 		//kiểm tra va chạm  object với map
@@ -117,13 +127,13 @@ void Genjibo::Update(float dt)
 			explosion[count]->Update(dt);
 			
 			//srand(time(NULL));
-
+			
 			if (explosion[count]->mEndAnimate)
 			{
 				int x = rand() % 50;
-				int y = rand() % 40;
+				int y = rand() % 50;
 				count++;
-				explosion[count]->ReStart(posX - 20 + x, posY - 20 + y);
+				explosion[count]->ReStart(this->GetPosition().x -20 +x, this->GetPosition().y - 20 +y);
 				//explosion[count]->ReStart(x,y);
 			}
 			if (count == 6)
@@ -149,7 +159,7 @@ void Genjibo::OnCollision(Entity * other, SideCollisions side)
 				}
 			}
 		}
-		else if (typeAttack == 2) //Đi vòng tròn
+		else if (typeAttack == 3) //Đi vòng tròn
 		{
 			if (side == SideCollisions::Left && vy == 0) {
 				this->AddPositionX(2);	//Tránh bị xét 2 va chạm ở góc
@@ -175,27 +185,18 @@ void Genjibo::OnCollision(Entity * other, SideCollisions side)
 				vy = 0;
 			}
 		}
-		else if (typeAttack == 3) {
-			if (vy == 0 && posX < posX1) {
-				vy = -GenjiboDefine::SPEED_Y;
-			}
+		else if (typeAttack == 2) {
 			if (side == SideCollisions::Left) {
-				this->AddPositionX(2);
 				vy = GenjiboDefine::SPEED_Y;
-				vx = GenjiboDefine::SPEED_X;
-			}
-			if (side == SideCollisions::Right) {
-				this->AddPositionX(-2);
 				vx = GenjiboDefine::SPEED_X;
 			}
 			if (side == SideCollisions::Bottom) {
 				this->AddPositionY(-2);
 				vy = 0;
 			}
-			if (side == SideCollisions::Top) {
-				this->AddPositionY(2);
-				vx = 0;
-				vy = GenjiboDefine::SPEED_Y;
+			if (side == SideCollisions::Right) {
+				this->AddPositionX(-2);
+				vx = -GenjiboDefine::SPEED_X;
 			}
 		}
 	}

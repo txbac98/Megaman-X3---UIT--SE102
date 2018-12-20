@@ -12,7 +12,7 @@ Helit::Helit(float posX, float posY)
 	this->SetPosition(posX, posY);
 	this->SetWidth(mAnimation->GetWidth());
 	this->SetHeight(mAnimation->GetHeight());
-	this->Tag = Entity::EntityTypes::Enemy;
+	this->Tag = Entity::EntityTypes::Helit;
 	isFaceRight = false;
 	mPlayer = ViewPort::getInstance()->mPlayer;
 	mCamera = ViewPort::getInstance()->mCamera;
@@ -62,9 +62,9 @@ void Helit::Update(float dt)
 			}
 			
 		}
-		if (posY > mPlayer->posY && vy > 0) {
+		if (posY > mPlayer->posY /*&& vy > 0*/) {
 			vy = 0;
-			if (!mBullet->wasBorn || abs(mBullet->posX - posX) > 200) {
+			if (!mBullet->isAlive || abs(mBullet->posX - posX) > 200) {
 				mBullet->Spawn(3, isFaceRight, this->posX, this->posY, direction*HelitDefine::BULLET_SPEED_X, 0);
 				vy = -HelitDefine::SPEED_Y;
 			}
@@ -80,12 +80,13 @@ void Helit::Update(float dt)
 		mBullet->Update(dt);
 
 		CollisionManager::getInstance()->checkCollision(mPlayer, mBullet, dt );
+		CollisionManager::getInstance()->checkCollision(mPlayer, this, dt);
 
 		ViewPort::getInstance()->GetMapObject(mListEntity, mBullet);
 		for (int j = 0; j < mListEntity.size(); j++)
 			if (mListEntity[j] != this)
 				CollisionManager::getInstance()->checkCollision(mListEntity[j], mBullet, dt);
-
+		
 	
 	if (explosion) {
 		explosion->Update(dt);
@@ -119,7 +120,6 @@ void Helit::Draw(D3DXVECTOR2 transform)
 void Helit::Die()
 {
 	if (isAlive) {
-		this->Tag = EntityTypes::None;
 		explosion = new RedExplosion(posX, posY);
 		isAlive = false;
 	}
