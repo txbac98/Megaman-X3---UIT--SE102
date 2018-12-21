@@ -22,13 +22,13 @@ void ViewPort::Init(Player *player)
 	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map7.tmx", "Resources/Map/NewMap/Map7_QuadTree.txt", 5887, 1527));	//7	ngang
 	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map8.tmx", "Resources/Map/NewMap/Map8_QuadTree.txt", 7167, 1537));	//8 Boss hornet
 
-	iCurrentMap = 0;
-	//mPlayer->SetPosition(7190, 1620);  //Test Boss 8
+	iCurrentMap = 8;
+	mPlayer->SetPosition(7190, 1620);  //Test Boss 8
 	//mPlayer->SetPosition(5700, 800);		//Test map 6
 	//mPlayer->SetPosition(2559, 610);		//Map 5:: Carry
 	//mPlayer->SetPosition(2390, 800);		//Genji
 	mCurrentMap = mListMap.at(iCurrentMap);
-	mNextMap = mListMap.at(iCurrentMap+1);
+	//mNextMap = mListMap.at(iCurrentMap+1);
 	canUpdateCamera = false;
 }
 

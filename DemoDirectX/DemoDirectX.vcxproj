@@ -118,6 +118,7 @@
     <ClCompile Include="GameObjects\MapObjects\Door.cpp" />
     <ClCompile Include="GameObjects\MapObjects\Elevator.cpp" />
     <ClCompile Include="GameObjects\MapObjects\GameObject.cpp" />
+    <ClCompile Include="GameObjects\MapObjects\ItemHP.cpp" />
     <ClCompile Include="GameObjects\Player\Bullet\PlayerBullet.cpp" />
     <ClCompile Include="GameObjects\Player\Deathorbs.cpp" />
     <ClCompile Include="GameObjects\Player\PlayerDeathEffect.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="GameObjects\MapObjects\Door.h" />
     <ClInclude Include="GameObjects\MapObjects\Elevator.h" />
     <ClInclude Include="GameObjects\MapObjects\GameObject.h" />
+    <ClInclude Include="GameObjects\MapObjects\ItemHP.h" />
     <ClInclude Include="GameObjects\Player\Bullet\PlayerBullet.h" />
     <ClInclude Include="GameObjects\Player\Deathorbs.h" />
     <ClInclude Include="GameObjects\Player\PlayerDeathEffect.h" />

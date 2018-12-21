@@ -44,6 +44,8 @@ void Genjibo::Update(float dt)
 {
 	if (isAlive) {
 		//Con ong bay xuống
+		if (posX - mPlayer->posX < 120)
+			mPlayer->noDownKey = true;
 		if (abs(posY1 - mAnimationSub->GetPosition().y) > 30) {
 			mAnimationSub->SetPosition(posX, mAnimationSub->GetPosition().y + 1);
 			mAnimationSub->Update(dt);
@@ -66,6 +68,7 @@ void Genjibo::Update(float dt)
 				this->SetWidth(mAnimationRotate->GetWidth());
 				this->SetHeight(mAnimationRotate->GetHeight());
 			}
+			mPlayer->noDownKey = false;
 		}
 		Entity::Update(dt);
 

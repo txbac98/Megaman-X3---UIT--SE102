@@ -2,6 +2,7 @@
 #include "../Entity.h"
 #include"../../GameComponents/Animation.h"
 #include "RedExplosion.h"
+#include "../Player/Player.h"
 
 
 class EnemyBullet : public Entity
@@ -15,6 +16,7 @@ public:
 	void Draw(D3DXVECTOR2 transform = D3DXVECTOR2());
 	Sprite *mSprite1;
 	Animation *mAnimation2, *mAnimation3;
+	Player *mPlayer;
 	RedExplosion *mExplosion=NULL;
 	bool wasBorn = false;		//Đã được sinh ra hay chưa
 	int typeBullet = 0;

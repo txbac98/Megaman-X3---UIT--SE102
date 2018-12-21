@@ -142,6 +142,9 @@ void GameMap::LoadMap(char* filePath, char* fileQuadTree)
 			else if (object->GetName() == "Stone3") {
 				entity->Tag = Entity::EntityTypes::Stone3;
 			}
+			else if (object->GetName() == "ItemHP") {
+				entity->Tag = Entity::EntityTypes::ItemHP;
+			}
 			entity->SetPosition(posX, posY);
 			entity->SetWidth(object->GetWidth());
 			entity->SetHeight(object->GetHeight());
@@ -283,7 +286,10 @@ void GameMap::Update(float dt)
 				mListEntity[i] = new Stone(mListEntity[i]->posX, mListEntity[i]->posY, 3);
 				continue;
 			}
-
+			if (mListEntity[i]->Tag == Entity::EntityTypes::ItemHP) {
+				mListEntity[i] = new ItemHP(mListEntity[i]->posX, mListEntity[i]->posY);
+				continue;
+			}
 		}
 	}
 	

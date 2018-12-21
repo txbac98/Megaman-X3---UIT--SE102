@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="40" height="8" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="42">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="40" height="8" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="43">
  <tileset firstgid="1" source="Map7.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="8">
   <data encoding="base64" compression="zlib">
@@ -13,9 +13,9 @@
   <object id="31" x="626.167" y="189.5" width="157.333" height="28"/>
   <object id="34" x="781" y="205.5" width="56" height="12.4849"/>
   <object id="35" x="832.364" y="189.5" width="449.938" height="26.3636"/>
-  <object id="36" name="Stone5" x="367.667" y="18" width="47.3333" height="234.667"/>
-  <object id="39" name="Stone3" x="577" y="40" width="47.33" height="163.333"/>
-  <object id="40" name="Stone3" x="783.668" y="41.3335" width="47.33" height="163.333"/>
+  <object id="36" name="Stone5" x="367.667" y="12" width="48" height="244"/>
+  <object id="39" name="Stone3" x="575" y="59" width="48" height="144"/>
   <object id="41" name="Door" x="1258" y="138" width="20" height="52"/>
+  <object id="42" name="Stone3" x="784.182" y="59" width="48" height="144"/>
  </objectgroup>
 </map>

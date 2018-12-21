@@ -23,7 +23,7 @@
 #include "../GameObjects/Boss/Carryarm.h"
 #include "../GameObjects/Boss/Hornet.h"
 #include "../GameObjects/Enemies/Stone.h"
-
+#include "../GameObjects/MapObjects/ItemHP.h"
 using namespace std;
 class GameMap
 {

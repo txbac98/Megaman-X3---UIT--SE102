@@ -1,5 +1,5 @@
 ﻿#include "EnemyBullet.h"
-//#include "../../GameComponents/ViewPort.h"
+#include "../../GameComponents/ViewPort.h"
 
 EnemyBullet::EnemyBullet()
 {
@@ -8,7 +8,7 @@ EnemyBullet::EnemyBullet()
 	mAnimation3= new Animation("Resources/Enemies/HelitBullet.png", "Resources/Enemies/HelitBullet.txt", 0.2f, false);
 	wasBorn = false;
 	dame = 1;
-	
+	mPlayer = ViewPort::getInstance()->mPlayer;
 	typeBullet = 0;
 }
 
@@ -34,11 +34,13 @@ void EnemyBullet::Spawn(int type,bool faceRight, float posx, float posy, float v
 		ay = HeadDefine::BULLET_ACCELERATOR_Y;
 		this->SetWidth(mAnimation2->GetWidth());
 		this->SetHeight(mAnimation2->GetHeight());
+		mAnimation2->SetPosition(posx, posy);
 	}
 	else if (type == 3) {
 		ay = 0;
 		this->SetWidth(mAnimation3->GetWidth());
 		this->SetHeight(mAnimation3->GetHeight());
+		mAnimation3->SetPosition(posx, posy);
 	}
 	wasBorn = true;
 	this->Tag = EntityTypes::EnemiesBullet;
@@ -48,13 +50,20 @@ void EnemyBullet::Spawn(int type,bool faceRight, float posx, float posy, float v
 void EnemyBullet::Update(float dt)
 {
 	if (isAlive) {
+		for (int i = 0; i < sizeof(mPlayer->mListBullet); i++) {
+			CollisionManager::getInstance()->checkCollision(&mPlayer->mListBullet[i], this, dt / 1000);
+		}
 		//gia tốc rơi
 		vy += ay;
 		Entity::Update(dt);
 		if (typeBullet == 2) {
+			this->SetWidth(mAnimation2->GetWidth());
+			this->SetHeight(mAnimation2->GetHeight());
 			mAnimation2->Update(dt);
 		}
 		else if (typeBullet == 3) {
+			this->SetWidth(mAnimation3->GetWidth());
+			this->SetHeight(mAnimation3->GetHeight());
 			mAnimation3->Update(dt);
 		}
 	}

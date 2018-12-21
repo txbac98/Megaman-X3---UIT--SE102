@@ -32,7 +32,7 @@ public:
 
     enum EntityTypes
     {
-        Megaman, MegaBullet, None, Wall, Box, SubCarryarm, Carryarm, DebrisCarryarm, Spine, Elevator, Door, Brick, Enemy, EnemiesBullet, Notorbanger,
+        Megaman, MegaBullet, None, Wall, Box, SubCarryarm, Carryarm, DebrisCarryarm, Spine, Elevator, Door, Brick, Enemy, EnemiesBullet, Notorbanger, ItemHP,
 		PosNotorbanger, HeadgunnerLeft, HeadgunnerRight, Helit, Genjibo, SlopingWall, ConveyorRight, ConveyorLeft, HornetBoss, HornetChild, Stone5, Stone3
     };
 	enum EntityKind

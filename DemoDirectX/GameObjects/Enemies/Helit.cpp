@@ -45,7 +45,7 @@ void Helit::Update(float dt)
 		if (posY <= posY1 && vy<0) {	//đi lên
 			vy = 0;
 		}
-		if (abs(posX - mPlayer->posX) < 100 && abs(posY - mPlayer->posY)<100)	// khoảng cách dưới 100
+		if (abs(posX - mPlayer->posX) < 150 && abs(posY - mPlayer->posY)<100)	// khoảng cách dưới 100
 		{
 			if (mPlayer->posX < posX)	//bên trái
 			{

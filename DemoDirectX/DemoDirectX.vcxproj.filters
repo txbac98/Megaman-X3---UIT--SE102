@@ -295,6 +295,9 @@
     <ClCompile Include="Scenes\MenuScene.cpp">
       <Filter>FrameWork\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjects\MapObjects\ItemHP.cpp">
+      <Filter>FrameWork\GameObjects\MapObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameComponents\Game.h">
@@ -548,6 +551,9 @@
     </ClInclude>
     <ClInclude Include="Scenes\MenuScene.h">
       <Filter>FrameWork\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\MapObjects\ItemHP.h">
+      <Filter>FrameWork\GameObjects\MapObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

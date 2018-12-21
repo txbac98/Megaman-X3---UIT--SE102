@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="96" height="13" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="44">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="96" height="13" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="45">
  <tileset firstgid="1" source="Map5.tsx"/>
  <layer id="1" name="Tile Layer 1" width="96" height="13">
   <data encoding="base64" compression="zlib">
@@ -40,5 +40,6 @@
   <object id="38" x="573" y="78.4166" width="152.75" height="10.1667"/>
   <object id="41" x="558.792" y="84.9167" width="191.75" height="10.1667"/>
   <object id="43" name="Sloping Wall" x="525" y="68.3333" width="70.6667" height="46.3333"/>
+  <object id="44" name="ItemHP" x="194.5" y="322.5" width="11.5" height="10.5"/>
  </objectgroup>
 </map>
