@@ -110,13 +110,13 @@ void PlayerJumpingState::OnCollision(Entity* object, Entity::SideCollisions side
 	{
 	case Entity::Left: 
 		if ( KEY->keyLeft)	//mặt xoay vào bên trái
-			this->mPlayerData->player->SetState(new PlayerClingState(mPlayerData));
+			this->mPlayerData->player->SetState(new PlayerClingState(mPlayerData,object->GetBound().bottom));
 		break;
 	case Entity::BottomLeft:
 		break;
 	case Entity::Right:  
 		if ( KEY->keyRight)	//mặt xoay vào bên phải
-			this->mPlayerData->player->SetState(new PlayerClingState(mPlayerData));
+			this->mPlayerData->player->SetState(new PlayerClingState(mPlayerData,object->GetBound().bottom));
 		break;
 	case Entity::BottomRight:
 		break;

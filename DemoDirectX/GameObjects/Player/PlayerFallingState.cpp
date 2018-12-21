@@ -93,13 +93,13 @@ void PlayerFallingState::OnCollision(Entity * other, Entity::SideCollisions side
 		break;
 	case Entity::Left: 
 		if ( KEY->keyLeft)	//mặt xoay vào bên trái
-			this->mPlayerData->player->SetState(new PlayerClingState(mPlayerData));
+			this->mPlayerData->player->SetState(new PlayerClingState(mPlayerData, other->GetBound().bottom));
 		break;
 	case Entity::BottomLeft:
 		break;
 	case Entity::Right:
 		if ( KEY->keyRight)	//mặt xoay vào bên phải
-			this->mPlayerData->player->SetState(new PlayerClingState(mPlayerData));
+			this->mPlayerData->player->SetState(new PlayerClingState(mPlayerData, other->GetBound().bottom));
 		break;
 	case Entity::BottomRight:
 		break;

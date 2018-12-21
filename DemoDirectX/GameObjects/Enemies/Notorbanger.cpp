@@ -7,12 +7,12 @@ Notorbanger::~Notorbanger()
 
 Notorbanger::Notorbanger(float posx, float posy)
 {
-	mAnimationJump = new Animation("Resources/Enemies/Notorbanger.png", "Resources/Enemies/NotorJump.txt", 0.01f, false);
-	mAnimationStand = new Animation("Resources/Enemies/Notorbanger.png", "Resources/Enemies/NotorStand.txt", 0.2f, false);
-	mAnimationShoot1= new Animation("Resources/Enemies/Notorbanger.png", "Resources/Enemies/NotorShoot1.txt", 0.3f, false);
-	mAnimationShoot2 = new Animation("Resources/Enemies/Notorbanger.png", "Resources/Enemies/NotorShoot2.txt", 0.3f, false);
-	mAnimationUp1= new Animation("Resources/Enemies/Notorbanger.png", "Resources/Enemies/NotorUp1.txt", 0.2f, false);
-	mAnimationUp2 = new Animation("Resources/Enemies/Notorbanger.png", "Resources/Enemies/NotorUp2.txt", 0.2f, false);
+	mAnimationJump = new Animation("Resources/Enemies/NotorJump.png", "Resources/Enemies/NotorJump.txt", 0.01f, false);
+	mAnimationStand = new Animation("Resources/Enemies/NotorJump.png", "Resources/Enemies/NotorStand.txt", 0.2f, false);
+	mAnimationShoot1= new Animation("Resources/Enemies/NotorShoot.png", "Resources/Enemies/NotorShoot1.txt", 0.3f, false);
+	mAnimationShoot2 = new Animation("Resources/Enemies/NotorShoot.png", "Resources/Enemies/NotorShoot2.txt", 0.3f, false);
+	mAnimationUp1= new Animation("Resources/Enemies/NotorUp.png", "Resources/Enemies/NotorUp1.txt", 0.2f, false);
+	mAnimationUp2 = new Animation("Resources/Enemies/NotorUp.png", "Resources/Enemies/NotorUp2.txt", 0.2f, false);
 	//mAnimationStand->Start();
 	mAnimation = mAnimationStand;
 
@@ -61,7 +61,7 @@ void Notorbanger::Update(float dt)
 			Die();
 			return;
 		}
-		if (abs(posX - mPlayer->posX) < 200  && (posY- mPlayer->posY) > 0 && (posY - mPlayer->posY) <50)	// khoảng cách dưới 200
+		if (abs(posX - mPlayer->posX) < 200  && (posY- mPlayer->posY) > -5 && (posY - mPlayer->posY) <50)	// khoảng cách dưới 200
 		{
 			if (type == 0) {
 				type = 1;	//xiên
@@ -82,14 +82,16 @@ void Notorbanger::Update(float dt)
 				if (mAnimation == mAnimationStand) {
 					//Kiểm tra type để quay súng
 					if (type == 1) {
+						//this->AddPositionY(-5);
 						mAnimationUp1->Start();
 						mAnimation = mAnimationUp1;
-						this->AddPositionY(-6);
+						
 					}
 					else if (type == 2) {
+						//this->AddPositionY(-5);
 						mAnimationUp2->Start();
 						mAnimation = mAnimationUp2;
-						this->AddPositionY(-6);
+						
 					}
 					else {
 						mAnimationStand->Start();
@@ -114,11 +116,11 @@ void Notorbanger::Update(float dt)
 				{
 					if (iBullet > 2) {
 						vy = -NotorDefine::JUMP_SPEED_Y;
+						//this->AddPositionY(5);
 						mAnimationJump->Start();
 						mAnimation = mAnimationJump;
 						iBullet = 0;
 						type = 0;
-						this->AddPositionY(6);
 					}
 					else {
 						if (type == 1)
@@ -131,18 +133,17 @@ void Notorbanger::Update(float dt)
 					}
 				}
 			}
-				
-			if (mAnimation == mAnimationJump) {
-				Jumping(dt);
-			}
 		}
-		else {
+		if (mAnimation == mAnimationJump) {
+			Jumping(dt);
+		}
+		/*else {
 			if (mAnimation != mAnimationStand) {
 				mAnimation = mAnimationStand;
 				vx = 0;
 				vy = 50;
 			}
-		}
+		}*/
 		mAnimation->Update(dt);
 		Entity::Update(dt);
 			
@@ -206,7 +207,7 @@ void Notorbanger::OnCollision(Entity * other, SideCollisions side)
 				|| side == SideCollisions::TopRight) {
 				allowMoveRight = false;
 			}
-			if (side == SideCollisions::Bottom || side == SideCollisions::BottomLeft || side == SideCollisions::BottomRight) {
+			if (side == SideCollisions::Bottom ) {
 				vy = 0;
 				if (mAnimation == mAnimationJump) {
 					mAnimationStand->Start();

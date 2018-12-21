@@ -3,7 +3,7 @@
 PlayerClingAndShootState::PlayerClingAndShootState(PlayerData * playerData)
 {
 	this->mPlayerData = playerData;
-	this->mPlayerData->player->SetVy(30);
+	this->mPlayerData->player->SetVy(50);
 	this->mPlayerData->player->SetVx(0);
 }
 

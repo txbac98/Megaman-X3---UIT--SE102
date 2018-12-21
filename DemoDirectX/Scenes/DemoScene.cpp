@@ -52,12 +52,14 @@ void DemoScene::Update(float dt)
 			SceneManager::GetInstance()->ReplaceScene(new MenuScene());
 		}
 	}
-	if (mPlayer->hornetHP && mPlayer->hornetHP->HP <= 0) {
-		timeDelayRestart += dt;
-		if (timeDelayRestart > 5) {
-			Sound::getInstance()->stop("Background");
-			SceneManager::GetInstance()->ReplaceScene(new MenuScene());
-		}
+	else if (mPlayer->hornetHP) {
+		if (mPlayer->hornetHP->HP <= 0) {
+			timeDelayRestart += dt;
+			if (timeDelayRestart > 5) {
+				Sound::getInstance()->stop("Background");
+				SceneManager::GetInstance()->ReplaceScene(new MenuScene());
+			}
+		}	
 	}
 }
 

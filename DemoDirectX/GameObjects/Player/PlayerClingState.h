@@ -6,6 +6,7 @@ class PlayerClingState : public PlayerState
 {
 public:
 	PlayerClingState(PlayerData *playerData);
+	PlayerClingState(PlayerData *playerData, float bottom);
 	~PlayerClingState();
 
 	void Update(float dt);
@@ -19,5 +20,6 @@ protected:
 	float acceleratorY;
 	float acceleratorX;
 	bool noPressed;
+	float posBottomCling;
 };
 

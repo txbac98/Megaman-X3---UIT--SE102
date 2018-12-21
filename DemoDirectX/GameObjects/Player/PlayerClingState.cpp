@@ -7,6 +7,14 @@ PlayerClingState::PlayerClingState(PlayerData * playerData)
 	this->mPlayerData->player->SetVx(0);
 }
 
+PlayerClingState::PlayerClingState(PlayerData * playerData, float bottom)
+{
+	this->mPlayerData = playerData;
+	this->mPlayerData->player->SetVy(50);
+	this->mPlayerData->player->SetVx(0);
+	posBottomCling = bottom;
+}
+
 PlayerClingState::~PlayerClingState()
 {
 }
@@ -23,6 +31,10 @@ void PlayerClingState::HandleKeyboard()
 		this->mPlayerData->player->SetState(new PlayerClingAndShootState(mPlayerData));
 		return;
 	}*/
+	if (this->mPlayerData->player->posY > posBottomCling) {
+		this->mPlayerData->player->SetState(new PlayerFallingState(mPlayerData));
+		return;
+	}
 	if (KEY->keyJumpPress) {
 		if (this->mPlayerData->player->mCurrentReverse)
 			this->mPlayerData->player->AddPositionX(5);
