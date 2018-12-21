@@ -38,10 +38,14 @@ Genjibo::Genjibo(float posX, float posY)
 	typeAttack = 0;
 	this->Tag = EntityTypes::Genjibo;
 	count = 0;
+
+	mDoor = new Door(2554, 923);
+	mDoor->Tag = EntityTypes::Wall;
 }
 
 void Genjibo::Update(float dt)
 {
+	
 	if (isAlive) {
 		//Con ong bay xuống
 		if (posX - mPlayer->posX < 120)
@@ -96,6 +100,9 @@ void Genjibo::Update(float dt)
 			}
 		}
 
+		//Va chạm cửa
+		CollisionManager::getInstance()->checkCollision(this, mDoor, dt);
+
 		//kiểm tra va chạm  object với map
 		std::vector<Entity*> mListMapObject;
 		ViewPort::getInstance()->GetMapObject(mListMapObject, this);
@@ -104,17 +111,16 @@ void Genjibo::Update(float dt)
 			CollisionManager::getInstance()->checkCollision(this, mListMapObject[j], dt);
 		}
 
-		//Kiểm tra va chạm với nhân vật
-		if (mPlayer) {
-			//kiểm tra va chạm viên đạn player
-			for (int i = 0; i < sizeof(mPlayer->mListBullet); i++) {
-				CollisionManager::getInstance()->checkCollision(&mPlayer->mListBullet[i], this, dt);
-			}
-			CollisionManager::getInstance()->checkCollision(mPlayer, this, dt);
-		}
-
 		
+		//kiểm tra va chạm viên đạn player
+		for (int i = 0; i < sizeof(mPlayer->mListBullet); i++) {
+			CollisionManager::getInstance()->checkCollision(&mPlayer->mListBullet[i], this, dt);
+		}
+		//Kiểm tra va chạm với nhân vật
+		CollisionManager::getInstance()->checkCollision(mPlayer, this, dt);
+				
 	}
+	
 	if (hp <= 0)
 	{
 
@@ -133,24 +139,26 @@ void Genjibo::Update(float dt)
 			
 			if (explosion[count]->mEndAnimate)
 			{
-				int x = rand() % 50;
-				int y = rand() % 50;
+				int x = rand() % mAnimation->GetWidth();
+				int y = rand() % mAnimation->GetHeight();
 				count++;
-				explosion[count]->ReStart(this->GetPosition().x -20 +x, this->GetPosition().y - 20 +y);
-				//explosion[count]->ReStart(x,y);
+				explosion[count]->ReStart(mAnimation->GetPosition().x - mAnimation->GetWidth()/2 +x,mAnimation->GetPosition().y - mAnimation->GetHeight()/2 +y);
 			}
 			if (count == 6)
 			{
 				explosion = NULL;
 				isAlive = false;
+				mDoor->Tag = EntityTypes::DoorObject;
 			}
 		}
 	}
+	CollisionManager::getInstance()->checkCollision(mPlayer, mDoor, dt);
+	mDoor->Update(dt);
 }
 
 void Genjibo::OnCollision(Entity * other, SideCollisions side)
 {
-	if (other->Tag == EntityTypes::Wall || other->Tag == EntityTypes::Door) {
+	if (other->Tag == EntityTypes::Wall || other->Tag == EntityTypes::DoorObject) {
 
 		if (side == SideCollisions::Bottom)
 			vy = 0;
@@ -189,7 +197,7 @@ void Genjibo::OnCollision(Entity * other, SideCollisions side)
 			}
 		}
 		else if (typeAttack == 2) {
-			if (side == SideCollisions::Left) {
+			if (side == SideCollisions::Left || side == SideCollisions::TopLeft || side == SideCollisions::BottomLeft) {
 				vy = GenjiboDefine::SPEED_Y;
 				vx = GenjiboDefine::SPEED_X;
 			}
@@ -197,7 +205,7 @@ void Genjibo::OnCollision(Entity * other, SideCollisions side)
 				this->AddPositionY(-2);
 				vy = 0;
 			}
-			if (side == SideCollisions::Right) {
+			if (side == SideCollisions::Right || side == SideCollisions::TopRight || side == SideCollisions::BottomRight) {
 				this->AddPositionX(-2);
 				vx = -GenjiboDefine::SPEED_X;
 			}
@@ -231,6 +239,7 @@ void Genjibo::Draw(D3DXVECTOR2 transform)
 			explosion[i]->Draw(transform);
 		}
 	}
+	mDoor->Draw(transform);
 }
 void Genjibo::Die() {
 	if (isAlive) {

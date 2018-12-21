@@ -92,7 +92,7 @@ void GameMap::LoadMap(char* filePath, char* fileQuadTree)
 				entity=new Elevator(mListEntity[i]->posX, mListEntity[i]->posY);
 			}
 			else if(object->GetName()=="Door"){
-				entity->Tag = Entity::EntityTypes::Door;
+				entity->Tag = Entity::EntityTypes::DoorObject;
 				entity = new Door(mListEntity[i]->posX, mListEntity[i]->posY);
 			}
 			else if (object->GetName() == "Spine") {
@@ -270,7 +270,7 @@ void GameMap::Update(float dt)
 				mListEntity[i] = new Hornet(mListEntity[i]->posX, mListEntity[i]->posY);
 				continue;
 			}
-			if (mListEntity[i]->Tag == Entity::EntityTypes::Door) {
+			if (mListEntity[i]->Tag == Entity::EntityTypes::DoorObject) {
 				mListEntity[i] = new Door(mListEntity[i]->posX, mListEntity[i]->posY);
 				continue;
 			}

@@ -377,7 +377,7 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 	//}
 
 	if (other->Tag == EntityTypes::Wall || other->Tag== EntityTypes::Elevator 
-		|| other->Tag==EntityTypes::Door || other->Tag==EntityTypes::ConveyorRight
+		|| other->Tag==EntityTypes::DoorObject || other->Tag==EntityTypes::ConveyorRight
 		|| other->Tag== EntityTypes::ConveyorLeft
 		|| other->Tag==EntityTypes::DebrisCarryarm) {
 		if (side == SideCollisions::Top) {

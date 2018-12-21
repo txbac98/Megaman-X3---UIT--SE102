@@ -1,9 +1,11 @@
-#pragma once
+﻿#pragma once
 #include "./../../GameComponents/Animation.h"
+#include "../MapObjects/Door.h"
 #include "../Entity.h"
 #include "../MapObjects/GameObject.h"
 #include "../Player/Player.h"
 #include "../Enemies/RedExplosion.h"
+
 #include <time.h> 
 #include <vector>
 class Genjibo : public Entity
@@ -21,6 +23,7 @@ protected:
 	Animation *mAnimation, *mAnimationSpawn, *mAnimationSub, *mAnimationRotate;
 	Sprite *mSpriteZone;
 	Player* mPlayer;
+	Door *mDoor;	//Chặn cửa
 	RedExplosion **explosion, **explosion2;
 	int count;
 	bool die;

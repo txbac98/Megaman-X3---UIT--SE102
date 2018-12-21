@@ -12,7 +12,7 @@ Door::Door(float posX, float posY)
 	this->SetPosition(posX, posY);
 	this->SetWidth(mAnimation->GetWidth());
 	this->SetHeight(mAnimation->GetHeight());
-	this->Tag = Entity::EntityTypes::Door;
+	this->Tag = Entity::EntityTypes::DoorObject;
 	isOpening = false;
 	isSpawn = true;
 	isAlive = true;
@@ -27,7 +27,7 @@ void Door::Update(float dt)
 
 void Door::OnCollision(Entity * other, SideCollisions side)
 {
-	if (other->Tag == EntityTypes::Megaman) {
+	if (other->Tag == EntityTypes::Megaman && this->Tag==EntityTypes::DoorObject) {
 		if (!isOpening) {
 			mAnimation = mAnimationDoorOpen;
 			isOpening = true;

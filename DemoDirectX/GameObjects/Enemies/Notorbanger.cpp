@@ -61,7 +61,7 @@ void Notorbanger::Update(float dt)
 			Die();
 			return;
 		}
-		if (abs(posX - mPlayer->posX) < 200  && abs(posY- mPlayer->posY) < 50)	// khoảng cách dưới 100
+		if (abs(posX - mPlayer->posX) < 200  && (posY- mPlayer->posY) > 0 && (posY - mPlayer->posY) <50)	// khoảng cách dưới 200
 		{
 			if (type == 0) {
 				type = 1;	//xiên

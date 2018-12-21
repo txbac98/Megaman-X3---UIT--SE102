@@ -1,10 +1,10 @@
-#pragma once
+﻿#pragma once
 
 #include "./../../GameComponents/Animation.h"
 #include "../Entity.h"
 #include "GameObject.h"
 
-//thang m�y
+//cửa
 class Door : public Entity
 {
 public:
