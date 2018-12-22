@@ -7,9 +7,9 @@
   </data>
  </layer>
  <objectgroup id="2" name="Object Layer 1">
-  <object id="1" x="-0.47" y="692.076" width="90.258" height="32.1666"/>
-  <object id="2" x="170.121" y="692.03" width="86.7879" height="34.2728"/>
-  <object id="3" name="Elevator" x="80.5758" y="695.606" width="97.3939" height="32.7273"/>
+  <object id="1" x="-0.47" y="692.076" width="84.758" height="32.1666"/>
+  <object id="2" x="173.871" y="692.03" width="83.0379" height="34.2728"/>
+  <object id="3" name="Elevator" x="80.5758" y="699.106" width="97.3939" height="32.7273"/>
   <object id="4" x="3" y="180.667" width="77" height="33.6667"/>
   <object id="5" x="177.606" y="433.697" width="78.7879" height="34.6061"/>
   <object id="6" x="1.60605" y="433.197" width="78.7879" height="13.1061"/>
@@ -20,6 +20,6 @@
   <object id="12" name="Headgunner Left" x="181" y="642" width="41" height="48"/>
   <object id="13" name="Headgunner Left" x="180.5" y="388.5" width="41" height="47"/>
   <object id="14" name="Headgunner Right" x="32.5" y="388.5" width="41" height="44"/>
-  <object id="15" x="177.5" y="180.834" width="83" height="32"/>
+  <object id="15" x="177.5" y="180" width="170.75" height="32"/>
  </objectgroup>
 </map>

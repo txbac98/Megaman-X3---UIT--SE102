@@ -10,6 +10,7 @@ PlayerJumpingAndShootState::PlayerJumpingAndShootState(PlayerData * playerData)
 	noPressed = false;
 	this->mPlayerData->player->allowMoveLeft = true;
 	this->mPlayerData->player->allowMoveRight = true;
+	//this->mPlayerData->player->objectBottom = NULL;
 }
 
 PlayerJumpingAndShootState::~PlayerJumpingAndShootState()

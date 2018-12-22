@@ -28,7 +28,7 @@
   <object id="21" x="0" y="1" width="32" height="125"/>
   <object id="22" x="-4" y="111" width="16" height="77"/>
   <object id="24" x="102" y="744.25" width="150.75" height="19.5"/>
-  <object id="25" name="Conveyor Left" x="69.2083" y="355.083" width="166.333" height="5.5"/>
+  <object id="25" name="Conveyor Left" x="69.2083" y="355.265" width="166.333" height="5.31818"/>
   <object id="26" x="69.625" y="360.083" width="174.75" height="19.5"/>
   <object id="27" x="53.6667" y="455.333" width="121" height="21"/>
   <object id="28" x="85.1667" y="551.833" width="121" height="21"/>
