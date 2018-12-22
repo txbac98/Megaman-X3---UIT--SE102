@@ -4,7 +4,7 @@ Door::~Door()
 {
 }
 
-Door::Door(float posX, float posY)
+Door::Door(float posX, float posY, bool st)
 {
 	mAnimation = new Animation("Resources/MapObject/Door.png", "Resources/MapObject/Door.txt",0.1f, true);
 	mAnimationDoorOpen= new Animation("Resources/MapObject/Door.png", "Resources/MapObject/DoorOpen.txt", 0.2f, false);
@@ -16,13 +16,22 @@ Door::Door(float posX, float posY)
 	isOpening = false;
 	isSpawn = true;
 	isAlive = true;
+	start = st;
 }
 
 void Door::Update(float dt)
 {
-	mAnimation->Update(dt);
+	if(start)
+		mAnimation->Update(dt);
 	if (isOpening && mAnimation->mEndAnimate)
 		this->Tag = EntityTypes::None;
+}
+void Door::ChangeStatus()
+{
+	if (start)
+		start = false;
+	else
+		start = true;
 }
 
 void Door::OnCollision(Entity * other, SideCollisions side)

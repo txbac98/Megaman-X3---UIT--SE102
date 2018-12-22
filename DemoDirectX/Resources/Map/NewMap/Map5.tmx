@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="96" height="13" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="45">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="96" height="13" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="55">
  <tileset firstgid="1" source="Map5.tsx"/>
  <layer id="1" name="Tile Layer 1" width="96" height="13">
   <data encoding="base64" compression="zlib">
@@ -18,14 +18,14 @@
   <object id="9" name="Helit" x="977.917" y="11.9167" width="33" height="33"/>
   <object id="10" x="1238.42" y="124.417" width="187" height="19"/>
   <object id="11" x="1282.42" y="81.9167" width="91" height="45"/>
-  <object id="12" name="Notorbanger" x="1134.42" y="76.4167" width="38" height="35"/>
+  <object id="12" name="Notorbanger" x="1111.92" y="26.9167" width="38" height="35"/>
   <object id="13" name="Helit" x="1184.92" y="3.91667" width="33" height="33"/>
   <object id="14" name="Helit" x="1460.25" y="5.58337" width="33" height="33"/>
   <object id="15" name="Notorbanger" x="1553.75" y="23.25" width="38" height="35"/>
   <object id="16" name="Door" x="3062.75" y="287.25" width="12" height="48.3333"/>
-  <object id="17" x="514.417" y="112.084" width="286" height="29.1667"/>
+  <object id="17" x="518.417" y="112.084" width="282" height="29.1667"/>
   <object id="18" x="956.75" y="115.417" width="290" height="26.6667"/>
-  <object id="19" x="1416.09" y="116.75" width="280.667" height="25.3333"/>
+  <object id="19" x="1408.59" y="116.75" width="288.167" height="25.3333"/>
   <object id="20" x="1423.92" y="338.417" width="1658" height="31"/>
   <object id="21" x="1407.42" y="143.417" width="32" height="205"/>
   <object id="22" x="1668.09" y="134.584" width="28" height="231"/>
@@ -33,13 +33,12 @@
   <object id="24" x="1" y="245" width="9" height="99"/>
   <object id="25" x="-6" y="250" width="328" height="37"/>
   <object id="26" x="2833" y="221" width="245" height="65"/>
-  <object id="28" x="520.727" y="106.326" width="270" height="10.1667"/>
-  <object id="33" x="533.917" y="99.3333" width="240" height="10.1667"/>
-  <object id="35" x="589.75" y="71.75" width="128.5" height="10.1667"/>
-  <object id="36" x="545.125" y="91.5" width="220" height="10.1667"/>
-  <object id="38" x="573" y="78.4166" width="152.75" height="10.1667"/>
-  <object id="41" x="558.792" y="84.9167" width="191.75" height="10.1667"/>
-  <object id="43" name="Sloping Wall" x="525" y="68.3333" width="70.6667" height="46.3333"/>
   <object id="44" name="ItemHP" x="194.5" y="322.5" width="11.5" height="10.5"/>
+  <object id="45" x="599" y="68" width="110" height="45"/>
+  <object id="46" x="545.5" y="87.5" width="220" height="24.5"/>
+  <object id="51" x="1047.5" y="68.5" width="110" height="45"/>
+  <object id="52" x="994" y="88" width="220" height="24.5"/>
+  <object id="53" x="1496.5" y="69.5" width="110" height="45"/>
+  <object id="54" x="1443" y="89" width="220" height="24.5"/>
  </objectgroup>
 </map>

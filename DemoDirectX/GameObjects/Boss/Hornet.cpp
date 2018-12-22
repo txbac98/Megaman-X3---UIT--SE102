@@ -41,6 +41,10 @@ Hornet::Hornet(float posX, float posY)
 	mListChild.push_back(new ChildHornet());
 	mListChild.push_back(new ChildHornet());
 
+	explosion = new RedExplosion*[20];
+	for (int i = 0; i < 20; i++)
+		explosion[i] = new RedExplosion(0, 0);
+	count = 0;
 	this->Tag = EntityTypes::HornetBoss;
 }
 
@@ -56,6 +60,24 @@ void Hornet::Update(float dt)
 			mAnimation = mAnimationDie;
 			vy=200;
 		}			
+		if (explosion) {
+			explosion[count]->Update(dt);
+			if (explosion[count]->mEndAnimate)
+			{
+				int x = rand() % 30;
+				int y = rand() % 60;
+				count++;
+				explosion[count]->ReStart(mAnimation->GetPosition().x - 15 + x, mAnimation->GetPosition().y - 30 + y);
+			}
+			if (count == 20)
+			{
+				explosion = NULL;
+			}
+		}
+		mChild = NULL;
+		mChildFollow = NULL;
+		mAnimationFollow = NULL;
+		mListChild.clear();
 	}
 	else if (mPlayer->hornetHP->HP > 30) {
 		typeAttack = 1;
@@ -274,6 +296,13 @@ void Hornet::Draw(D3DXVECTOR2 transform)
 	
 	if (mChildFollow) {
 		mChildFollow->Draw(transform);
+	}
+	if (explosion)
+	{
+		for (int i = 0; i < 20; i++)
+		{
+			explosion[i]->Draw(transform);
+		}
 	}
 }
 

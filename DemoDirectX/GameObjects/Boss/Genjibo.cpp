@@ -39,7 +39,7 @@ Genjibo::Genjibo(float posX, float posY)
 	this->Tag = EntityTypes::Genjibo;
 	count = 0;
 
-	mDoor = new Door(2554, 923);
+	mDoor = new Door(2554, 923, false);
 	mDoor->Tag = EntityTypes::Wall;
 }
 
@@ -108,7 +108,7 @@ void Genjibo::Update(float dt)
 		ViewPort::getInstance()->GetMapObject(mListMapObject, this);
 		for (size_t j = 0; j < mListMapObject.size(); j++) {
 
-			CollisionManager::getInstance()->checkCollision(this, mListMapObject[j], dt);
+			CollisionManager::getInstance()->checkCollision(this, mListMapObject[j], dt/1000);
 		}
 
 		
@@ -125,18 +125,7 @@ void Genjibo::Update(float dt)
 	{
 
 		if (explosion) {
-			/*Sleep(100);
-			for (int j = 0; j < 5; j++)
-			{
-				explosion[j]->Update(dt);
-			}
-			if (explosion[4]->mEndAnimate)
-				explosion = NULL;*/
-
-			explosion[count]->Update(dt);
-			
-			//srand(time(NULL));
-			
+			explosion[count]->Update(dt);		
 			if (explosion[count]->mEndAnimate)
 			{
 				int x = rand() % mAnimation->GetWidth();
@@ -148,6 +137,7 @@ void Genjibo::Update(float dt)
 			{
 				explosion = NULL;
 				isAlive = false;
+				mDoor->ChangeStatus();
 				mDoor->Tag = EntityTypes::DoorObject;
 			}
 		}
@@ -240,22 +230,4 @@ void Genjibo::Draw(D3DXVECTOR2 transform)
 		}
 	}
 	mDoor->Draw(transform);
-}
-void Genjibo::Die() {
-	if (isAlive) {
-
-
-
-		//int dx = 0, dy = -5;
-	/*	for (int i = 0; i < 5; i++) {
-			explosion[i] = new RedExplosion(posX + dx, posY + dy);
-			dx += 10;
-			dy += 10;
-			if (i % 3 == 1)
-			{
-				dx = -10;
-			}
-		}*/
-
-	}
 }

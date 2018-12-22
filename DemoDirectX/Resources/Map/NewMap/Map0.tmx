@@ -14,6 +14,5 @@
   <object id="7" name="Notorbanger" x="720.5" y="138" width="32" height="33"/>
   <object id="9" x="-217.333" y="12" height="1.33333"/>
   <object id="16" name="Notorbanger" x="304" y="138.167" width="32" height="33"/>
-  <object id="19" name="ItemHP" x="451" y="112" width="16" height="19"/>
  </objectgroup>
 </map>

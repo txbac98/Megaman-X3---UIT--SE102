@@ -83,9 +83,8 @@ int initWindow(int cmdShow)
 
     ShowWindow(hWnd, cmdShow);
     UpdateWindow(hWnd);
-	
-	//Phóng to
-	SetWindowPos(hWnd, 0, x, y , 600, 600, SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE);
+	//Set position và phóng to
+	SetWindowPos(hWnd, 0, x, y, 600, 600, SWP_NOZORDER | SWP_NOACTIVATE);
 	//Keyboard
 	Keyboard::Create(mHInstance, hWnd);
 

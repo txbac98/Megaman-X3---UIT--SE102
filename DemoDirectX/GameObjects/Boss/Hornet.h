@@ -5,7 +5,7 @@
 #include "../Player/Player.h"
 #include "../Enemies/ChildHornet.h"
 #include "HornetHP.h"
-
+#include "../Enemies/RedExplosion.h"
 class Hornet : public Entity
 {
 public:
@@ -18,8 +18,6 @@ public:
 	void Draw(D3DXVECTOR2 transform);
 protected:
 	void SpawnChild1();
-	void SpawnChildAndFollow();
-	void Prepare();
 	void SpawnFollow();
 	Animation *mAnimation, *mAnimationAttack, *mAnimationSpawnChild, *mAnimationDie,
 		*mAnimationFly,*mAnimationStand, *mAnimationPrepare, *mAnimationFollow;
@@ -29,6 +27,8 @@ protected:
 	ChildHornet *mChildFollow;
 	std::vector<ChildHornet* > mListChild;
 	RECT rectMove;
+	RedExplosion **explosion;
+	int count;
 	int midRectY;
 	int typeAttack, iExplosion;
 	int direction; //Hướng

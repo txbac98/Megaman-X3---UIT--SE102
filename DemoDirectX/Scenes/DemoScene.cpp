@@ -55,7 +55,7 @@ void DemoScene::Update(float dt)
 	else if (mPlayer->hornetHP) {
 		if (mPlayer->hornetHP->HP <= 0) {
 			timeDelayRestart += dt;
-			if (timeDelayRestart > 5) {
+			if (timeDelayRestart > 10) {
 				Sound::getInstance()->stop("Background");
 				SceneManager::GetInstance()->ReplaceScene(new MenuScene());
 			}

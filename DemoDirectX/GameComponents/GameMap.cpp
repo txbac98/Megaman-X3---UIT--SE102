@@ -93,7 +93,7 @@ void GameMap::LoadMap(char* filePath, char* fileQuadTree)
 			}
 			else if(object->GetName()=="Door"){
 				entity->Tag = Entity::EntityTypes::DoorObject;
-				entity = new Door(mListEntity[i]->posX, mListEntity[i]->posY);
+				entity = new Door(mListEntity[i]->posX, mListEntity[i]->posY, true);
 			}
 			else if (object->GetName() == "Spine") {
 				entity->Tag= Entity::EntityTypes::Spine;
@@ -271,7 +271,7 @@ void GameMap::Update(float dt)
 				continue;
 			}
 			if (mListEntity[i]->Tag == Entity::EntityTypes::DoorObject) {
-				mListEntity[i] = new Door(mListEntity[i]->posX, mListEntity[i]->posY);
+				mListEntity[i] = new Door(mListEntity[i]->posX, mListEntity[i]->posY, true);
 				continue;
 			}
 			if (mListEntity[i]->Tag == Entity::EntityTypes::Elevator) {
