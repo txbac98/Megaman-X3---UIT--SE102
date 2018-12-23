@@ -1,6 +1,7 @@
 #include "MenuScene.h"
 #include "DemoScene.h"
 #include "../GameControllers/SceneManager.h"
+#include "../GameComponents/Sound.h"
 
 MenuScene::MenuScene()
 {
@@ -9,12 +10,14 @@ MenuScene::MenuScene()
 	mAnimationPlayerStanding->SetPosition(40, 130);
 	mSprite = new Sprite("Resources/Scene/MenuScene.png");
 	mSprite->SetPosition(128, 100);
+	Sound::getInstance()->play("MenuBackground", true, 0);
 }
 
 void MenuScene::Update(float dt)
 {
 	mAnimationPlayerStanding->Update(dt);
 	if (KEY->isKeyChangeSceneDownPrevious) {
+		Sound::getInstance()->stop("MenuBackground");
 		SceneManager::GetInstance()->ReplaceScene(new DemoScene());
 	}
 }

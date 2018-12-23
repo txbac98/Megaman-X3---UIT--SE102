@@ -1,4 +1,5 @@
 #include "PlayerDashingState.h"
+#include "../../GameComponents/Sound.h"
 
 PlayerDashingState::PlayerDashingState(PlayerData * playerData)
 {
@@ -11,6 +12,7 @@ PlayerDashingState::PlayerDashingState(PlayerData * playerData)
 	dtTimeSmoke = 0;
 	timeSmoke = 0.1;
 	timeDashting = PlayerDefine::DASHING_TIME;
+	Sound::getInstance()->play("Dass", false, 1);
 }
 
 PlayerDashingState::~PlayerDashingState()
@@ -26,6 +28,7 @@ void PlayerDashingState::Update(float dt)
 	if (dtTimeDashing>=timeDashting)
 	 {
 		//this->mPlayerData->player->AddPositionY(-4.5);
+		Sound::getInstance()->stop("Dass");
 		this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData));
 		return;
 	}

@@ -11,11 +11,13 @@ Game::Game(int fps)
 
 	//Load âm thanh
 	Sound::getInstance()->loadSound("Resources/Sounds/Background.wav", "Background");
+	Sound::getInstance()->loadSound("Resources/Sounds/MenuBackground.wav", "MenuBackground");
 	Sound::getInstance()->loadSound("Resources/Sounds/Explosion.wav", "Explosion");
 	Sound::getInstance()->loadSound("Resources/Sounds/Jump.wav", "PlayerShoot");
 	Sound::getInstance()->loadSound("Resources/Sounds/PlayerShoot.wav", "PlayerShoot12");
 	Sound::getInstance()->loadSound("Resources/Sounds/Jump.wav", "Jump");
 	Sound::getInstance()->loadSound("Resources/Sounds/Die.wav", "Die");
+	Sound::getInstance()->loadSound("Resources/Sounds/Dass.wav", "Dass");
 
 	SceneManager::GetInstance()->ReplaceScene(new MenuScene());
 	

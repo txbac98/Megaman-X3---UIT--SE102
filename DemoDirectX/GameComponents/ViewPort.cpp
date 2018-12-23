@@ -12,15 +12,15 @@ ViewPort* ViewPort::getInstance()
 void ViewPort::Init(Player *player)
 {
 	mPlayer = player;
-	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map0.tmx", "Resources/Map/NewMap/Map0_QuadTree.txt", 0, 512));	//0	ngang, không chuyển map, khóa: trái
-	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map1.tmx", "Resources/Map/NewMap/Map1_QuadTree.txt", 768, 0));	//1	doc, không chuyển map, khóa trái, phải ở phía trên <600
-	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map2.tmx", "Resources/Map/NewMap/Map2_QuadTree.txt", 1024, 0));	//2	ngang, chuyển map phái dướt, khóa: phải
-	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map3.tmx", "Resources/Map/NewMap/Map3_QuadTree.txt", 1536, 255));	//3	doc, chuyển map phía trên, khóa trái, phải phía trên
-	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map4.tmx", "Resources/Map/NewMap/Map4_QuadTree.txt", 2304, 769));	//4	Boss 1
-	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map5.tmx", "Resources/Map/NewMap/Map5_QuadTree.txt", 2559, 610));	//5	ngang, 
-	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map6.tmx", "Resources/Map/NewMap/Map6_QuadTree.txt", 5631, 769));	//6	doc
-	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map7.tmx", "Resources/Map/NewMap/Map7_QuadTree.txt", 5887, 1527));	//7	ngang
-	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map8.tmx", "Resources/Map/NewMap/Map8_QuadTree.txt", 7167, 1537));	//8 Boss hornet
+	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map0.tmx", 0, 512));	//0	ngang, không chuyển map, khóa: trái
+	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map1.tmx", 768, 0));	//1	doc, không chuyển map, khóa trái, phải ở phía trên <600
+	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map2.tmx", 1024, 0));	//2	ngang, chuyển map phái dướt, khóa: phải
+	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map3.tmx", 1536, 255));	//3	doc, chuyển map phía trên, khóa trái, phải phía trên
+	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map4.tmx", 2304, 769));	//4	Boss 1
+	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map5.tmx", 2559, 610));	//5	ngang, 
+	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map6.tmx", 5631, 769));	//6	doc
+	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map7.tmx", 5887, 1527));	//7	ngang
+	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map8.tmx", 7167, 1537));	//8 Boss hornet
 
 	iCurrentMap = 0;
 	//mPlayer->SetPosition(7190, 1620);  //Test Boss 8

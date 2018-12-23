@@ -28,8 +28,8 @@ using namespace std;
 class GameMap
 {
 public:
-    GameMap(char* filePath, char *fileQuadTree, int posx=0, int posy=0);
-	GameMap(char* filePath, char *fileQuadTree, Camera *camera, int posx = 0, int posy = 0);
+    GameMap(char* filePath, int posx=0, int posy=0);
+	GameMap(char* filePath, Camera *camera, int posx = 0, int posy = 0);
 	GameMap();
     void SetCamera(Camera* camera);
     void Update(float dt);
@@ -54,7 +54,7 @@ public:
     QuadTree* GetQuadTree();
 
 private:
-    void LoadMap(char* filePath, char *fileQuadTree);
+    void LoadMap(char* filePath);
 
 	Player							*mPlayer;
     Tmx::Map                        *mMap;

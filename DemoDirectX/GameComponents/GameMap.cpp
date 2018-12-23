@@ -2,7 +2,7 @@
 #include "GameMap.h"
 #include "ViewPort.h"
 
-GameMap::GameMap(char* filePath, char *fileQuadTree, int posx, int posy)
+GameMap::GameMap(char* filePath, int posx, int posy)
 {
     //mCamera = new Camera(GameGlobal::GetWidth(), GameGlobal::GetHeight());
 	mCamera = ViewPort::getInstance()->mCamera;
@@ -10,19 +10,19 @@ GameMap::GameMap(char* filePath, char *fileQuadTree, int posx, int posy)
 	PosX = posx;
 	PosY = posy;
 	//Xoa du lieu fie quadtree
-	ofstream fQuadTree;
+	/*ofstream fQuadTree;
 	fQuadTree.open(fileQuadTree, ios::out | ios::trunc);
-	fQuadTree.close();
+	fQuadTree.close();*/
 
-    LoadMap(filePath,fileQuadTree);
+    LoadMap(filePath);
 }
 
-GameMap::GameMap(char * filePath, char *fileQuadTree, Camera * camera, int posx, int posy)
+GameMap::GameMap(char * filePath, Camera * camera, int posx, int posy)
 {
 	mCamera = camera;
 	PosX = posx;
 	PosY = posy;
-	LoadMap(filePath, fileQuadTree);
+	LoadMap(filePath);
 }
 
 GameMap::GameMap()
@@ -42,7 +42,7 @@ GameMap::~GameMap()
     delete mQuadTree;
 }
 
-void GameMap::LoadMap(char* filePath, char* fileQuadTree)
+void GameMap::LoadMap(char* filePath)
 {
     mMap = new Tmx::Map();
     mMap->ParseFile(filePath);
@@ -53,7 +53,7 @@ void GameMap::LoadMap(char* filePath, char* fileQuadTree)
     r.right = PosX+ this->GetWidth();
     r.bottom = PosY + this->GetHeight();
 
-    mQuadTree = new QuadTree(0, 0, r, fileQuadTree);
+    mQuadTree = new QuadTree(0, r);
 
 	//nạp từng viên gạch vào listTileset
     for (size_t i = 0; i < mMap->GetNumTilesets(); i++)
@@ -149,7 +149,7 @@ void GameMap::LoadMap(char* filePath, char* fileQuadTree)
 			entity->SetWidth(object->GetWidth());
 			entity->SetHeight(object->GetHeight());
 			mListEntity.push_back(entity);
-			mQuadTree->insertEntity(entity, object->GetId());
+			mQuadTree->insertEntity(entity);
         }
     }
 #pragma endregion

@@ -67,7 +67,7 @@ void DemoScene::Draw()
 {
 	ViewPort::getInstance()->Draw();
 	
-   mPlayer->Draw();
+	 mPlayer->Draw();
 }
 
 
