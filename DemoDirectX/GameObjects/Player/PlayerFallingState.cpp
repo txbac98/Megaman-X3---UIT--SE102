@@ -21,6 +21,7 @@ PlayerFallingState::PlayerFallingState(PlayerData *playerData)
     }
 	mPlayerData->player->allowMoveRight = true;
 	mPlayerData->player->allowMoveLeft = true;
+	this->mPlayerData->player->objectBottom = NULL;
 }
 
 

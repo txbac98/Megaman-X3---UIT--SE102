@@ -11,7 +11,7 @@ PlayerJumpingState::PlayerJumpingState(PlayerData *playerData)
     noPressed = false;
 	this->mPlayerData->player->allowMoveLeft = true;
 	this->mPlayerData->player->allowMoveRight = true;
-	//this->mPlayerData->player->objectBottom = NULL;
+	this->mPlayerData->player->objectBottom = NULL;
 	//this->mPlayerData->player->isCollisionBottom = false;
 }
 

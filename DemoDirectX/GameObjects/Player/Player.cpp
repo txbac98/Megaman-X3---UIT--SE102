@@ -380,7 +380,7 @@ void Player::OnCollision(Entity * other, Entity::SideCollisions side) {
 		|| other->Tag==EntityTypes::DoorObject || other->Tag==EntityTypes::ConveyorRight
 		|| other->Tag== EntityTypes::ConveyorLeft
 		|| other->Tag==EntityTypes::DebrisCarryarm) {
-		if (other->Tag != EntityTypes::Elevator)objectBottom = NULL;
+		//if (other->Tag != EntityTypes::Elevator)objectBottom = NULL;
 		if (side == SideCollisions::Top) {
 			this->SetVy(PlayerDefine::JUMP_ACCELERATOR_Y);
 			this->SetState(new PlayerFallingState(mPlayerData));

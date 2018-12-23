@@ -7,28 +7,28 @@
   </data>
  </layer>
  <objectgroup id="2" name="Object Layer 1">
-  <object id="1" x="-3.2803" y="179.879" width="109.606" height="73.0455"/>
+  <object id="1" x="-3.2803" y="181.212" width="109.606" height="71.7122"/>
   <object id="2" x="97.9394" y="950.326" width="162.508" height="73.6439"/>
   <object id="3" x="99" y="133" width="61" height="108"/>
   <object id="4" x="228" y="23" width="28" height="339"/>
   <object id="5" x="28" y="3" width="228" height="28"/>
   <object id="7" x="-2" y="278" width="20" height="385"/>
   <object id="8" x="1" y="252" width="37" height="33"/>
-  <object id="9" name="Conveyor Right" x="53.6667" y="451.167" width="121" height="4.66667"/>
-  <object id="10" name="Conveyor Left" x="85" y="547.5" width="121" height="5.16667"/>
+  <object id="9" name="Conveyor Right" x="53.6667" y="451.167" width="121" height="7.39394"/>
+  <object id="10" name="Conveyor Left" x="85" y="547.5" width="121" height="6.62122"/>
   <object id="11" name="Conveyor Right" x="14" y="643" width="159.667" height="6"/>
   <object id="12" x="243" y="355" width="13" height="302"/>
-  <object id="13" name="Conveyor Left" x="102.25" y="739.25" width="148" height="5.5"/>
+  <object id="13" name="Conveyor Left" x="102.25" y="739.432" width="148" height="7.13636"/>
   <object id="14" x="2" y="671" width="29" height="354"/>
-  <object id="15" name="Notorbanger" x="132" y="324" width="30.6667" height="25.3333"/>
-  <object id="17" name="Notorbanger" x="120" y="518.667" width="33.3333" height="25.3333"/>
-  <object id="18" name="Notorbanger" x="123.333" y="714.333" width="33.3333" height="25.3333"/>
+  <object id="15" name="Notorbanger" x="133.273" y="313.818" width="34.6667" height="33.5151"/>
+  <object id="17" name="Notorbanger" x="120" y="504.485" width="33.3333" height="35.3333"/>
+  <object id="18" name="Notorbanger" x="123.515" y="694.514" width="33.3333" height="36.0606"/>
   <object id="19" name="Headgunner Left" x="203.167" y="897.333" width="41" height="48"/>
   <object id="20" name="Spine" x="242.25" y="653.5" width="20.25" height="89.25"/>
   <object id="21" x="0" y="1" width="32" height="125"/>
   <object id="22" x="-4" y="111" width="16" height="77"/>
   <object id="24" x="102" y="744.25" width="150.75" height="19.5"/>
-  <object id="25" name="Conveyor Left" x="69.2083" y="355.265" width="166.333" height="5.31818"/>
+  <object id="25" name="Conveyor Left" x="69.2083" y="355.265" width="166.333" height="8.22727"/>
   <object id="26" x="69.625" y="360.083" width="174.75" height="19.5"/>
   <object id="27" x="53.6667" y="455.333" width="121" height="21"/>
   <object id="28" x="85.1667" y="551.833" width="121" height="21"/>

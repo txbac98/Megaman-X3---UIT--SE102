@@ -12,6 +12,7 @@ ViewPort* ViewPort::getInstance()
 void ViewPort::Init(Player *player)
 {
 	mPlayer = player;
+	mListMap.clear();
 	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map0.tmx", 0, 512));	//0	ngang, không chuyển map, khóa: trái
 	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map1.tmx", 768, 0));	//1	doc, không chuyển map, khóa trái, phải ở phía trên <600
 	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map2.tmx", 1024, 0));	//2	ngang, chuyển map phái dướt, khóa: phải
@@ -22,9 +23,9 @@ void ViewPort::Init(Player *player)
 	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map7.tmx", 5887, 1527));	//7	ngang
 	mListMap.push_back(new GameMap("Resources/Map/NewMap/Map8.tmx", 7167, 1537));	//8 Boss hornet
 
-	iCurrentMap = 0;
+	iCurrentMap = 6;
 	//mPlayer->SetPosition(7190, 1620);  //Test Boss 8
-	//mPlayer->SetPosition(5700, 800);		//Test map 6
+	mPlayer->SetPosition(5700, 800);		//Test map 6
 	//mPlayer->SetPosition(2559, 610);		//Map 5:: Carry
 	//mPlayer->SetPosition(2390, 800);		//Genji
 	mCurrentMap = mListMap.at(iCurrentMap);

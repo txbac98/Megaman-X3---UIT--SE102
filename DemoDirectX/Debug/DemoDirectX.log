@@ -1,122 +1,31 @@
-﻿  Game.cpp
+﻿  ViewPort.cpp
   c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\github\megaman\demodirectx\gamecomponents\game.cpp(10): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\game.cpp(92): warning C4244: 'argument': conversion from 'float' to 'DWORD', possible loss of data
-  GameMap.cpp
-  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\github\megaman\demodirectx\gamecomponents\gamemap.cpp(59): warning C4018: '<': signed/unsigned mismatch
-d:\github\megaman\demodirectx\gamecomponents\gamemap.cpp(72): warning C4018: '<': signed/unsigned mismatch
-d:\github\megaman\demodirectx\gamecomponents\gamemap.cpp(76): warning C4018: '<': signed/unsigned mismatch
-d:\github\megaman\demodirectx\gamecomponents\gamemap.cpp(87): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\gamemap.cpp(88): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\gamemap.cpp(301): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\gamemap.cpp(300): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\gamemap.cpp(305): warning C4018: '<': signed/unsigned mismatch
-d:\github\megaman\demodirectx\gamecomponents\gamemap.cpp(314): warning C4018: '<': signed/unsigned mismatch
-d:\github\megaman\demodirectx\gamecomponents\gamemap.cpp(326): warning C4018: '<': signed/unsigned mismatch
-d:\github\megaman\demodirectx\gamecomponents\gamemap.cpp(328): warning C4018: '<': signed/unsigned mismatch
-d:\github\megaman\demodirectx\gamecomponents\gamemap.cpp(346): warning C4244: 'argument': conversion from 'size_t' to 'FLOAT', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\gamemap.cpp(351): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\gamemap.cpp(352): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-  QuadTree.cpp
-  ViewPort.cpp
-  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(108): warning C4018: '<': signed/unsigned mismatch
-d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(131): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(109): warning C4018: '<': signed/unsigned mismatch
 d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(132): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(139): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(142): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(146): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(151): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(154): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(161): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(163): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(169): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(173): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(178): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(182): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(133): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(140): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(143): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(147): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(152): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
+d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(155): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(162): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(164): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(170): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(174): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(179): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
 d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(183): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(188): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(191): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(195): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(200): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(209): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(212): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(214): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(220): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(224): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(231): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(233): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(237): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(184): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(189): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(192): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(196): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
+d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(201): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
+d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(210): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
+d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(213): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
+d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(215): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(221): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(225): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(232): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(234): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
 d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(238): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Carryarm.cpp
-  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\github\megaman\demodirectx\gameobjects\boss\carryarm.cpp(36): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\github\megaman\demodirectx\gameobjects\boss\carryarm.cpp(37): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\github\megaman\demodirectx\gameobjects\boss\carryarm.cpp(38): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\github\megaman\demodirectx\gameobjects\boss\carryarm.cpp(39): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\github\megaman\demodirectx\gameobjects\boss\carryarm.cpp(62): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\github\megaman\demodirectx\gameobjects\boss\carryarm.cpp(63): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\github\megaman\demodirectx\gameobjects\boss\carryarm.cpp(64): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\github\megaman\demodirectx\gameobjects\boss\carryarm.cpp(65): warning C4305: 'argument': truncation from 'double' to 'float'
-  Genjibo.cpp
-  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-  Hornet.cpp
-  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\github\megaman\demodirectx\gameobjects\boss\hornet.cpp(150): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\github\megaman\demodirectx\gameobjects\boss\hornet.cpp(151): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\github\megaman\demodirectx\gameobjects\boss\hornet.cpp(163): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gameobjects\boss\hornet.cpp(168): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gameobjects\boss\hornet.cpp(175): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gameobjects\boss\hornet.cpp(176): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gameobjects\boss\hornet.cpp(210): warning C4018: '<': signed/unsigned mismatch
-d:\github\megaman\demodirectx\gameobjects\boss\hornet.cpp(226): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gameobjects\boss\hornet.cpp(289): warning C4018: '<': signed/unsigned mismatch
-d:\github\megaman\demodirectx\gameobjects\boss\hornet.cpp(311): warning C4018: '<': signed/unsigned mismatch
-d:\github\megaman\demodirectx\gameobjects\boss\hornet.cpp(318): warning C4018: '<': signed/unsigned mismatch
-d:\github\megaman\demodirectx\gameobjects\boss\hornet.cpp(320): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gameobjects\boss\hornet.cpp(331): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gameobjects\boss\hornet.cpp(333): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gameobjects\boss\hornet.cpp(343): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  BoxObject.cpp
-  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-  ChildHornet.cpp
-  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\github\megaman\demodirectx\gameobjects\enemies\childhornet.cpp(94): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gameobjects\enemies\childhornet.cpp(95): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  EnemyBullet.cpp
-  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-  HeadGunner.cpp
-  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\github\megaman\demodirectx\gameobjects\enemies\headgunner.cpp(43): warning C4018: '<': signed/unsigned mismatch
-  Helit.cpp
-  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\github\megaman\demodirectx\gameobjects\enemies\helit.cpp(86): warning C4018: '<': signed/unsigned mismatch
-  Notorbanger.cpp
-  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\github\megaman\demodirectx\gameobjects\enemies\notorbanger.cpp(169): warning C4018: '<': signed/unsigned mismatch
-  Stone.cpp
-  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-  SubCarry.cpp
-  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-  ItemHP.cpp
-  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-  Player.cpp
-  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\github\megaman\demodirectx\gameobjects\player\player.cpp(114): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gameobjects\player\player.cpp(115): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gameobjects\player\player.cpp(164): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gameobjects\player\player.cpp(392): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gameobjects\player\player.cpp(465): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gameobjects\player\player.cpp(466): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-d:\github\megaman\demodirectx\gameobjects\player\player.cpp(510): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-d:\github\megaman\demodirectx\gameobjects\player\player.cpp(509): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-d:\github\megaman\demodirectx\gameobjects\player\player.cpp(586): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-d:\github\megaman\demodirectx\gameobjects\player\player.cpp(588): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-  DemoScene.cpp
-  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\github\megaman\demodirectx\scenes\demoscene.cpp(33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  MenuScene.cpp
-  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-  Generating Code...
+d:\github\megaman\demodirectx\gamecomponents\viewport.cpp(239): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   DemoDirectX.vcxproj -> D:\Github\Megaman\Debug\DemoDirectX.exe
